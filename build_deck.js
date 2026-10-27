@@ -10,7 +10,7 @@ const logoWordmarkB64 = fs.readFileSync(path.join(dir, 'images', 'image1_base64.
 const logoIconB64 = fs.readFileSync(path.join(dir, 'images', 'image3_base64.txt'), 'utf8').trim();
 const logo3DPolys = JSON.parse(fs.readFileSync(path.join(dir, 'clean_logo_polys.json'), 'utf8'));
 
-console.log('Generating hesabaty-investor-deck.html...');
+console.log('Generating index.html...');
 
 const htmlContent = `<!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -6180,7 +6180,7 @@ const htmlContent = `<!DOCTYPE html>
 </html>
 `;
 
-const outputPath = path.join(dir, 'hesabaty-investor-deck.html');
+const outputPath = path.join(dir, 'index.html');
 fs.writeFileSync(outputPath, htmlContent, 'utf8');
 
 console.log('Successfully generated:', outputPath);
