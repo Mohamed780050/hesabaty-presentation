@@ -302,6 +302,29 @@
       line-height: 1.45;
     }
 
+    /* Scoped styling for Slide 10 4-card layout */
+    #slide-10 .feature-points {
+      gap: 0.8vh;
+      margin-top: 1vh;
+    }
+    #slide-10 .point-card {
+      padding: 1vh 1.2vw;
+      gap: 10px;
+    }
+    #slide-10 .point-icon {
+      width: 36px;
+      height: 36px;
+      font-size: 1.1rem;
+    }
+    #slide-10 .point-title {
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+    #slide-10 .point-desc {
+      font-size: 0.82rem;
+      line-height: 1.38;
+    }
+
     /* 3D Visual Stage Container */
     .visual-stage {
       position: relative;
@@ -1008,26 +1031,49 @@
             </div>
           </div>
 
-          <div class="feature-points" style="margin-top: 1.5vh;">
-            <div class="point-card">
-              <div class="point-icon">🎯</div>
+          <div class="feature-points" style="margin-top: 1.2vh;">
+            <div class="point-card" id="card-fund-0" onclick="selectFundSector(0)">
+              <div class="point-icon" style="color: var(--cyan-accent);">📍</div>
               <div>
-                <div class="point-title">أوجه استخدام التمويل (Use of Funds)</div>
-                <div class="point-desc"><strong>45%</strong> الاستحواذ والتسويق الميداني والإعلانات | <strong>35%</strong> البنية التحتية السحابية ونماذج AI | <strong>20%</strong> عمليات الإعداد والتهيئة والدعم.</div>
+                <div class="point-title">المبيعات الميدانية والاستحواذ — 45% (78,750 ج.م)</div>
+                <div class="point-desc">عمولات زيارات يومية للشوارع التجارية بشرق الإسكندرية (سموحة، ميامي، لوران) + حملات Meta Ads مستهدفة + مواد دعائية مطبوعة.</div>
               </div>
             </div>
 
-            <div class="point-card">
-              <div class="point-icon">🏆</div>
+            <div class="point-card" id="card-fund-1" onclick="selectFundSector(1)">
+              <div class="point-icon" style="color: var(--emerald-accent);">⚡</div>
               <div>
-                <div class="point-title">المعالم المحققة بالتمويل (Funded Milestones)</div>
-                <div class="point-desc">الوصول لـ 50-80 متجراً نشطاً، تحقيق 35k-100k ج.م MRR، وبلوغ نقطة التعادل التشغيلي بحلول الشهر السادس.</div>
+                <div class="point-title">البنية السحابية ونماذج الذكاء الاصطناعي — 30% (52,500 ج.م)</div>
+                <div class="point-desc">استضافة PostgreSQL وBun عالية الصمود، واجهات AI لمسح الفواتير الورقية والباركود، والتوافق مع منظومة الإيصال الإلكتروني.</div>
+              </div>
+            </div>
+
+            <div class="point-card" id="card-fund-2" onclick="selectFundSector(2)">
+              <div class="point-icon" style="color: var(--amber-accent);">👥</div>
+              <div>
+                <div class="point-title">التهيئة الميدانية وتدريب الكاشيرات — 15% (26,250 ج.م)</div>
+                <div class="point-desc">رفع أول 1000 صنف للمحل وتدريب الكاشير في 30 دقيقة مجاناً، ودعم فني لحظي عبر واتساب وتليجرام لضمان عدم مغادرة أي عميل.</div>
+              </div>
+            </div>
+
+            <div class="point-card" id="card-fund-3" onclick="selectFundSector(3)">
+              <div class="point-icon" style="color: #a855f7;">🛡️</div>
+              <div>
+                <div class="point-title">احتياطي تشغيلي وسيولة أمان — 10% (17,500 ج.م)</div>
+                <div class="point-desc">سيولة نقدية للطوارئ تضمن مدرج أمان (Runway) يمتد حتى 18 شهراً لتجاوز نقطة التعادل والوصول للربحية المستدامة.</div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="visual-stage" id="stage-slide-10">
+          <div class="map-controls-bar">
+            <button class="map-btn" id="btn-fund-0" onclick="selectFundSector(0)">📍 مبيعات (45%)</button>
+            <button class="map-btn" id="btn-fund-1" onclick="selectFundSector(1)">⚡ سحابة وAI (30%)</button>
+            <button class="map-btn" id="btn-fund-2" onclick="selectFundSector(2)">👥 تدريب (15%)</button>
+            <button class="map-btn" id="btn-fund-3" onclick="selectFundSector(3)">🛡️ أمان (10%)</button>
+            <button class="map-btn active" id="btn-fund-4" onclick="selectFundSector(4)">🌐 نظرة شاملة</button>
+          </div>
           <canvas class="visual-canvas" id="canvas-slide-10"></canvas>
         </div>
       </section>
@@ -6105,27 +6151,727 @@
       if (teamSelector) teamSelector.select(idx);
     };
 
-    function buildSlide10Scene(scene, camera) {
-      camera.position.set(0, 0, 10);
-      const group = new THREE.Group();
-      scene.add(group);
+    // --- SLIDE 10: Interactive Exploded 3D Donut Engine (The Ask: 175,000 EGP) ---
+    let fundSelector = null;
 
-      // Financial Growth Ascending Bars
-      for (let i = 0; i < 5; i++) {
-        const h = 1.2 + i * 1.1;
-        const geo = new THREE.BoxGeometry(0.9, h, 0.9);
-        const mat = new THREE.MeshStandardMaterial({ color: i === 4 ? 0x10b981 : 0x2563eb, metalness: 0.7, roughness: 0.3 });
-        const bar = new THREE.Mesh(geo, mat);
-        bar.position.set((i - 2) * 1.5, h / 2 - 2.5, 0);
-        group.add(bar);
+    function buildSlide10Scene(scene, camera) {
+      camera.position.set(0.0, 0.25, 11.2);
+      camera.lookAt(0.0, -0.2, 0.0);
+
+      const rootGroup = new THREE.Group();
+      scene.add(rootGroup);
+
+      // Tilt donut ring towards camera for 3D depth
+      rootGroup.rotation.x = 0.42;
+
+      // Mouse Parallax Setup
+      let mouseX = 0, mouseY = 0;
+      const stageElem = document.getElementById('stage-slide-10');
+      if (stageElem) {
+        stageElem.addEventListener('mousemove', (e) => {
+          const rect = stageElem.getBoundingClientRect();
+          mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          mouseY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+        });
+        stageElem.addEventListener('mouseleave', () => {
+          mouseX = 0;
+          mouseY = 0;
+        });
+      }
+
+      // Lights
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1.4);
+      dirLight.position.set(6, 12, 10);
+      scene.add(dirLight);
+
+      const cyanPoint = new THREE.PointLight(0x38bdf8, 2.2, 25);
+      cyanPoint.position.set(-4, 3, 5);
+      scene.add(cyanPoint);
+
+      const emeraldPoint = new THREE.PointLight(0x10b981, 2.0, 25);
+      emeraldPoint.position.set(0, 4, 4);
+      scene.add(emeraldPoint);
+
+      const goldPoint = new THREE.PointLight(0xf59e0b, 2.0, 25);
+      goldPoint.position.set(4, -2, 5);
+      scene.add(goldPoint);
+
+      const purplePoint = new THREE.PointLight(0xa855f7, 1.8, 20);
+      purplePoint.position.set(0, -4, 4);
+      scene.add(purplePoint);
+
+      // Base Platform Disc
+      const discGeo = new THREE.CylinderGeometry(4.4, 4.7, 0.22, 64);
+      const discMat = new THREE.MeshStandardMaterial({
+        color: 0x07111f,
+        metalness: 0.9,
+        roughness: 0.2,
+        transparent: true,
+        opacity: 0.85
+      });
+      const disc = new THREE.Mesh(discGeo, discMat);
+      disc.position.set(0, 0, -0.55);
+      rootGroup.add(disc);
+
+      const discEdge = new THREE.EdgesGeometry(discGeo);
+      disc.add(new THREE.LineSegments(discEdge, new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.4 })));
+
+      // ------------------------------------------
+      // SECTOR DATA (175,000 EGP TOTAL)
+      // ------------------------------------------
+      const fundSectorsData = [
+        {
+          idx: 0,
+          percentage: 0.45,
+          pctText: '45%',
+          amountText: '78,750 ج.م',
+          name: '📍 المبيعات الميدانية والاستحواذ',
+          subtitle: 'Field Sales & Merchant Acquisition (45%)',
+          color: 0x38bdf8,
+          colorHex: '#38bdf8',
+          emissive: 0x0284c7,
+          bullets: [
+            '• حوافز وعمولات الزيارات اليومية لمحلات التجزئة بشرق الإسكندرية',
+            '• إعلانات Meta Ads جغرافية مستهدفة (100-150 ج.م/يوم) للتجار بالمنطقة',
+            '• مواد مطبوعة ودلائل تعريفية وبرشورات تدريبية ميدانية للمتاجر'
+          ],
+          quote: '🎯 "الهدف: تمويل وتجهيز 50 - 80 متجراً نشطاً بنهاية العام الأول."'
+        },
+        {
+          idx: 1,
+          percentage: 0.30,
+          pctText: '30%',
+          amountText: '52,500 ج.م',
+          name: '⚡ البنية السحابية ونماذج الذكاء الاصطناعي',
+          subtitle: 'Cloud Infrastructure & AI Vision Models (30%)',
+          color: 0x10b981,
+          colorHex: '#10b981',
+          emissive: 0x059669,
+          bullets: [
+            '• خوادم وقواعد بيانات سحابية سريعة (PostgreSQL, Bun, Fast Edge CDN)',
+            '• اشتراكات واجهات AI لمسح وقراءة الفواتير الورقية والباركود بالهاتف',
+            '• بنية تحتية آمنة ومتوافقة 100% مع منظومة الإيصال الإلكتروني'
+          ],
+          quote: '⚡ "عمارة برمجية فائقة السرعة مع صمود أوفلاين وتكلفة سيرفرات دنيا."'
+        },
+        {
+          idx: 2,
+          percentage: 0.15,
+          pctText: '15%',
+          amountText: '26,250 ج.م',
+          name: '👥 التهيئة الميدانية وتدريب الكاشيرات',
+          subtitle: 'Store Onboarding & Customer Success (15%)',
+          color: 0xf59e0b,
+          colorHex: '#f59e0b',
+          emissive: 0xd97706,
+          bullets: [
+            '• زيارات ميدانية لرفع أول 1000 صنف للمحل وتدريب الكاشيرات مجاناً',
+            '• تسليم تشغيلي فوري للمتجر في أقل من 30 دقيقة بدون أي تعقيد',
+            '• دعم فني لحظي عبر WhatsApp وTelegram لضمان نسبة استبقاء 100%'
+          ],
+          quote: '🤝 "استبقاء كامل للعملاء وخفض معدل الإلغاء (Zero Churn)."'
+        },
+        {
+          idx: 3,
+          percentage: 0.10,
+          pctText: '10%',
+          amountText: '17,500 ج.م',
+          name: '🛡️ احتياطي تشغيلي وسيولة أمان',
+          subtitle: 'Runway Buffer & Working Capital (10%)',
+          color: 0xa855f7,
+          colorHex: '#a855f7',
+          emissive: 0x7e22ce,
+          bullets: [
+            '• سيولة نقدية احتياطية للطوارئ تضمن استقرار العمليات دون انقطاع',
+            '• مد مظلة الأمان المالي (Runway) من 12 إلى 18 شهراً بثقة كاملة',
+            '• الوصول لنقطة التعادل التشغيلي والربحية المستدامة بأمان تام'
+          ],
+          quote: '🛡️ "انضباط مالي يوفر أقصى حماية لرأس المال المستثمر."'
+        }
+      ];
+
+      // Helper function for round rect in canvas
+      function drawRoundRect(ctx, x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+      }
+
+      // Percentage Disc Texture (for floating 3D badges on sectors)
+      function makePercentageBadgeTexture(text, color) {
+        const c = document.createElement('canvas');
+        c.width = 160;
+        c.height = 160;
+        const ctx = c.getContext('2d');
+
+        ctx.fillStyle = 'rgba(7, 17, 31, 0.95)';
+        ctx.beginPath(); ctx.arc(80, 80, 76, 0, Math.PI * 2); ctx.fill();
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 5;
+        ctx.stroke();
+
+        ctx.font = 'bold 44px Outfit, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = color;
+        ctx.fillText(text, 80, 95);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.anisotropy = 8;
+        return tex;
+      }
+
+      // High-Res Detailed Financial Card Texture Generator (960x580)
+      function makeFundCardTexture(name, subtitle, amount, bullets, quote, accentColor) {
+        const c = document.createElement('canvas');
+        c.width = 960;
+        c.height = 580;
+        const ctx = c.getContext('2d');
+
+        // Background Gradient
+        const bgGrad = ctx.createLinearGradient(0, 0, 0, 580);
+        bgGrad.addColorStop(0, '#09152b');
+        bgGrad.addColorStop(0.5, '#060d1b');
+        bgGrad.addColorStop(1, '#030712');
+        ctx.fillStyle = bgGrad;
+        drawRoundRect(ctx, 0, 0, 960, 580, 26);
+        ctx.fill();
+
+        // Glowing Outer Border
+        ctx.strokeStyle = accentColor;
+        ctx.lineWidth = 4;
+        drawRoundRect(ctx, 4, 4, 952, 572, 24);
+        ctx.stroke();
+
+        // Inner Subtle Rim
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.lineWidth = 1.5;
+        drawRoundRect(ctx, 10, 10, 940, 560, 20);
+        ctx.stroke();
+
+        // Header Bar
+        const headerGrad = ctx.createLinearGradient(0, 14, 960, 14);
+        headerGrad.addColorStop(0, 'rgba(30, 58, 138, 0.2)');
+        headerGrad.addColorStop(0.5, 'rgba(30, 58, 138, 0.5)');
+        headerGrad.addColorStop(1, 'rgba(15, 23, 42, 0.7)');
+        ctx.fillStyle = headerGrad;
+        drawRoundRect(ctx, 14, 14, 932, 92, 18);
+        ctx.fill();
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+        ctx.lineWidth = 1;
+        drawRoundRect(ctx, 14, 14, 932, 92, 18);
+        ctx.stroke();
+
+        // Category Name (RTL right-aligned)
+        ctx.direction = 'rtl';
+        ctx.textAlign = 'right';
+        ctx.font = 'bold 30px Cairo, sans-serif';
+        ctx.fillStyle = accentColor;
+        ctx.fillText(name, 915, 68);
+
+        // Amount Badge (Left-aligned)
+        ctx.direction = 'ltr';
+        ctx.textAlign = 'left';
+        ctx.font = 'bold 20px Outfit, sans-serif';
+        const badgeW = 200;
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+        drawRoundRect(ctx, 36, 36, badgeW, 48, 12);
+        ctx.fill();
+        ctx.strokeStyle = accentColor;
+        ctx.lineWidth = 1.5;
+        drawRoundRect(ctx, 36, 36, badgeW, 48, 12);
+        ctx.stroke();
+        ctx.fillStyle = '#f8fafc';
+        ctx.fillText(amount, 54, 68);
+
+        // Subtitle
+        ctx.direction = 'rtl';
+        ctx.textAlign = 'right';
+        ctx.font = 'bold 23px Cairo, sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(subtitle, 915, 148);
+
+        // Glowing Divider
+        const divGrad = ctx.createLinearGradient(40, 175, 920, 175);
+        divGrad.addColorStop(0, 'rgba(255, 255, 255, 0.0)');
+        divGrad.addColorStop(0.3, accentColor);
+        divGrad.addColorStop(0.7, accentColor);
+        divGrad.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
+        ctx.strokeStyle = divGrad;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(40, 175);
+        ctx.lineTo(920, 175);
+        ctx.stroke();
+
+        // 3 Bullets
+        bullets.forEach((b, idx) => {
+          const bulletY = 226 + idx * 64;
+
+          ctx.save();
+          ctx.fillStyle = accentColor;
+          ctx.beginPath();
+          ctx.arc(905, bulletY - 8, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          ctx.font = '22px Cairo, sans-serif';
+          ctx.fillStyle = '#e2e8f0';
+          ctx.fillText(b, 885, bulletY);
+        });
+
+        // Bottom Callout Box
+        const quoteGrad = ctx.createLinearGradient(36, 435, 36, 545);
+        quoteGrad.addColorStop(0, 'rgba(15, 23, 42, 0.9)');
+        quoteGrad.addColorStop(1, 'rgba(10, 18, 36, 0.98)');
+        ctx.fillStyle = quoteGrad;
+        drawRoundRect(ctx, 36, 435, 888, 108, 16);
+        ctx.fill();
+
+        ctx.strokeStyle = accentColor;
+        ctx.lineWidth = 2;
+        drawRoundRect(ctx, 36, 435, 888, 108, 16);
+        ctx.stroke();
+
+        ctx.direction = 'rtl';
+        ctx.textAlign = 'right';
+        ctx.font = 'bold 22px Cairo, sans-serif';
+        ctx.fillStyle = accentColor;
+        ctx.fillText(quote, 895, 498);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.anisotropy = 16;
+        tex.generateMipmaps = true;
+        tex.minFilter = THREE.LinearMipmapLinearFilter;
+        tex.magFilter = THREE.LinearFilter;
+        return tex;
+      }
+
+      // ------------------------------------------
+      // 3D DONUT SLICES (EXTRUDED ANNULUS SECTORS)
+      // ------------------------------------------
+      const donutGroup = new THREE.Group();
+      rootGroup.add(donutGroup);
+
+      const rIn = 1.45;
+      const rOut = 2.95;
+      const gap = 0.055;
+      let currentAngle = 0.0;
+      const sectorSlices = [];
+
+      fundSectorsData.forEach((sec) => {
+        const span = (sec.percentage * Math.PI * 2) - gap;
+        const startA = currentAngle + gap / 2;
+        const endA = startA + span;
+        const midA = (startA + endA) / 2;
+        currentAngle += sec.percentage * Math.PI * 2;
+
+        // Build 2D shape for arc annulus
+        const shape = new THREE.Shape();
+        const nSegs = 36;
+        // Outer arc
+        for (let i = 0; i <= nSegs; i++) {
+          const theta = startA + (i / nSegs) * span;
+          const x = Math.cos(theta) * rOut;
+          const y = Math.sin(theta) * rOut;
+          if (i === 0) shape.moveTo(x, y);
+          else shape.lineTo(x, y);
+        }
+        // Inner arc in reverse
+        for (let i = nSegs; i >= 0; i--) {
+          const theta = startA + (i / nSegs) * span;
+          const x = Math.cos(theta) * rIn;
+          const y = Math.sin(theta) * rIn;
+          shape.lineTo(x, y);
+        }
+        shape.closePath();
+
+        const geo = new THREE.ExtrudeGeometry(shape, {
+          depth: 0.55,
+          bevelEnabled: true,
+          bevelSegments: 3,
+          steps: 1,
+          bevelSize: 0.035,
+          bevelThickness: 0.035
+        });
+        geo.translate(0, 0, -0.275);
+
+        const mat = new THREE.MeshStandardMaterial({
+          color: sec.color,
+          emissive: sec.emissive,
+          emissiveIntensity: 0.35,
+          metalness: 0.7,
+          roughness: 0.25
+        });
+        const mesh = new THREE.Mesh(geo, mat);
+
+        const edgeGeo = new THREE.EdgesGeometry(geo);
+        const edgeLine = new THREE.LineSegments(edgeGeo, new THREE.LineBasicMaterial({
+          color: sec.color,
+          transparent: true,
+          opacity: 0.85
+        }));
+        mesh.add(edgeLine);
+
+        // Floating percentage badge
+        const badgeMesh = new THREE.Mesh(
+          new THREE.CircleGeometry(0.38, 32),
+          new THREE.MeshBasicMaterial({
+            map: makePercentageBadgeTexture(sec.pctText, sec.colorHex),
+            side: THREE.DoubleSide
+          })
+        );
+        const badgeR = (rIn + rOut) / 2;
+        badgeMesh.position.set(Math.cos(midA) * badgeR, Math.sin(midA) * badgeR, 0.38);
+        mesh.add(badgeMesh);
+
+        // Group for radial explosion animation
+        const sliceGroup = new THREE.Group();
+        donutGroup.add(sliceGroup);
+        sliceGroup.add(mesh);
+
+        sectorSlices.push({
+          sec: sec,
+          group: sliceGroup,
+          mesh: mesh,
+          midA: midA,
+          currentExplode: 0,
+          targetExplode: 0
+        });
+      });
+
+      // ------------------------------------------
+      // CENTRAL HOLOGRAM CORE (175,000 EGP ASK)
+      // ------------------------------------------
+      function makeAskCoreTexture() {
+        const c = document.createElement('canvas');
+        c.width = 512;
+        c.height = 512;
+        const ctx = c.getContext('2d');
+
+        ctx.fillStyle = '#060d1b';
+        ctx.beginPath(); ctx.arc(256, 256, 248, 0, Math.PI * 2); ctx.fill();
+
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 6;
+        ctx.stroke();
+
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(256, 256, 230, 0, Math.PI * 2); ctx.stroke();
+
+        // Label Top
+        ctx.font = 'bold 26px Cairo, sans-serif';
+        ctx.fillStyle = '#94a3b8';
+        ctx.textAlign = 'center';
+        ctx.fillText('🎯 المبلغ المطلوب | The Ask', 256, 140);
+
+        // 175,000
+        ctx.font = 'bold 64px Outfit, sans-serif';
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText('175,000', 256, 240);
+
+        // Currency
+        ctx.font = 'bold 30px Cairo, sans-serif';
+        ctx.fillStyle = '#f8fafc';
+        ctx.fillText('جنيه مصري (EGP)', 256, 305);
+
+        // Sub-badge
+        ctx.fillStyle = 'rgba(30, 58, 138, 0.5)';
+        ctx.beginPath();
+        drawRoundRect(ctx, 86, 345, 340, 50, 12);
+        ctx.fill();
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 1.5;
+        drawRoundRect(ctx, 86, 345, 340, 50, 12);
+        ctx.stroke();
+
+        ctx.font = 'bold 22px Cairo, sans-serif';
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillText('⚡ سيولة أمان 12 - 18 شهراً', 256, 378);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.anisotropy = 8;
+        return tex;
+      }
+
+      const coreGroup = new THREE.Group();
+      rootGroup.add(coreGroup);
+
+      const corePedestal = new THREE.Mesh(
+        new THREE.CylinderGeometry(1.25, 1.3, 0.35, 32),
+        new THREE.MeshStandardMaterial({ color: 0x07111f, metalness: 0.9, roughness: 0.2 })
+      );
+      corePedestal.rotation.x = Math.PI / 2;
+      coreGroup.add(corePedestal);
+
+      const coreDisc = new THREE.Mesh(
+        new THREE.CircleGeometry(1.22, 32),
+        new THREE.MeshBasicMaterial({ map: makeAskCoreTexture(), side: THREE.DoubleSide })
+      );
+      coreDisc.position.z = 0.20;
+      coreGroup.add(coreDisc);
+
+      // Orbiting Golden & Cyan Rings
+      const ring1 = new THREE.Mesh(
+        new THREE.TorusGeometry(1.38, 0.025, 16, 32),
+        new THREE.MeshBasicMaterial({ color: 0x38bdf8 })
+      );
+      coreGroup.add(ring1);
+
+      const ring2 = new THREE.Mesh(
+        new THREE.TorusGeometry(1.52, 0.02, 16, 32),
+        new THREE.MeshBasicMaterial({ color: 0xf59e0b })
+      );
+      coreGroup.add(ring2);
+
+      // ------------------------------------------
+      // DETAILED FINANCIAL CARDS GROUP
+      // ------------------------------------------
+      const cardGeo = new THREE.PlaneGeometry(2.65, 1.60);
+      const frameGeo = new THREE.BoxGeometry(2.69, 1.64, 0.04);
+      const frameMat = new THREE.MeshStandardMaterial({
+        color: 0x07111f,
+        metalness: 0.9,
+        roughness: 0.2
+      });
+
+      const fundDetailCardGroup = new THREE.Group();
+      fundDetailCardGroup.position.set(0.0, -0.22, 0.55);
+      scene.add(fundDetailCardGroup);
+
+      const frameMesh = new THREE.Mesh(frameGeo, frameMat);
+      frameMesh.position.set(0, 0, -0.02);
+      fundDetailCardGroup.add(frameMesh);
+
+      const sectorCards = fundSectorsData.map(sec => {
+        const mat = new THREE.MeshBasicMaterial({
+          map: makeFundCardTexture(sec.name, sec.subtitle, sec.amountText, sec.bullets, sec.quote, sec.colorHex),
+          side: THREE.DoubleSide
+        });
+        const cardMesh = new THREE.Mesh(cardGeo, mat);
+        cardMesh.visible = false;
+        fundDetailCardGroup.add(cardMesh);
+        return cardMesh;
+      });
+
+      fundDetailCardGroup.visible = false;
+
+      // Ambient Space Particles
+      const partGeo = new THREE.BufferGeometry();
+      const partCount = 80;
+      const posArray = new Float32Array(partCount * 3);
+      for (let i = 0; i < partCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 18;
+      }
+      partGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      const partMat = new THREE.PointsMaterial({ size: 0.075, color: 0x38bdf8, transparent: true, opacity: 0.65 });
+      const particles = new THREE.Points(partGeo, partMat);
+      rootGroup.add(particles);
+
+      // ------------------------------------------
+      // DYNAMIC ZOOM DISTANCE & CAMERA TARGETS
+      // ------------------------------------------
+      function getZoomDistance() {
+        const cardW = 2.65;
+        const desiredFraction = 0.90; // Takes 90% of the canvas width
+        const vTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+        const aspect = camera.aspect || (stageElem ? stageElem.clientWidth / stageElem.clientHeight : 0.74);
+        const dist = cardW / (2 * vTan * aspect * desiredFraction);
+        return Math.min(Math.max(dist, 3.2), 6.5);
+      }
+
+      function getTargetForIdx(idx) {
+        if (idx >= 0 && idx <= 3) {
+          const dist = getZoomDistance();
+          return {
+            camPos: new THREE.Vector3(0.0, -0.22, 0.55 + dist),
+            lookAt: new THREE.Vector3(0.0, -0.22, 0.55)
+          };
+        }
+        // Overview (Mode 4)
+        return {
+          camPos: new THREE.Vector3(0.0, 0.25, 12.8),
+          lookAt: new THREE.Vector3(0.0, -0.2, 0.0)
+        };
+      }
+
+      let currentCamPos = new THREE.Vector3(0.0, 0.25, 12.8);
+      let currentLookAt = new THREE.Vector3(0.0, -0.2, 0.0);
+      let targetCamPos = new THREE.Vector3(0.0, 0.25, 12.8);
+      let targetLookAt = new THREE.Vector3(0.0, -0.2, 0.0);
+      let currentSelectedIdx = 4;
+
+      fundSelector = {
+        select(idx) {
+          currentSelectedIdx = idx;
+          const target = getTargetForIdx(idx);
+          targetCamPos.copy(target.camPos);
+          targetLookAt.copy(target.lookAt);
+
+          // Sector explosion targets
+          sectorSlices.forEach((sl, i) => {
+            if (i === idx) {
+              sl.targetExplode = 0.95;
+              sl.mesh.material.emissiveIntensity = 0.75;
+            } else {
+              sl.targetExplode = 0.0;
+              sl.mesh.material.emissiveIntensity = 0.35;
+            }
+          });
+
+          // Show detail card when sector 0-3 is active
+          if (idx >= 0 && idx <= 3) {
+            fundDetailCardGroup.visible = true;
+            sectorCards.forEach((cMesh, i) => {
+              cMesh.visible = (i === idx);
+            });
+          } else {
+            fundDetailCardGroup.visible = false;
+          }
+
+          // Sync buttons & right-hand cards
+          for (let i = 0; i <= 4; i++) {
+            const btn = document.getElementById('btn-fund-' + i);
+            if (btn) {
+              if (i === idx) btn.classList.add('active');
+              else btn.classList.remove('active');
+            }
+            const card = document.getElementById('card-fund-' + i);
+            if (card) {
+              if (i === idx) card.classList.add('active');
+              else card.classList.remove('active');
+            }
+          }
+        }
+      };
+
+      // Set initial view: Overview (idx = 4)
+      fundSelector.select(4);
+      currentCamPos.copy(targetCamPos);
+      currentLookAt.copy(targetLookAt);
+
+      // Handle window resize to recompute zoom distance
+      window.addEventListener('resize', () => {
+        if (currentSelectedIdx !== 4) {
+          const t = getTargetForIdx(currentSelectedIdx);
+          targetCamPos.copy(t.camPos);
+          targetLookAt.copy(t.lookAt);
+        }
+      });
+
+      // Direct Canvas Click Raycaster & Cursor Styling
+      if (stageElem) {
+        const raycaster = new THREE.Raycaster();
+        const mouseVec = new THREE.Vector2();
+
+        stageElem.addEventListener('click', (e) => {
+          const rect = stageElem.getBoundingClientRect();
+          mouseVec.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          mouseVec.y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+          raycaster.setFromCamera(mouseVec, camera);
+
+          // Check click on any sector
+          for (let i = 0; i < sectorSlices.length; i++) {
+            const hits = raycaster.intersectObjects(sectorSlices[i].group.children, true);
+            if (hits.length > 0) {
+              if (currentSelectedIdx === i) fundSelector.select(4); // Toggle to overview
+              else fundSelector.select(i);
+              return;
+            }
+          }
+
+          // Check click on central ask core
+          const hitCore = raycaster.intersectObjects(coreGroup.children, true);
+          if (hitCore.length > 0) {
+            fundSelector.select(4);
+            return;
+          }
+
+          // Check click on detail card
+          const hitCard = raycaster.intersectObjects(fundDetailCardGroup.children, true);
+          if (hitCard.length > 0) {
+            fundSelector.select(4);
+            return;
+          }
+
+          // Clicked empty background
+          if (currentSelectedIdx !== 4) {
+            fundSelector.select(4);
+          }
+        });
+
+        // Hover cursor pointer feedback
+        stageElem.addEventListener('mousemove', (e) => {
+          const rect = stageElem.getBoundingClientRect();
+          mouseVec.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          mouseVec.y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+          raycaster.setFromCamera(mouseVec, camera);
+
+          const allClickables = [
+            ...coreGroup.children,
+            ...fundDetailCardGroup.children
+          ];
+          sectorSlices.forEach(sl => {
+            allClickables.push(...sl.group.children);
+          });
+
+          const hits = raycaster.intersectObjects(allClickables, true);
+          stageElem.style.cursor = hits.length > 0 ? 'pointer' : 'default';
+        });
       }
 
       return {
         update(time) {
-          group.rotation.y = Math.sin(time * 0.4) * 0.15;
+          // Smooth Camera Lerp
+          currentCamPos.lerp(targetCamPos, 0.06);
+          currentLookAt.lerp(targetLookAt, 0.06);
+
+          // Subtle Parallax (softened when zoomed in for reading stability)
+          const isZoomed = currentSelectedIdx !== 4;
+          const pFactor = isZoomed ? 0.06 : 0.22;
+          const pX = mouseX * pFactor;
+          const pY = -mouseY * (pFactor * 0.6);
+          camera.position.set(currentCamPos.x + pX, currentCamPos.y + pY, currentCamPos.z);
+          camera.lookAt(currentLookAt.x, currentLookAt.y, currentLookAt.z);
+
+          // Smooth Radial Explosion of Slices
+          sectorSlices.forEach(sl => {
+            sl.currentExplode += (sl.targetExplode - sl.currentExplode) * 0.08;
+            const ex = Math.cos(sl.midA) * sl.currentExplode;
+            const ey = Math.sin(sl.midA) * sl.currentExplode;
+            const ez = sl.currentExplode > 0.05 ? 0.25 : 0.0;
+            sl.group.position.set(ex, ey, ez);
+          });
+
+          // In Overview mode: gentle continuous rotation of donut ring
+          if (currentSelectedIdx === 4) {
+            donutGroup.rotation.z = time * 0.12;
+          } else {
+            // Smoothly ease rotation to neutral so active slice faces comfortably
+            donutGroup.rotation.z += (0.0 - donutGroup.rotation.z) * 0.08;
+          }
+
+          // Orbiting Rings Rotation
+          ring1.rotation.x = time * 0.7;
+          ring1.rotation.y = time * 0.35;
+          ring2.rotation.y = -time * 0.6;
+          ring2.rotation.z = time * 0.3;
+
+          // Space dust gentle drift
+          particles.rotation.y = time * 0.02;
         }
       };
     }
+
+    window.selectFundSector = function(idx) {
+      if (fundSelector) fundSelector.select(idx);
+    };
 
     // --- Master Render Loop ---
     let lastTime = 0;
