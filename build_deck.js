@@ -7,6 +7,7 @@ const path = require('path');
 const dir = __dirname;
 const geoData = JSON.parse(fs.readFileSync(path.join(dir, 'geo_data.json'), 'utf8'));
 const logoWordmarkB64 = fs.readFileSync(path.join(dir, 'images', 'image1_base64.txt'), 'utf8').trim();
+const logoWordmarkSrc = logoWordmarkB64.startsWith('data:') ? logoWordmarkB64 : 'data:image/png;base64,' + logoWordmarkB64;
 const logoIconB64 = fs.readFileSync(path.join(dir, 'images', 'image3_base64.txt'), 'utf8').trim();
 const logo3DPolys = JSON.parse(fs.readFileSync(path.join(dir, 'clean_logo_polys.json'), 'utf8'));
 
@@ -316,6 +317,75 @@ const htmlContent = `<!DOCTYPE html>
       line-height: 1.45;
     }
 
+    /* Scoped styling for Slide 1 Hero Cover */
+    #slide-1 .slide-content {
+      justify-content: center;
+      gap: 2.2vh;
+      padding-right: 1.5vw;
+    }
+    #slide-1 .hero-kicker-badge {
+      font-family: var(--font-en);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #38BDF8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.38);
+      padding: 6px 16px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+    }
+    #slide-1 .hero-kicker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #38BDF8;
+      box-shadow: 0 0 10px #38BDF8;
+      animation: heroPulse 2s infinite ease-in-out;
+    }
+    @keyframes heroPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    #slide-1 .hero-title {
+      font-size: 3.6vw;
+      font-weight: 900;
+      line-height: 1.18;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+    }
+    #slide-1 .hero-title .highlight {
+      background: linear-gradient(135deg, #38BDF8 0%, #60A5FA 50%, #93C5FD 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.45));
+    }
+    #slide-1 .hero-tagline-ar {
+      font-size: 1.55vw;
+      font-weight: 600;
+      line-height: 1.65;
+      color: #F8FAFC;
+      max-width: 92%;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+    }
+    #slide-1 .hero-tagline-en {
+      font-family: var(--font-en);
+      font-size: 1.15vw;
+      font-weight: 500;
+      color: #93C5FD;
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      direction: ltr;
+      display: inline-block;
+    }
+
     /* Scoped styling for Slide 10 4-card layout */
     #slide-10 .feature-points {
       gap: 0.8vh;
@@ -573,7 +643,7 @@ const htmlContent = `<!DOCTYPE html>
     <!-- Top Deck Header -->
     <header class="deck-header">
       <div class="brand-group" onclick="deck.goTo(0)">
-        <img class="brand-logo-img" src="${logoWordmarkB64}" alt="حساباتي - Hesabaty">
+        <img class="brand-logo-img" src="${logoWordmarkSrc}" alt="حساباتي - Hesabaty">
         <span class="brand-tag">Investor Deck 2026</span>
       </div>
 
@@ -591,40 +661,17 @@ const htmlContent = `<!DOCTYPE html>
       <!-- SLIDE 1: TITLE & ONE-LINER -->
       <section class="slide active" id="slide-1" data-title="حساباتي | المقدمة">
         <div class="slide-content">
-          <div class="slide-kicker">Cloud Mini-ERP & Retail POS</div>
-          <h1 class="slide-title">حساباتي <span class="highlight">| Hesabaty</span></h1>
-          <p class="slide-subtitle">
-            "نظام سحابي متكامل يساعد تجار التجزئة في مصر على إحكام السيطرة التامة على المخزون، المبيعات، الفواتير، والديون."
-          </p>
-          <p style="font-size: 0.95rem; color: var(--text-dim); margin-top: -1vh;">
-            "One simple cloud ERP helping Egypt's retailers control inventory, sales, invoices, and debts."
-          </p>
-
-          <div class="feature-points">
-            <div class="point-card">
-              <div class="point-icon">📱</div>
-              <div>
-                <div class="point-title">صفر تكلفة عتاد (Zero-CapEx)</div>
-                <div class="point-desc">استخدام كاميرا الهاتف لمسح الباركود بسرعة &lt; 1 ثانية بديلاً عن أجهزة الكاشير باهظة الثمن (15k-25k ج.م).</div>
-              </div>
-            </div>
-
-            <div class="point-card">
-              <div class="point-icon">⚡</div>
-              <div>
-                <div class="point-title">صمود تشغيلي بدون إنترنت (Offline-First)</div>
-                <div class="point-desc">استمرار عمليات البيع وإصدار الفواتير محلياً مع مزامنة سحابية فورية وتلقائية عند عودة الاتصال.</div>
-              </div>
-            </div>
-
-            <div class="point-card">
-              <div class="point-icon">💬</div>
-              <div>
-                <div class="point-title">أتمتة الديون وفواتير الواتساب وتليجرام</div>
-                <div class="point-desc">معالجة "نوتة الشكك" بمعيار FIFO وإرسال كشوف الحسابات المعتمدة ورموز QR آلياً للعملاء.</div>
-              </div>
-            </div>
+          <div class="hero-kicker-badge">
+            <span class="hero-kicker-dot"></span>
+            Cloud Mini-ERP &amp; Retail POS
           </div>
+          <h1 class="slide-title hero-title">حساباتي <span class="highlight">| Hesabaty</span></h1>
+          <p class="hero-tagline-ar">
+            المنظومة السحابية الذكية لإدارة المبيعات، المخزون، والديون لتجار التجزئة في مصر.
+          </p>
+          <p class="hero-tagline-en" dir="ltr">
+            Smart, offline-first operating system for Egyptian retail
+          </p>
         </div>
 
         <div class="visual-stage" id="stage-slide-1">
