@@ -352,19 +352,16 @@ const htmlContent = `<!DOCTYPE html>
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.85); }
     }
-    #slide-1 .hero-title {
-      font-size: 3.6vw;
-      font-weight: 900;
-      line-height: 1.18;
-      color: #FFFFFF;
-      letter-spacing: -0.01em;
-      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+    #slide-1 .hero-logo-wrap {
+      display: flex;
+      align-items: center;
+      margin: 0.5vh 0;
     }
-    #slide-1 .hero-title .highlight {
-      background: linear-gradient(135deg, #38BDF8 0%, #60A5FA 50%, #93C5FD 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.45));
+    #slide-1 .hero-brand-logo {
+      height: clamp(80px, 10.5vh, 115px);
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 20px rgba(37, 99, 235, 0.5)) drop-shadow(0 0 35px rgba(56, 189, 248, 0.45));
     }
     #slide-1 .hero-tagline-ar {
       font-size: 1.55vw;
@@ -373,17 +370,6 @@ const htmlContent = `<!DOCTYPE html>
       color: #F8FAFC;
       max-width: 92%;
       text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
-    }
-    #slide-1 .hero-tagline-en {
-      font-family: var(--font-en);
-      font-size: 1.15vw;
-      font-weight: 500;
-      color: #93C5FD;
-      letter-spacing: 0.03em;
-      line-height: 1.5;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      direction: ltr;
-      display: inline-block;
     }
 
     /* Scoped styling for Slide 10 4-card layout */
@@ -665,12 +651,11 @@ const htmlContent = `<!DOCTYPE html>
             <span class="hero-kicker-dot"></span>
             Cloud Mini-ERP &amp; Retail POS
           </div>
-          <h1 class="slide-title hero-title">حساباتي <span class="highlight">| Hesabaty</span></h1>
+          <div class="hero-logo-wrap">
+            <img class="hero-brand-logo" src="${logoWordmarkSrc}" alt="حساباتي">
+          </div>
           <p class="hero-tagline-ar">
             المنظومة السحابية الذكية لإدارة المبيعات، المخزون، والديون لتجار التجزئة في مصر.
-          </p>
-          <p class="hero-tagline-en" dir="ltr">
-            Smart, offline-first operating system for Egyptian retail
           </p>
         </div>
 
