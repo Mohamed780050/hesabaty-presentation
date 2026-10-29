@@ -372,6 +372,44 @@ const htmlContent = `<!DOCTYPE html>
       text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
     }
 
+    /* Scoped styling for Slide 2 Problem Cards & Camera Interactive Feedback */
+    #slide-2 .slide-content {
+      gap: 2.2vh;
+    }
+    #slide-2 .point-card {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+    #slide-2 .point-card:hover {
+      transform: translateX(-6px);
+      border-color: #38bdf8;
+      background: rgba(22, 38, 70, 0.95);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
+    }
+    #slide-2 .point-card.active {
+      border-color: #38bdf8 !important;
+      background: rgba(37, 99, 235, 0.28) !important;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.35), inset 0 0 15px rgba(56, 189, 248, 0.15);
+      transform: translateX(-8px) scale(1.02);
+    }
+    #slide-2 .point-card.active::after {
+      content: '🔍 تركيز 3D';
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+    }
+
     /* Scoped styling for Slide 10 4-card layout */
     #slide-10 .feature-points {
       gap: 0.8vh;
@@ -667,32 +705,36 @@ const htmlContent = `<!DOCTYPE html>
       <!-- SLIDE 2: THE PROBLEM -->
       <section class="slide" id="slide-2" data-title="المشكلة | The Problem">
         <div class="slide-content">
-          <div class="slide-kicker">Retail Operational Blindspots</div>
-          <h2 class="slide-title">"لا يمكن للتجار إدارة ما لا يستطيعون <span class="highlight">رؤيته</span>"</h2>
-          <p class="slide-subtitle">"Retailers can't manage what they can't see." — العمليات اليدوية والأدوات المشتتة تخفي الأخطاء وتعطل اتخاذ القرار.</p>
+          <div class="hero-kicker-badge">
+            <span class="hero-kicker-dot" style="background: var(--danger-accent); box-shadow: 0 0 10px var(--danger-accent);"></span>
+            تحديات التجزئة
+          </div>
+          <h2 class="slide-title" style="font-size: 3vw; font-weight: 800; color: #FFFFFF; line-height: 1.2;">
+            أين تضيع <span class="highlight">أرباح المتاجر؟</span>
+          </h2>
 
           <div class="feature-points">
-            <div class="point-card">
-              <div class="point-icon" style="color: var(--danger-accent);">📦</div>
+            <div class="point-card" id="card-prob-0" title="انقر لتكبير المجسم ثلاثي الأبعاد">
+              <div class="point-icon" style="color: var(--amber-accent); background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35);">📦</div>
               <div>
-                <div class="point-title">تخبط وفقدان السيطرة على المخزون (Stock Uncertainty)</div>
-                <div class="point-desc">سجلات غير دقيقة، فروقات جرد متكررة، وعجز عن تتبع وحدات القياس المتعددة وتواريخ الصلاحية.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.1rem;">عجز وفروقات المخزون</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.92rem;">غياب تتبع الأصناف والنواقص.</div>
               </div>
             </div>
 
-            <div class="point-card">
-              <div class="point-icon" style="color: var(--amber-accent);">🧩</div>
+            <div class="point-card" id="card-prob-1" title="انقر لتكبير المجسم ثلاثي الأبعاد">
+              <div class="point-icon" style="color: var(--cyan-accent); background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35);">💻</div>
               <div>
-                <div class="point-title">تشتت العمليات والأنظمة (Fragmented Operations)</div>
-                <div class="point-desc">إدارة المبيعات والفواتير والخزينة عبر دفاتر ورقية أو برمجيات قديمة لا تتيح الرؤية عن بُعد.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.1rem;">أنظمة مكتبية وعتاد باهظ</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.92rem;">برمجيات معزولة بلا سحابة.</div>
               </div>
             </div>
 
-            <div class="point-card">
-              <div class="point-icon" style="color: var(--light-blue);">📑</div>
+            <div class="point-card" id="card-prob-2" title="انقر لتكبير المجسم ثلاثي الأبعاد">
+              <div class="point-icon" style="color: var(--danger-accent); background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35);">📑</div>
               <div>
-                <div class="point-title">ضياع وتراكم ديون العملاء (Unclear Balances)</div>
-                <div class="point-desc">صعوبة تحصيل "الشكك"، غياب تتبع مستحقات الموردين، وعدم معرفة حركة النقدية الفعلية داخل الدرج.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.1rem;">ضياع ديون الشكك</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.92rem;">تراكم الآجل وصعوبة التحصيل.</div>
               </div>
             </div>
           </div>
@@ -1615,6 +1657,88 @@ const htmlContent = `<!DOCTYPE html>
         });
       }
 
+      // Cinematic Camera Presets for Problem Focus
+      const OVERVIEW_INDEX = -1;
+      let activeTargetIndex = OVERVIEW_INDEX;
+
+      const camPresets = [
+        // Target 0: Shelf (عجز وفروقات المخزون)
+        {
+          camPos: new THREE.Vector3(3.6, 0.3, 4.2),
+          lookTarget: new THREE.Vector3(3.7, -0.1, -1.6)
+        },
+        // Target 1: POS Computer & Crash Screen (أنظمة مكتبية وعتاد باهظ)
+        {
+          camPos: new THREE.Vector3(-0.3, 0.0, 3.8),
+          lookTarget: new THREE.Vector3(-0.3, -0.9, -0.3)
+        },
+        // Target 2: Debt Notebook (ضياع ديون الشكك)
+        {
+          camPos: new THREE.Vector3(-3.2, 0.2, 3.4),
+          lookTarget: new THREE.Vector3(-3.2, -2.2, 0.7)
+        }
+      ];
+
+      const overviewPreset = {
+        camPos: new THREE.Vector3(0, 5.5, 14.5),
+        lookTarget: new THREE.Vector3(0, 0, 0)
+      };
+
+      const currentCamPos = overviewPreset.camPos.clone();
+      const currentLookAt = overviewPreset.lookTarget.clone();
+      const targetCamPos = overviewPreset.camPos.clone();
+      const targetLookAt = overviewPreset.lookTarget.clone();
+      camera.position.copy(currentCamPos);
+      camera.lookAt(currentLookAt);
+
+      const cards = [
+        document.getElementById('card-prob-0'),
+        document.getElementById('card-prob-1'),
+        document.getElementById('card-prob-2')
+      ];
+
+      function setActiveTarget(idx) {
+        if (activeTargetIndex === idx) {
+          activeTargetIndex = OVERVIEW_INDEX;
+        } else {
+          activeTargetIndex = idx;
+        }
+
+        cards.forEach((card, i) => {
+          if (!card) return;
+          if (i === activeTargetIndex) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+
+        if (activeTargetIndex === OVERVIEW_INDEX) {
+          targetCamPos.copy(overviewPreset.camPos);
+          targetLookAt.copy(overviewPreset.lookTarget);
+        } else {
+          targetCamPos.copy(camPresets[activeTargetIndex].camPos);
+          targetLookAt.copy(camPresets[activeTargetIndex].lookTarget);
+        }
+      }
+
+      cards.forEach((card, i) => {
+        if (card) {
+          card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setActiveTarget(i);
+          });
+        }
+      });
+
+      if (stageElem) {
+        stageElem.addEventListener('click', () => {
+          if (activeTargetIndex !== OVERVIEW_INDEX) {
+            setActiveTarget(OVERVIEW_INDEX);
+          }
+        });
+      }
+
       // ==========================================
       // TEXTURE GENERATORS (High Detail & Meaningful)
       // ==========================================
@@ -2116,6 +2240,12 @@ const htmlContent = `<!DOCTYPE html>
 
       return {
         update(time) {
+          // Smooth cinematic camera interpolation
+          currentCamPos.lerp(targetCamPos, 0.055);
+          currentLookAt.lerp(targetLookAt, 0.055);
+          camera.position.copy(currentCamPos);
+          camera.lookAt(currentLookAt);
+
           // Subtle hover for HUD badges
           hudDebt.position.y = 1.8 + Math.sin(time * 1.5) * 0.08;
           hudCapex.position.y = 2.4 + Math.sin(time * 1.5 + 1.0) * 0.08;
@@ -2125,9 +2255,10 @@ const htmlContent = `<!DOCTYPE html>
           const blink = Math.sin(time * 4) > 0;
           emptySlotLine.visible = blink;
 
-          // Mouse Parallax across the entire retail counter
-          const targetRotY = mouseX * 0.32 + Math.sin(time * 0.4) * 0.03;
-          const targetRotX = -mouseY * 0.22 + 0.12 + Math.cos(time * 0.5) * 0.02;
+          // Mouse Parallax across the retail counter (softened when zoomed in)
+          const pWeight = activeTargetIndex === OVERVIEW_INDEX ? 1.0 : 0.25;
+          const targetRotY = (mouseX * 0.32 + Math.sin(time * 0.4) * 0.03) * pWeight;
+          const targetRotX = (-mouseY * 0.22 + 0.12 + Math.cos(time * 0.5) * 0.02) * pWeight;
           rootGroup.rotation.y += (targetRotY - rootGroup.rotation.y) * 0.08;
           rootGroup.rotation.x += (targetRotX - rootGroup.rotation.x) * 0.08;
         }
