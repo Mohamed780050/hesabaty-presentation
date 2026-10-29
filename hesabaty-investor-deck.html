@@ -395,6 +395,50 @@
       letter-spacing: 0.05em;
     }
 
+    /* Scoped styling for Slide 3 Solution Cards & Camera Interactive Feedback */
+    #slide-3 .slide-content {
+      gap: 1.8vh;
+    }
+    #slide-3 .feature-points {
+      gap: 1vh;
+      margin-top: 0.5vh;
+    }
+    #slide-3 .point-card {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      padding: 1.1vh 1.2vw;
+      gap: 12px;
+    }
+    #slide-3 .point-card:hover {
+      transform: translateX(-6px);
+      border-color: #38bdf8;
+      background: rgba(22, 38, 70, 0.95);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
+    }
+    #slide-3 .point-card.active {
+      border-color: #38bdf8 !important;
+      background: rgba(37, 99, 235, 0.28) !important;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.35), inset 0 0 15px rgba(56, 189, 248, 0.15);
+      transform: translateX(-8px) scale(1.02);
+    }
+    #slide-3 .point-card.active::after {
+      content: '🔍 تركيز 3D';
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+    }
+
     /* Scoped styling for Slide 10 4-card layout */
     #slide-10 .feature-points {
       gap: 0.8vh;
@@ -733,40 +777,44 @@
       <!-- SLIDE 3: THE SOLUTION -->
       <section class="slide" id="slide-3" data-title="الحل | The Solution">
         <div class="slide-content">
-          <div class="slide-kicker">Integrated Retail Cloud Core</div>
-          <h2 class="slide-title">مساحة عمل واحدة. <span class="highlight">تحكم تشغيلي كامل.</span></h2>
-          <p class="slide-subtitle">"One workspace. Full operational control." — ربط دورة المتجر اليومية في منظومة متكاملة واحدة.</p>
+          <div class="hero-kicker-badge">
+            <span class="hero-kicker-dot"></span>
+            منظومة التجزئة
+          </div>
+          <h2 class="slide-title" style="font-size: 3vw; font-weight: 800; color: #FFFFFF; line-height: 1.2;">
+            تحكم تشغيلي <span class="highlight">متكامل</span>
+          </h2>
 
           <div class="feature-points">
-            <div class="point-card">
-              <div class="point-icon">🛒</div>
+            <div class="point-card" id="card-sol-0" title="انقر للتكبير ثلاثي الأبعاد">
+              <div class="point-icon" style="color: var(--cyan-accent); background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35);">🛒</div>
               <div>
-                <div class="point-title">نقطة البيع السريعة (POS & Sales)</div>
-                <div class="point-desc">واجهة سريعة باللغة العربية تدعم مسح الباركود بكاميرا الموبايل والعمل بدون إنترنت عبر IndexedDB.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">كاشير الموبايل السريع</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">مسح باركود فوري.</div>
               </div>
             </div>
 
-            <div class="point-card">
-              <div class="point-icon">📊</div>
+            <div class="point-card" id="card-sol-1" title="انقر للتكبير ثلاثي الأبعاد">
+              <div class="point-icon" style="color: var(--light-blue); background: rgba(96, 165, 250, 0.15); border: 1px solid rgba(96, 165, 250, 0.35);">📊</div>
               <div>
-                <div class="point-title">المخزون والوحدات المتعددة (Inventory & Batches)</div>
-                <div class="point-desc">جرد فوري، دعم تتبع أرقام التشغيل والتواريخ، وتنبيهات ذكية بالنواقص لمنع ركود البضائع.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">المخزون متعدد الوحدات</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">تتبع دقيق للنواقص.</div>
               </div>
             </div>
 
-            <div class="point-card">
-              <div class="point-icon">🧾</div>
+            <div class="point-card" id="card-sol-2" title="انقر للتكبير ثلاثي الأبعاد">
+              <div class="point-icon" style="color: var(--amber-accent); background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35);">🧾</div>
               <div>
-                <div class="point-title">الفواتير والإيصال الإلكتروني (Invoices & Compliance)</div>
-                <div class="point-desc">فواتير بيع وشراء ومرتجعات متوافقة كلياً مع منظومة الإيصال الإلكتروني وقانون 152 لسنة 2020.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">الإيصال الإلكتروني المعتمد</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">توافق ضريبي كامل.</div>
               </div>
             </div>
 
-            <div class="point-card">
-              <div class="point-icon">💰</div>
+            <div class="point-card" id="card-sol-3" title="انقر للتكبير ثلاثي الأبعاد">
+              <div class="point-icon" style="color: var(--emerald-accent); background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35);">💬</div>
               <div>
-                <div class="point-title">الديون والخزائن (Debts, Cash & Shifts)</div>
-                <div class="point-desc">أتمتة كشوف حسابات العملاء والموردين بنظام FIFO مع إرسال فوري عبر WhatsApp & Telegram.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">أتمتة الشكك بالواتساب</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">تصفير آلي للديون.</div>
               </div>
             </div>
           </div>
@@ -2252,7 +2300,7 @@
 
     // --- SLIDE 3: The Solution (Smartphone Hub & 4 Operational Pods) ---
     function buildSlide3Scene(scene, camera) {
-      camera.position.set(0, 0, 15.5);
+      camera.position.set(0, 0, 18.2);
       camera.lookAt(0, 0, 0);
 
       const rootGroup = new THREE.Group();
@@ -2270,6 +2318,94 @@
         stageElem.addEventListener('mouseleave', () => {
           mouseX = 0;
           mouseY = 0;
+        });
+      }
+
+      // Cinematic Camera Presets for Solution Hub & 4 Operational Pods
+      const OVERVIEW_INDEX = -1;
+      let activeTargetIndex = OVERVIEW_INDEX;
+
+      const camPresets = [
+        // Target 0: Central 3D Smartphone (كاشير الموبايل السريع)
+        {
+          camPos: new THREE.Vector3(0.0, 0.0, 10.5),
+          lookTarget: new THREE.Vector3(0.0, 0.0, 0.5)
+        },
+        // Target 1: Multi-Unit Inventory Pod (المخزون متعدد الوحدات) - Top-Left
+        {
+          camPos: new THREE.Vector3(-4.8, 2.6, 5.8),
+          lookTarget: new THREE.Vector3(-4.8, 2.6, -0.5)
+        },
+        // Target 2: B2C Tax Compliance Pod (الإيصال الإلكتروني المعتمد) - Bottom-Right
+        {
+          camPos: new THREE.Vector3(4.8, -2.6, 5.8),
+          lookTarget: new THREE.Vector3(4.8, -2.6, -0.5)
+        },
+        // Target 3: WhatsApp Invoicing Pod (أتمتة الشكك بالواتساب) - Top-Right
+        {
+          camPos: new THREE.Vector3(4.8, 2.6, 5.8),
+          lookTarget: new THREE.Vector3(4.8, 2.6, -0.5)
+        }
+      ];
+
+      const overviewPreset = {
+        camPos: new THREE.Vector3(0, 0, 18.2),
+        lookTarget: new THREE.Vector3(0, 0, 0)
+      };
+
+      const currentCamPos = overviewPreset.camPos.clone();
+      const currentLookAt = overviewPreset.lookTarget.clone();
+      const targetCamPos = overviewPreset.camPos.clone();
+      const targetLookAt = overviewPreset.lookTarget.clone();
+      camera.position.copy(currentCamPos);
+      camera.lookAt(currentLookAt);
+
+      const cards = [
+        document.getElementById('card-sol-0'),
+        document.getElementById('card-sol-1'),
+        document.getElementById('card-sol-2'),
+        document.getElementById('card-sol-3')
+      ];
+
+      function setActiveTarget(idx) {
+        if (activeTargetIndex === idx) {
+          activeTargetIndex = OVERVIEW_INDEX;
+        } else {
+          activeTargetIndex = idx;
+        }
+
+        cards.forEach((card, i) => {
+          if (!card) return;
+          if (i === activeTargetIndex) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+
+        if (activeTargetIndex === OVERVIEW_INDEX) {
+          targetCamPos.copy(overviewPreset.camPos);
+          targetLookAt.copy(overviewPreset.lookTarget);
+        } else {
+          targetCamPos.copy(camPresets[activeTargetIndex].camPos);
+          targetLookAt.copy(camPresets[activeTargetIndex].lookTarget);
+        }
+      }
+
+      cards.forEach((card, i) => {
+        if (card) {
+          card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setActiveTarget(i);
+          });
+        }
+      });
+
+      if (stageElem) {
+        stageElem.addEventListener('click', () => {
+          if (activeTargetIndex !== OVERVIEW_INDEX) {
+            setActiveTarget(OVERVIEW_INDEX);
+          }
         });
       }
 
@@ -2670,6 +2806,12 @@
 
       return {
         update(time) {
+          // Smooth cinematic camera interpolation
+          currentCamPos.lerp(targetCamPos, 0.055);
+          currentLookAt.lerp(targetLookAt, 0.055);
+          camera.position.copy(currentCamPos);
+          camera.lookAt(currentLookAt);
+
           // Phone Floating Hover
           phoneGroup.position.y = Math.sin(time * 0.8) * 0.18;
 
@@ -2692,9 +2834,10 @@
           // Particles drift
           particles.rotation.y = time * 0.02;
 
-          // Mouse Parallax across the entire Solution scene
-          const targetRotY = mouseX * 0.28 + Math.sin(time * 0.3) * 0.04;
-          const targetRotX = -mouseY * 0.2 + Math.cos(time * 0.4) * 0.03;
+          // Mouse Parallax across the entire Solution scene (softened when zoomed in)
+          const pWeight = activeTargetIndex === OVERVIEW_INDEX ? 1.0 : 0.25;
+          const targetRotY = (mouseX * 0.28 + Math.sin(time * 0.3) * 0.04) * pWeight;
+          const targetRotX = (-mouseY * 0.2 + Math.cos(time * 0.4) * 0.03) * pWeight;
           rootGroup.rotation.y += (targetRotY - rootGroup.rotation.y) * 0.08;
           rootGroup.rotation.x += (targetRotX - rootGroup.rotation.x) * 0.08;
         }
