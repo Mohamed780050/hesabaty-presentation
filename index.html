@@ -477,6 +477,52 @@
       letter-spacing: 0.05em;
     }
 
+    /* Scoped styling for Slide 5 SaaS Vault & Cubes */
+    #slide-5 .slide-content {
+      gap: 1.8vh;
+    }
+    #slide-5 .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 0.5vh;
+    }
+    #slide-5 .stat-box {
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 1.2vh 1vw;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.7);
+      text-align: center;
+    }
+    #slide-5 .stat-box:hover {
+      border-color: #38bdf8;
+      transform: translateY(-3px);
+      background: rgba(22, 38, 70, 0.9);
+    }
+    #slide-5 .stat-box.active {
+      border-color: #38bdf8 !important;
+      background: rgba(37, 99, 235, 0.25) !important;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+      transform: translateY(-4px) scale(1.03);
+    }
+    #slide-5 .feature-points {
+      gap: 1vh;
+      margin-top: 1vh;
+    }
+    #slide-5 .point-card {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      padding: 1.1vh 1.2vw;
+      gap: 12px;
+    }
+    #slide-5 .point-card:hover {
+      transform: translateX(-6px);
+      border-color: #38bdf8;
+      background: rgba(22, 38, 70, 0.95);
+    }
+
     /* Scoped styling for Slide 10 4-card layout */
     #slide-10 .feature-points {
       gap: 0.8vh;
@@ -914,39 +960,43 @@
       <!-- SLIDE 5: BUSINESS MODEL & UNIT ECONOMICS -->
       <section class="slide" id="slide-5" data-title="نموذج العمل والوحدة الاقتصادية">
         <div class="slide-content">
-          <div class="slide-kicker">SaaS Model & Unit Economics</div>
-          <h2 class="slide-title">اشتراكات متكررة، <span class="highlight">تسعير للمنشأة.</span></h2>
-          <p class="slide-subtitle">"Recurring revenue, priced per business." — باقات شهرية وسنوية واضحة للمتجر، لا لكل كاشير.</p>
+          <div class="hero-kicker-badge">
+            <span class="hero-kicker-dot"></span>
+            نموذج العمل
+          </div>
+          <h2 class="slide-title" style="font-size: 3vw; font-weight: 800; color: #FFFFFF; line-height: 1.2;">
+            اشتراكات متكررة <span class="highlight">وهوامش 90%</span>
+          </h2>
 
           <div class="stat-row">
-            <div class="stat-box" id="stat-tier-0" onclick="selectTier(0)">
+            <div class="stat-box" id="stat-tier-0" onclick="selectTier(0)" title="انقر لعرض تفاصيل باقة Starter في الـ 3D">
               <div class="stat-num">500 <span style="font-size: 1rem;">ج.م/ش</span></div>
-              <div class="stat-label">باقة Starter (5,000 ج/س)</div>
+              <div class="stat-label">Starter</div>
             </div>
-            <div class="stat-box active" id="stat-tier-1" onclick="selectTier(1)">
+            <div class="stat-box active" id="stat-tier-1" onclick="selectTier(1)" title="انقر لعرض تفاصيل باقة Pro في الـ 3D">
               <div class="stat-num" style="color: var(--cyan-accent);">1,500 <span style="font-size: 1rem;">ج.م/ش</span></div>
-              <div class="stat-label">باقة Pro (12,000 ج/س) ⭐</div>
+              <div class="stat-label">Pro ⭐</div>
             </div>
-            <div class="stat-box" id="stat-tier-2" onclick="selectTier(2)">
-              <div class="stat-num">مخصصة</div>
-              <div class="stat-label">باقة Max AI & Branches</div>
+            <div class="stat-box" id="stat-tier-2" onclick="selectTier(2)" title="انقر لعرض تفاصيل باقة Max AI في الـ 3D">
+              <div class="stat-num" style="color: #c084fc;">مخصصة</div>
+              <div class="stat-label">Max AI</div>
             </div>
           </div>
 
-          <div class="feature-points" style="margin-top: 1.5vh;">
-            <div class="point-card">
-              <div class="point-icon">🎯</div>
+          <div class="feature-points" style="margin-top: 1.2vh; gap: 1vh;">
+            <div class="point-card" id="card-tier-unit" onclick="selectTier(1)">
+              <div class="point-icon" style="color: var(--amber-accent); background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35);">🎯</div>
               <div>
-                <div class="point-title">كفاءة الاستحواذ والقيمة الممتدة (CAC & LTV)</div>
-                <div class="point-desc">تكلفة الاستحواذ <strong>CAC: 300 - 600 ج.م</strong> | القيمة الممتدة <strong>LTV: 9,665 - 10,000 ج.م</strong> | نسبة <strong>LTV/CAC = 16:1 إلى 32:1</strong>.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">كفاءة استثنائية LTV/CAC</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">عائد يصل 32:1.</div>
               </div>
             </div>
 
-            <div class="point-card">
-              <div class="point-icon">⚖️</div>
+            <div class="point-card" id="card-tier-break" onclick="selectTier(1)">
+              <div class="point-icon" style="color: var(--emerald-accent); background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35);">⚖️</div>
               <div>
-                <div class="point-title">نقطة التعادل وهوامش الربح (Margins & Breakeven)</div>
-                <div class="point-desc">هامش ربح إجمالي <strong>Gross Margin ~90%</strong> | استرداد تكلفة العميل <strong>CAC Payback: &lt; شهر</strong> | التعادل عند <strong>20 مشتركاً مرجحاً</strong> فقط.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">أمان مالي واسترداد سريع</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">تعادل عند 20 متجراً.</div>
               </div>
             </div>
           </div>
@@ -3424,12 +3474,12 @@
       if (mapController) mapController.setMode(mode);
     };
 
-    // --- SLIDE 5: 3D Interactive SaaS Tier Pedestals + Unit Economics Turbine ---
+    // --- SLIDE 5: 3D Cloud Revenue Vault & Crystalline Tier Cubes ---
     let tierSelector = null;
 
     function buildSlide5Scene(scene, camera) {
-      camera.position.set(0, 0.3, 11.8);
-      camera.lookAt(0, -0.2, 0);
+      camera.position.set(0, 0.6, 11.5);
+      camera.lookAt(0, 0.0, 0);
 
       const rootGroup = new THREE.Group();
       scene.add(rootGroup);
@@ -3449,135 +3499,221 @@
         });
       }
 
-      // Lights
-      const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
-      dirLight.position.set(8, 14, 12);
+      // Rich Cinematic Lighting
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1.4);
+      dirLight.position.set(6, 12, 10);
       scene.add(dirLight);
 
-      const cyanPoint = new THREE.PointLight(0x38bdf8, 1.8, 25);
-      cyanPoint.position.set(0, 2, 6);
+      const cyanPoint = new THREE.PointLight(0x38bdf8, 2.2, 25);
+      cyanPoint.position.set(-4, 3, 5);
       scene.add(cyanPoint);
 
-      const amberPoint = new THREE.PointLight(0xf59e0b, 1.2, 20);
-      amberPoint.position.set(0, 4, 3);
-      scene.add(amberPoint);
+      const goldPoint = new THREE.PointLight(0xf59e0b, 2.5, 25);
+      goldPoint.position.set(0, 4, 6);
+      scene.add(goldPoint);
 
-      // Base Platform Disc
-      const discGeo = new THREE.CylinderGeometry(6.6, 7.0, 0.25, 64);
-      const discMat = new THREE.MeshStandardMaterial({
+      const purplePoint = new THREE.PointLight(0xa855f7, 2.0, 25);
+      purplePoint.position.set(4, 3, 5);
+      scene.add(purplePoint);
+
+      // ==========================================
+      // 1. HEXAGONAL CYBER BASE PLATFORM
+      // ==========================================
+      const hexBaseGeo = new THREE.CylinderGeometry(6.6, 7.2, 0.45, 6);
+      const hexBaseMat = new THREE.MeshStandardMaterial({
         color: 0x07111f,
-        metalness: 0.9,
-        roughness: 0.2,
-        transparent: true,
-        opacity: 0.85
+        metalness: 0.95,
+        roughness: 0.18
       });
-      const disc = new THREE.Mesh(discGeo, discMat);
-      disc.position.set(0, -3.2, 0);
-      disc.rotation.x = 0.12;
-      rootGroup.add(disc);
+      const hexBase = new THREE.Mesh(hexBaseGeo, hexBaseMat);
+      hexBase.position.set(0, -3.2, 0);
+      rootGroup.add(hexBase);
 
-      const discEdge = new THREE.EdgesGeometry(discGeo);
-      disc.add(new THREE.LineSegments(discEdge, new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.4 })));
+      const hexEdges = new THREE.EdgesGeometry(hexBaseGeo);
+      hexBase.add(new THREE.LineSegments(hexEdges, new THREE.LineBasicMaterial({
+        color: 0x38bdf8,
+        transparent: true,
+        opacity: 0.55
+      })));
 
-      // ------------------------------------------
-      // TEXTURE GENERATORS
-      // ------------------------------------------
+      // Glowing Neon Rings on Platform
+      const outerRing = new THREE.Mesh(
+        new THREE.TorusGeometry(5.4, 0.035, 16, 64),
+        new THREE.MeshBasicMaterial({ color: 0x38bdf8 })
+      );
+      outerRing.position.set(0, -2.96, 0);
+      outerRing.rotation.x = Math.PI / 2;
+      rootGroup.add(outerRing);
 
-      // 1. Tier Card Texture
-      function makeTierCardTexture(tierName, priceMonth, priceYear, bullets, accentColor, isPopular) {
+      const innerRing = new THREE.Mesh(
+        new THREE.TorusGeometry(3.2, 0.03, 16, 64),
+        new THREE.MeshBasicMaterial({ color: 0xf59e0b })
+      );
+      innerRing.position.set(0, -2.96, 0);
+      innerRing.rotation.x = Math.PI / 2;
+      rootGroup.add(innerRing);
+
+      // ==========================================
+      // 2. CENTRAL SAAS REVENUE VAULT (خزينة الإيرادات)
+      // ==========================================
+      const vaultChamber = new THREE.Group();
+      vaultChamber.position.set(0, -2.6, 0.2);
+      rootGroup.add(vaultChamber);
+
+      // Vault Metallic Cylindrical Hub
+      const vHubGeo = new THREE.CylinderGeometry(1.6, 1.85, 0.6, 32);
+      const vHubMat = new THREE.MeshStandardMaterial({
+        color: 0x0f172a,
+        metalness: 0.9,
+        roughness: 0.2
+      });
+      const vHubMesh = new THREE.Mesh(vHubGeo, vHubMat);
+      vaultChamber.add(vHubMesh);
+
+      // Vault Hatch Glowing Torus Rim
+      const vHatch = new THREE.Mesh(
+        new THREE.TorusGeometry(1.65, 0.045, 16, 32),
+        new THREE.MeshStandardMaterial({ color: 0xf59e0b, emissive: 0xb45309, emissiveIntensity: 0.5 })
+      );
+      vHatch.position.y = 0.3;
+      vHatch.rotation.x = Math.PI / 2;
+      vaultChamber.add(vHatch);
+
+      // Pulsing Golden Iris Core
+      const vCore = new THREE.Mesh(
+        new THREE.SphereGeometry(0.5, 24, 24),
+        new THREE.MeshStandardMaterial({
+          color: 0xf59e0b,
+          emissive: 0xd97706,
+          emissiveIntensity: 0.8,
+          roughness: 0.2
+        })
+      );
+      vCore.position.y = 0.25;
+      vaultChamber.add(vCore);
+
+      // Central Vault Badge
+      function makeVaultLabelTexture() {
         const c = document.createElement('canvas');
-        c.width = 440;
-        c.height = 260;
+        c.width = 360; c.height = 70;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = 'rgba(7, 17, 31, 0.95)';
+        ctx.fillRect(0, 0, 360, 70);
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(2, 2, 356, 66);
+        ctx.font = 'bold 18px Cairo, sans-serif';
+        ctx.fillStyle = '#f59e0b';
+        ctx.direction = 'rtl';
+        ctx.fillText('خزينة الإيرادات المتكررة | SaaS Core', 340, 42);
+        return new THREE.CanvasTexture(c);
+      }
+      const vLabel = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.3, 0.45),
+        new THREE.MeshBasicMaterial({ map: makeVaultLabelTexture(), side: THREE.DoubleSide })
+      );
+      vLabel.position.set(0, -0.15, 1.4);
+      vaultChamber.add(vLabel);
+
+      // ==========================================
+      // 3. TEXTURE GENERATORS
+      // ==========================================
+
+      // Projected Hologram Detail Screen Texture
+      function makeHoloDetailTexture(tierName, priceMonth, priceYear, bullets, accentColor, isPopular) {
+        const c = document.createElement('canvas');
+        c.width = 512;
+        c.height = 340;
         const ctx = c.getContext('2d');
 
-        // Background
-        ctx.fillStyle = 'rgba(7, 17, 31, 0.95)';
-        ctx.fillRect(0, 0, 440, 260);
+        // Dark Frosted Glass background
+        ctx.fillStyle = 'rgba(7, 17, 31, 0.96)';
+        ctx.fillRect(0, 0, 512, 340);
 
         // Border
         ctx.strokeStyle = accentColor;
-        ctx.lineWidth = isPopular ? 5 : 3;
-        ctx.strokeRect(2, 2, 436, 256);
+        ctx.lineWidth = isPopular ? 6 : 4;
+        ctx.strokeRect(3, 3, 506, 334);
 
-        // Header bar
-        ctx.fillStyle = isPopular ? 'rgba(14, 165, 233, 0.35)' : 'rgba(30, 58, 138, 0.3)';
-        ctx.fillRect(0, 0, 440, 48);
+        // Top banner
+        ctx.fillStyle = isPopular ? 'rgba(245, 158, 11, 0.25)' : 'rgba(30, 58, 138, 0.35)';
+        ctx.fillRect(0, 0, 512, 54);
 
-        if (isPopular) {
-          ctx.font = 'bold 14px Cairo, sans-serif';
-          ctx.fillStyle = '#f59e0b';
-          ctx.direction = 'rtl';
-          ctx.fillText('⭐ الأكثر طلباً للمتاجر المنظمة', 420, 30);
-        }
-
-        // Tier Title
-        ctx.font = 'bold 22px Cairo, sans-serif';
+        // Header Title
+        ctx.font = 'bold 24px Cairo, sans-serif';
         ctx.fillStyle = accentColor;
         ctx.direction = 'rtl';
-        ctx.fillText(tierName, isPopular ? 180 : 420, 32);
+        ctx.fillText(tierName, 485, 38);
 
-        // Price Month
-        ctx.font = 'bold 26px Cairo, sans-serif';
-        ctx.fillStyle = '#f8fafc';
-        ctx.fillText(priceMonth, 420, 95);
+        if (isPopular) {
+          ctx.font = 'bold 15px Cairo, sans-serif';
+          ctx.fillStyle = '#f59e0b';
+          ctx.fillText('⭐ الأكثر طلباً', 140, 37);
+        }
 
-        // Price Year / Discount
-        ctx.font = '15px Cairo, sans-serif';
-        ctx.fillStyle = '#38bdf8';
-        ctx.fillText(priceYear, 420, 130);
+        // Monthly Price
+        ctx.font = 'bold 30px Cairo, sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(priceMonth, 485, 105);
+
+        // Annual Price / Savings
+        ctx.font = '16px Cairo, sans-serif';
+        ctx.fillStyle = accentColor;
+        ctx.fillText(priceYear, 485, 140);
 
         // Divider
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-        ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(20, 145); ctx.lineTo(420, 145); ctx.stroke();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(25, 155); ctx.lineTo(485, 155); ctx.stroke();
 
-        // Bullets
-        ctx.font = '14px Cairo, sans-serif';
-        ctx.fillStyle = '#cbd5e1';
+        // Feature Bullets
+        ctx.font = '16px Cairo, sans-serif';
+        ctx.fillStyle = '#f1f5f9';
         bullets.forEach((b, idx) => {
-          ctx.fillText('✓  ' + b, 420, 175 + idx * 26);
+          ctx.fillText('✓  ' + b, 485, 192 + idx * 34);
         });
 
+        // Bottom Protection Bar
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.12)';
+        ctx.fillRect(0, 295, 512, 45);
+        ctx.font = 'bold 14px Cairo, sans-serif';
+        ctx.fillStyle = accentColor;
+        ctx.fillText('🛡️ تسعير المنشأة الواحدة — مستخدمين غير محدودين', 485, 324);
+
         const tex = new THREE.CanvasTexture(c);
-        tex.anisotropy = 4;
+        tex.anisotropy = 8;
         return tex;
       }
 
-      // 2. Unit Economics Metric Badge Texture
+      // Metric Badge Texture
       function makeMetricBadgeTexture(title, value, sub, accentColor, emoji) {
         const c = document.createElement('canvas');
         c.width = 380;
         c.height = 140;
         const ctx = c.getContext('2d');
 
-        // Background
         ctx.fillStyle = 'rgba(11, 22, 44, 0.95)';
         ctx.fillRect(0, 0, 380, 140);
-
-        // Border
         ctx.strokeStyle = accentColor;
         ctx.lineWidth = 4;
         ctx.strokeRect(2, 2, 376, 136);
 
-        // Icon circle
+        // Emoji Circle
         ctx.fillStyle = accentColor;
         ctx.beginPath(); ctx.arc(330, 70, 32, 0, Math.PI * 2); ctx.fill();
         ctx.font = '30px sans-serif';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(emoji, 315, 80);
 
-        // Title
         ctx.font = 'bold 16px Cairo, sans-serif';
         ctx.fillStyle = '#94a3b8';
         ctx.direction = 'rtl';
         ctx.fillText(title, 280, 45);
 
-        // Value
         ctx.font = 'bold 22px Cairo, sans-serif';
         ctx.fillStyle = accentColor;
         ctx.fillText(value, 280, 82);
 
-        // Subtitle
         ctx.font = '13px Cairo, sans-serif';
         ctx.fillStyle = '#cbd5e1';
         ctx.fillText(sub, 280, 115);
@@ -3587,193 +3723,466 @@
         return tex;
       }
 
-      // ------------------------------------------
-      // 3D PEDESTALS CREATION
-      // ------------------------------------------
-      const pedestals = [];
+      // Small Badge Texture Maker
+      function makePillBadgeTexture(text, accentColor) {
+        const c = document.createElement('canvas');
+        c.width = 300; c.height = 80;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = 'rgba(7, 17, 31, 0.92)';
+        ctx.fillRect(0, 0, 300, 80);
+        ctx.strokeStyle = accentColor;
+        ctx.lineWidth = 3;
+        ctx.strokeRect(2, 2, 296, 76);
+        ctx.font = 'bold 22px Cairo, sans-serif';
+        ctx.fillStyle = accentColor;
+        ctx.textAlign = 'center';
+        ctx.fillText(text, 150, 48);
+        return new THREE.CanvasTexture(c);
+      }
 
-      function createPedestal(config) {
-        const pGroup = new THREE.Group();
-        pGroup.position.set(config.x, config.baseY, config.z);
-        rootGroup.add(pGroup);
+      // ==========================================
+      // 4. THE 3 ENHANCED 3D SUBSCRIPTION VAULTS
+      // ==========================================
+      const vaults = [];
 
-        // Pedestal Cylinder Mesh
-        const pedGeo = new THREE.CylinderGeometry(config.radiusTop, config.radiusBot, config.height, 32);
-        const pedMat = new THREE.MeshStandardMaterial({
-          color: config.color,
-          emissive: config.emissive || 0x000000,
-          emissiveIntensity: config.emissiveIntensity || 0.2,
-          metalness: 0.85,
-          roughness: 0.2
+      function createVaultCube(config) {
+        const vGroup = new THREE.Group();
+        vGroup.position.set(config.x, config.baseY, config.z);
+        rootGroup.add(vGroup);
+
+        const w = config.w;
+        const h = config.h;
+        const d = config.d;
+
+        // ------------------------------------------
+        // A. SCULPTED 3D BASE PEDESTAL (قاعدة الخزينة المشطوفة)
+        // ------------------------------------------
+        const plinthGroup = new THREE.Group();
+        plinthGroup.position.set(0, -h / 2 - 0.16, 0);
+        vGroup.add(plinthGroup);
+
+        // Octagonal Plinth
+        const plinthGeo = new THREE.CylinderGeometry(w * 0.72, w * 0.8, 0.32, 8);
+        const plinthMat = new THREE.MeshStandardMaterial({
+          color: 0x0f172a,
+          metalness: 0.95,
+          roughness: 0.18
         });
-        const pedMesh = new THREE.Mesh(pedGeo, pedMat);
-        pedMesh.position.y = config.height / 2;
-        pGroup.add(pedMesh);
+        const plinthMesh = new THREE.Mesh(plinthGeo, plinthMat);
+        plinthGroup.add(plinthMesh);
 
-        // Glowing Top Rim
-        const rimGeo = new THREE.TorusGeometry(config.radiusTop * 1.02, 0.03, 16, 32);
-        const rimMat = new THREE.MeshBasicMaterial({ color: config.rimColor });
-        const rim = new THREE.Mesh(rimGeo, rimMat);
-        rim.position.y = config.height;
-        rim.rotation.x = Math.PI / 2;
-        pGroup.add(rim);
+        // Neon Base Ring
+        const baseRing = new THREE.Mesh(
+          new THREE.TorusGeometry(w * 0.74, 0.035, 16, 32),
+          new THREE.MeshBasicMaterial({ color: config.neonColor })
+        );
+        baseRing.position.y = 0.16;
+        baseRing.rotation.x = Math.PI / 2;
+        plinthGroup.add(baseRing);
 
-        // Floating Card Badge
-        const badgeGeo = new THREE.PlaneGeometry(config.badgeW, config.badgeH);
-        const badgeMat = new THREE.MeshBasicMaterial({ map: config.badgeTexture, side: THREE.DoubleSide });
-        const badgeMesh = new THREE.Mesh(badgeGeo, badgeMat);
-        badgeMesh.position.set(0, config.height + config.badgeOffsetY, 0.4);
-        pGroup.add(badgeMesh);
+        // ------------------------------------------
+        // B. 3D CHASSIS & INNER CRYSTAL CHAMBER
+        // ------------------------------------------
+        const boxGeo = new THREE.BoxGeometry(w, h, d);
+        const boxMat = new THREE.MeshStandardMaterial({
+          color: config.glassColor,
+          emissive: config.emissiveColor,
+          emissiveIntensity: 0.35,
+          metalness: 0.85,
+          roughness: 0.15,
+          transparent: true,
+          opacity: 0.7
+        });
+        const boxMesh = new THREE.Mesh(boxGeo, boxMat);
+        vGroup.add(boxMesh);
 
-        // Floating 3D Item on top
-        const itemGroup = new THREE.Group();
-        itemGroup.position.set(0, config.height + 0.35, 0);
-        pGroup.add(itemGroup);
-        if (config.buildItemFn) {
-          config.buildItemFn(itemGroup);
+        // Outer Neon Chamfer Edges
+        const edges = new THREE.EdgesGeometry(boxGeo);
+        const edgeLines = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({
+          color: config.neonColor,
+          transparent: true,
+          opacity: 0.95
+        }));
+        vGroup.add(edgeLines);
+
+        // ------------------------------------------
+        // C. 4 TITANIUM ARMOR CORNER PILLARS
+        // ------------------------------------------
+        const halfW = w / 2 - 0.04;
+        const halfD = d / 2 - 0.04;
+        const pillarGeo = new THREE.CylinderGeometry(0.12, 0.12, h * 1.02, 16);
+        const pillarMat = new THREE.MeshStandardMaterial({
+          color: 0x1e293b,
+          metalness: 0.95,
+          roughness: 0.15
+        });
+
+        [
+          [-halfW, -halfD],
+          [halfW, -halfD],
+          [-halfW, halfD],
+          [halfW, halfD]
+        ].forEach(([px, pz]) => {
+          const pMesh = new THREE.Mesh(pillarGeo, pillarMat);
+          pMesh.position.set(px, 0, pz);
+          vGroup.add(pMesh);
+
+          // LED status rings at top and bottom of each pillar
+          const ringTop = new THREE.Mesh(
+            new THREE.TorusGeometry(0.13, 0.02, 8, 16),
+            new THREE.MeshBasicMaterial({ color: config.neonColor })
+          );
+          ringTop.position.set(px, h / 2 - 0.05, pz);
+          ringTop.rotation.x = Math.PI / 2;
+          vGroup.add(ringTop);
+
+          const ringBot = new THREE.Mesh(
+            new THREE.TorusGeometry(0.13, 0.02, 8, 16),
+            new THREE.MeshBasicMaterial({ color: config.neonColor })
+          );
+          ringBot.position.set(px, -h / 2 + 0.05, pz);
+          ringBot.rotation.x = Math.PI / 2;
+          vGroup.add(ringBot);
+        });
+
+        // ------------------------------------------
+        // D. 3D FRONT VAULT DOOR & MECHANICAL LOCK WHEEL
+        // ------------------------------------------
+        const doorGroup = new THREE.Group();
+        doorGroup.position.set(0, -0.05, d / 2 + 0.04);
+        vGroup.add(doorGroup);
+
+        // Reinforced circular steel door frame
+        const doorFrame = new THREE.Mesh(
+          new THREE.TorusGeometry(0.55, 0.055, 16, 32),
+          new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.95, roughness: 0.2 })
+        );
+        doorGroup.add(doorFrame);
+
+        // Rotating Lock Wheel
+        const wheelGroup = new THREE.Group();
+        doorGroup.add(wheelGroup);
+
+        const wheelHub = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.18, 0.18, 0.12, 16),
+          new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.95, roughness: 0.15 })
+        );
+        wheelHub.rotation.x = Math.PI / 2;
+        wheelGroup.add(wheelHub);
+
+        // 4 Radiating Spokes
+        const spokeMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 1.0, roughness: 0.1 });
+        const spoke1 = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.028, 0.96, 8), spokeMat);
+        wheelGroup.add(spoke1);
+        const spoke2 = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.028, 0.96, 8), spokeMat);
+        spoke2.rotation.z = Math.PI / 2;
+        wheelGroup.add(spoke2);
+
+        // Central Key Emblem / Jewel
+        const jewel = new THREE.Mesh(
+          new THREE.SphereGeometry(0.09, 16, 16),
+          new THREE.MeshBasicMaterial({ color: config.neonColor })
+        );
+        jewel.position.z = 0.07;
+        wheelGroup.add(jewel);
+
+        // ------------------------------------------
+        // E. HINGED VAULT LID & PROJECTOR EMITTER HEAD (رأس الخزينة)
+        // ------------------------------------------
+        const lidGroup = new THREE.Group();
+        lidGroup.position.set(0, h / 2, -d / 2);
+        vGroup.add(lidGroup);
+
+        const lidGeo = new THREE.BoxGeometry(w * 1.03, 0.18, d * 1.03);
+        const lidMat = new THREE.MeshStandardMaterial({
+          color: config.lidColor,
+          metalness: 0.92,
+          roughness: 0.18
+        });
+        const lidMesh = new THREE.Mesh(lidGeo, lidMat);
+        lidMesh.position.set(0, 0.09, d / 2);
+        lidGroup.add(lidMesh);
+
+        const lidEdge = new THREE.EdgesGeometry(lidGeo);
+        lidMesh.add(new THREE.LineSegments(lidEdge, new THREE.LineBasicMaterial({ color: config.neonColor })));
+
+        // Projector Emitter Lens on the Head of the Vault
+        const emitterHead = new THREE.Group();
+        emitterHead.position.set(0, 0.19, d / 2);
+        lidMesh.add(emitterHead);
+
+        const lensRing = new THREE.Mesh(
+          new THREE.TorusGeometry(0.55, 0.035, 16, 32),
+          new THREE.MeshBasicMaterial({ color: config.neonColor })
+        );
+        lensRing.rotation.x = Math.PI / 2;
+        emitterHead.add(lensRing);
+
+        const lensCore = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.48, 0.52, 0.06, 24),
+          new THREE.MeshStandardMaterial({
+            color: config.glassColor,
+            emissive: config.emissiveColor,
+            emissiveIntensity: 0.9,
+            metalness: 0.9
+          })
+        );
+        emitterHead.add(lensCore);
+
+        // ------------------------------------------
+        // F. INTERNAL TECH CORE
+        // ------------------------------------------
+        const coreGroup = new THREE.Group();
+        coreGroup.position.set(0, 0, 0);
+        vGroup.add(coreGroup);
+        if (config.buildCoreFn) {
+          config.buildCoreFn(coreGroup);
         }
 
-        pedestals.push({
-          group: pGroup,
+        // ------------------------------------------
+        // G. 3D HOLOGRAPHIC PLAN TABLET AT THE HEAD OF THE VAULT
+        // ------------------------------------------
+        const screenGroup = new THREE.Group();
+        screenGroup.position.set(0, 0.2, 0.4);
+        screenGroup.scale.set(0.01, 0.01, 0.01);
+        vGroup.add(screenGroup);
+
+        // 3D Glass Tablet Chassis (سميك ومجسم ثلاثي الأبعاد)
+        const tabletThickness = 0.12;
+        const tabletGeo = new THREE.BoxGeometry(config.screenW, config.screenH, tabletThickness);
+        const tabletMatArray = [
+          new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.2 }),
+          new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.2 }),
+          new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.2 }),
+          new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.2 }),
+          new THREE.MeshBasicMaterial({ map: config.detailTexture }),
+          new THREE.MeshStandardMaterial({ color: 0x07111f, metalness: 0.95, roughness: 0.15 })
+        ];
+        const tabletMesh = new THREE.Mesh(tabletGeo, tabletMatArray);
+        screenGroup.add(tabletMesh);
+
+        // Tablet Neon Edges
+        const tabletEdges = new THREE.EdgesGeometry(tabletGeo);
+        tabletMesh.add(new THREE.LineSegments(tabletEdges, new THREE.LineBasicMaterial({
+          color: config.neonColor,
+          transparent: true,
+          opacity: 0.95
+        })));
+
+        // 4 Corner Brackets on the Plan Tablet
+        const bracketGeo = new THREE.BoxGeometry(0.18, 0.18, tabletThickness * 1.15);
+        const bracketMat = new THREE.MeshBasicMaterial({ color: config.neonColor });
+        const halfSW = config.screenW / 2;
+        const halfSH = config.screenH / 2;
+        [
+          [-halfSW, -halfSH],
+          [halfSW, -halfSH],
+          [-halfSW, halfSH],
+          [halfSW, halfSH]
+        ].forEach(([bx, by]) => {
+          const b = new THREE.Mesh(bracketGeo, bracketMat);
+          b.position.set(bx, by, 0);
+          screenGroup.add(b);
+        });
+
+        // 4 Projection Laser Beams from Vault Head to Plan Tablet
+        const beamGeo = new THREE.BufferGeometry();
+        const beamPositions = new Float32Array(4 * 2 * 3);
+        beamGeo.setAttribute('position', new THREE.BufferAttribute(beamPositions, 3));
+        const beamLines = new THREE.LineSegments(
+          beamGeo,
+          new THREE.LineBasicMaterial({ color: config.neonColor, transparent: true, opacity: 0.55 })
+        );
+        vGroup.add(beamLines);
+
+        // Floating Outer Badge (when closed)
+        const badgeGeo = new THREE.PlaneGeometry(config.badgeW, config.badgeH);
+        const badgeMat = new THREE.MeshBasicMaterial({ map: config.badgeTexture, side: THREE.DoubleSide, transparent: true });
+        const badgeMesh = new THREE.Mesh(badgeGeo, badgeMat);
+        badgeMesh.position.set(0, h / 2 + 0.45, 0.3);
+        vGroup.add(badgeMesh);
+
+        vaults.push({
+          idx: config.idx,
+          group: vGroup,
           baseY: config.baseY,
           targetY: config.baseY,
-          itemGroup: itemGroup,
-          rim: rim,
-          idx: config.idx
+          lidGroup: lidGroup,
+          targetLidRotX: 0,
+          wheelGroup: wheelGroup,
+          targetWheelRotZ: 0,
+          currentWheelRotZ: 0,
+          screenGroup: screenGroup,
+          targetScreenY: 0.2,
+          currentScreenY: 0.2,
+          targetScreenScale: 0.01,
+          badgeMesh: badgeMesh,
+          coreGroup: coreGroup,
+          emitterHead: emitterHead,
+          beamLines: beamLines,
+          w, h, d,
+          screenW: config.screenW,
+          screenH: config.screenH
         });
       }
 
-      // 1. Starter Pedestal (Left: x = -3.2)
-      createPedestal({
+      // 1. Starter Vault (Left: x = -3.8)
+      createVaultCube({
         idx: 0,
-        x: -3.2,
-        baseY: -2.7,
-        z: 0,
-        radiusTop: 1.35,
-        radiusBot: 1.5,
-        height: 2.2,
-        color: 0x1d4ed8,
-        emissive: 0x0f2d6b,
-        emissiveIntensity: 0.3,
-        rimColor: 0x60a5fa,
-        badgeW: 2.3,
-        badgeH: 1.35,
-        badgeOffsetY: 1.15,
-        badgeTexture: makeTierCardTexture(
+        x: -3.8,
+        baseY: -0.3,
+        z: 0.0,
+        w: 2.3, h: 2.2, d: 2.3,
+        screenW: 3.2, screenH: 2.1,
+        glassColor: 0x0f2d6b,
+        emissiveColor: 0x1d4ed8,
+        neonColor: 0x38bdf8,
+        lidColor: 0x172554,
+        badgeW: 2.2, badgeH: 0.6,
+        badgeTexture: makePillBadgeTexture('Starter | 500 ج/ش', '#38bdf8'),
+        detailTexture: makeHoloDetailTexture(
           'باقة Starter',
-          '500 ج.م / شهر',
-          '5,000 ج.م / سنة (خصم 17%)',
-          ['كاشير سريع ومسح باركود بالهاتف', 'مشاركة فورية للفواتير عبر واتساب', 'حفظ محلي وصمود أوفلاين كامل'],
-          '#60a5fa',
+          '500 ج.م / شهرياً',
+          '5,000 ج.م / سنوياً (توفير 17%)',
+          ['كاشير سريع ومسح باركود بالهاتف', 'صمود كامل بدون إنترنت عبر IndexedDB', 'مشاركة فورية للفواتير عبر واتساب'],
+          '#38bdf8',
           false
         ),
-        buildItemFn(grp) {
-          // Mini 3D Phone with Barcode laser
+        buildCoreFn(grp) {
           const phone = new THREE.Mesh(
-            new THREE.BoxGeometry(0.55, 1.0, 0.05),
+            new THREE.BoxGeometry(0.7, 1.25, 0.08),
             new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.3 })
           );
-          phone.position.set(0, 0, 0.35);
           grp.add(phone);
           const laser = new THREE.Mesh(
-            new THREE.PlaneGeometry(0.48, 0.04),
+            new THREE.PlaneGeometry(0.6, 0.05),
             new THREE.MeshBasicMaterial({ color: 0x10b981 })
           );
-          laser.position.z = 0.03;
+          laser.position.z = 0.05;
           phone.add(laser);
+          grp.userData.phone = phone;
         }
       });
 
-      // 2. Pro Pedestal (Center: x = 0 - Recommended Hero)
-      createPedestal({
+      // 2. Pro Star Vault (Center: x = 0.0 - Recommended Hero ⭐)
+      createVaultCube({
         idx: 1,
-        x: 0,
-        baseY: -2.5,
-        z: 0.35,
-        radiusTop: 1.55,
-        radiusBot: 1.7,
-        height: 2.8,
-        color: 0x0284c7,
-        emissive: 0x0369a1,
-        emissiveIntensity: 0.45,
-        rimColor: 0x38bdf8,
-        badgeW: 2.5,
-        badgeH: 1.45,
-        badgeOffsetY: 1.3,
-        badgeTexture: makeTierCardTexture(
-          'باقة Pro',
-          '1,500 ج.م / شهر',
-          '12,000 ج.م / سنة (خصم 33%)',
-          ['إدارة المخزون والدفعات وتعدد الوحدات', 'تسوية رصيد الشكك بنظام FIFO الآلي', 'جاهزية الإيصال الإلكتروني وقانون 152/206'],
-          '#38bdf8',
+        x: 0.0,
+        baseY: 0.2,
+        z: 0.5,
+        w: 2.6, h: 2.5, d: 2.6,
+        screenW: 3.5, screenH: 2.3,
+        glassColor: 0x082f49,
+        emissiveColor: 0xb45309,
+        neonColor: 0xf59e0b,
+        lidColor: 0x0c4a6e,
+        badgeW: 2.4, badgeH: 0.65,
+        badgeTexture: makePillBadgeTexture('⭐ Pro | 1,500 ج/ش', '#f59e0b'),
+        detailTexture: makeHoloDetailTexture(
+          '⭐ باقة Pro (الأكثر طلباً)',
+          '1,500 ج.م / شهرياً',
+          '12,000 ج.م / سنوياً (خصم 33%)',
+          ['إدارة المخزون والدفعات وتعدد الوحدات', 'أتمتة الواتساب وتصفير الشكك بنظام FIFO', 'الفاتورة والإيصال الإلكتروني قانون 152/206', 'تقارير معتمدة من 5 محاسبين (CPAs)'],
+          '#f59e0b',
           true
         ),
-        buildItemFn(grp) {
-          // Multi-unit retail carton box + Golden crown ring
-          const box = new THREE.Mesh(
-            new THREE.BoxGeometry(0.75, 0.75, 0.75),
-            new THREE.MeshStandardMaterial({ color: 0xb45309, roughness: 0.6 })
-          );
-          box.position.set(0, 0, 0.35);
-          grp.add(box);
-
-          // Golden Crown Ring
+        buildCoreFn(grp) {
           const crown = new THREE.Mesh(
-            new THREE.TorusGeometry(0.65, 0.035, 16, 32),
+            new THREE.TorusGeometry(0.6, 0.04, 16, 32),
             new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.9, roughness: 0.1 })
           );
-          crown.position.set(0, 0.65, 0.35);
           crown.rotation.x = Math.PI / 2;
           grp.add(crown);
+
+          const halo2 = new THREE.Mesh(
+            new THREE.TorusGeometry(0.8, 0.025, 16, 32),
+            new THREE.MeshBasicMaterial({ color: 0x38bdf8 })
+          );
+          halo2.rotation.y = Math.PI / 3;
+          grp.add(halo2);
+
+          const starCore = new THREE.Mesh(
+            new THREE.OctahedronGeometry(0.35),
+            new THREE.MeshStandardMaterial({ color: 0xf59e0b, emissive: 0xd97706, emissiveIntensity: 0.8 })
+          );
+          grp.add(starCore);
+
           grp.userData.crown = crown;
+          grp.userData.halo2 = halo2;
+          grp.userData.starCore = starCore;
         }
       });
 
-      // 3. Max AI Pedestal (Right: x = +3.2)
-      createPedestal({
+      // 3. Max AI Enterprise Vault (Right: x = 3.8)
+      createVaultCube({
         idx: 2,
-        x: 3.2,
-        baseY: -2.3,
-        z: 0,
-        radiusTop: 1.35,
-        radiusBot: 1.5,
-        height: 3.4,
-        color: 0x4f46e5,
-        emissive: 0x3730a3,
-        emissiveIntensity: 0.35,
-        rimColor: 0xa78bfa,
-        badgeW: 2.3,
-        badgeH: 1.35,
-        badgeOffsetY: 1.15,
-        badgeTexture: makeTierCardTexture(
+        x: 3.8,
+        baseY: -0.3,
+        z: 0.0,
+        w: 2.3, h: 2.2, d: 2.3,
+        screenW: 3.2, screenH: 2.1,
+        glassColor: 0x1e1b4b,
+        emissiveColor: 0x6d28d9,
+        neonColor: 0xa855f7,
+        lidColor: 0x2e1065,
+        badgeW: 2.2, badgeH: 0.6,
+        badgeTexture: makePillBadgeTexture('Max AI | مخصصة', '#a855f7'),
+        detailTexture: makeHoloDetailTexture(
           'باقة Max AI & Branches',
           'تسعير مخصص (Enterprise)',
           'عقود سنوية وتجهيز فروع',
-          ['ربط سحابي للفروع المتعددة والمخازن', 'تنبؤ بالطلب والمشتريات بالذكاء الاصطناعي', 'بوابة الموردين ودعم مخصص VIP'],
-          '#a78bfa',
+          ['ربط سحابي للفروع المتعددة والمخازن', 'تنبؤ ذكي بالطلب وإعادة الطلب بالـ AI', 'بوابة الموردين ودعم مخصص VIP 24/7'],
+          '#a855f7',
           false
         ),
-        buildItemFn(grp) {
-          // AI Core: Icosahedron wireframe with golden core
+        buildCoreFn(grp) {
           const ico = new THREE.Mesh(
-            new THREE.IcosahedronGeometry(0.42, 1),
-            new THREE.MeshStandardMaterial({ color: 0x818cf8, wireframe: true })
+            new THREE.IcosahedronGeometry(0.5, 1),
+            new THREE.MeshStandardMaterial({ color: 0xa855f7, wireframe: true })
           );
-          ico.position.set(0, 0, 0.35);
           grp.add(ico);
           const core = new THREE.Mesh(
-            new THREE.SphereGeometry(0.18, 16, 16),
-            new THREE.MeshStandardMaterial({ color: 0xf59e0b, emissive: 0xd97706, emissiveIntensity: 0.6 })
+            new THREE.SphereGeometry(0.2, 16, 16),
+            new THREE.MeshStandardMaterial({ color: 0xf59e0b, emissive: 0xd97706, emissiveIntensity: 0.7 })
           );
-          core.position.set(0, 0, 0.35);
           grp.add(core);
           grp.userData.ico = ico;
         }
       });
 
-      // ------------------------------------------
-      // THREE UNIT ECONOMICS HOLOGRAPHIC GAUGES
-      // ------------------------------------------
+      // ==========================================
+      // 5. LUMINOUS ENERGY CONDUITS & PARTICLES
+      // ==========================================
+      const streamParticles = [];
+      const particleCount = 45;
+      const streamGeo = new THREE.SphereGeometry(0.08, 10, 10);
+      const streamMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
+
+      for (let i = 0; i < particleCount; i++) {
+        const p = new THREE.Mesh(streamGeo, streamMat);
+        rootGroup.add(p);
+        streamParticles.push({
+          mesh: p,
+          vaultIdx: i % 3,
+          progress: Math.random()
+        });
+      }
+
+      // Ambient Particle Dust
+      const dustGeo = new THREE.BufferGeometry();
+      const dustCount = 80;
+      const dustPos = new Float32Array(dustCount * 3);
+      for (let i = 0; i < dustCount * 3; i++) {
+        dustPos[i] = (Math.random() - 0.5) * 18;
+      }
+      dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+      const dustMat = new THREE.PointsMaterial({ size: 0.08, color: 0x38bdf8, transparent: true, opacity: 0.6 });
+      const ambientDust = new THREE.Points(dustGeo, dustMat);
+      rootGroup.add(ambientDust);
+
+      // ==========================================
+      // 6. THREE UNIT ECONOMICS HOLOGRAPHIC GAUGES
+      // ==========================================
       function createGauge(texture, x, y, z) {
         const geo = new THREE.PlaneGeometry(2.4, 0.88);
         const mat = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
@@ -3783,74 +4192,60 @@
         return mesh;
       }
 
-      // Gauge 1: Payback Speedometer (Left: aligned above Starter)
+      // Gauge 1: Payback Speedometer (Above Starter)
       const gaugePayback = createGauge(
         makeMetricBadgeTexture('سرعة استرداد التكلفة', '< شهر واحد', 'هامش ربح إجمالي ~90%', '#10b981', '⚡'),
-        -3.2, 2.7, -0.2
+        -3.8, 3.5, -0.2
       );
 
-      // Gauge 2: LTV / CAC Multiplier (Center - Gold: aligned above Pro)
+      // Gauge 2: LTV / CAC Multiplier (Above Pro)
       const gaugeLtvCac = createGauge(
         makeMetricBadgeTexture('عائد استثنائي لرأس المال', '16x - 32x LTV/CAC', 'LTV: 10,000 ج.م | CAC: 300-600 ج.م', '#f59e0b', '🎯'),
-        0, 3.4, 0.3
+        0, 4.3, 0.3
       );
 
-      // Gauge 3: Breakeven Point (Right: aligned above Max AI)
+      // Gauge 3: Breakeven Point (Above Max AI)
       const gaugeBreakeven = createGauge(
         makeMetricBadgeTexture('الأمان المالي والتعادل', '20 متجراً فقط', 'تغطية التكاليف التشغيلية بالكامل', '#38bdf8', '⚖️'),
-        3.2, 2.7, -0.2
+        3.8, 3.5, -0.2
       );
 
-      // Ambient Particle Dust
-      const partGeo = new THREE.BufferGeometry();
-      const partCount = 70;
-      const posArray = new Float32Array(partCount * 3);
-      for (let i = 0; i < partCount * 3; i++) {
-        posArray[i] = (Math.random() - 0.5) * 18;
-      }
-      partGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-      const partMat = new THREE.PointsMaterial({ size: 0.08, color: 0x38bdf8, transparent: true, opacity: 0.65 });
-      const particles = new THREE.Points(partGeo, partMat);
-      rootGroup.add(particles);
-
-      // Camera Glide Targets for each Tier (Stepped back with gentle framing)
+      // ==========================================
+      // 7. CAMERA TARGETS & TIER CONTROLLER
+      // ==========================================
       const tierCamTargets = [
-        // 0: Starter (Gently frames Starter while keeping full stage in view)
+        // 0: Starter
         {
-          camPos: new THREE.Vector3(-1.8, 0.3, 11.5),
-          lookAt: new THREE.Vector3(-1.2, -0.2, 0.0)
+          camPos: new THREE.Vector3(-3.8, 1.4, 9.0),
+          lookAt: new THREE.Vector3(-3.8, 1.3, 0.0)
         },
-        // 1: Pro (Hero center view with full breathing room)
+        // 1: Pro ⭐ Hero
         {
-          camPos: new THREE.Vector3(0.0, 0.3, 11.8),
-          lookAt: new THREE.Vector3(0.0, -0.2, 0.0)
+          camPos: new THREE.Vector3(0.0, 1.8, 9.6),
+          lookAt: new THREE.Vector3(0.0, 1.6, 0.4)
         },
-        // 2: Max AI (Gently frames Max AI while keeping full stage in view)
+        // 2: Max AI
         {
-          camPos: new THREE.Vector3(1.8, 0.3, 11.5),
-          lookAt: new THREE.Vector3(1.2, -0.2, 0.0)
+          camPos: new THREE.Vector3(3.8, 1.4, 9.0),
+          lookAt: new THREE.Vector3(3.8, 1.3, 0.0)
         }
       ];
 
-      let currentCamPos = new THREE.Vector3(0.0, 0.3, 11.8);
-      let currentLookAt = new THREE.Vector3(0.0, -0.2, 0.0);
+      let currentCamPos = tierCamTargets[1].camPos.clone();
+      let currentLookAt = tierCamTargets[1].lookAt.clone();
       let targetCamPos = tierCamTargets[1].camPos.clone();
       let targetLookAt = tierCamTargets[1].lookAt.clone();
-
-      // Selected Tier State (Default to Pro = 1)
-      let currentSelectedTier = 1;
+      camera.position.copy(currentCamPos);
+      camera.lookAt(currentLookAt);
 
       tierSelector = {
         select(idx) {
-          currentSelectedTier = idx;
-
-          // Update camera glide targets
           if (tierCamTargets[idx]) {
             targetCamPos.copy(tierCamTargets[idx].camPos);
             targetLookAt.copy(tierCamTargets[idx].lookAt);
           }
 
-          // Sync HTML stat-box active classes
+          // Sync HTML
           [0, 1, 2].forEach(i => {
             const el = document.getElementById('stat-tier-' + i);
             if (el) {
@@ -3864,23 +4259,33 @@
             }
           });
 
-          // Update pedestal target elevations
-          pedestals.forEach(p => {
-            if (p.idx === idx) {
-              p.targetY = p.baseY + 0.45;
-              p.rim.scale.set(1.15, 1.15, 1.15);
+          // Animate Vaults: Open selected, close others
+          vaults.forEach(v => {
+            if (v.idx === idx) {
+              v.targetY = v.baseY + 0.35;
+              v.targetWheelRotZ = Math.PI * 2; // Unlock spin
+              v.targetLidRotX = -Math.PI * 0.42; // Swing lid open backward
+              v.targetScreenY = v.h / 2 + 1.85; // Moves right to head of vault!
+              v.targetScreenScale = 1.0;
+              v.badgeMesh.visible = false;
+              v.beamLines.visible = true;
             } else {
-              p.targetY = p.baseY;
-              p.rim.scale.set(1.0, 1.0, 1.0);
+              v.targetY = v.baseY;
+              v.targetWheelRotZ = 0;
+              v.targetLidRotX = 0;
+              v.targetScreenY = 0.2;
+              v.targetScreenScale = 0.01;
+              v.badgeMesh.visible = true;
+              v.beamLines.visible = false;
             }
           });
         }
       };
 
-      // Set initial state
+      // Initial state: Pro (idx = 1)
       tierSelector.select(1);
 
-      // Canvas click to select pedestal directly in 3D
+      // Direct Click Raycasting on Vault Cubes
       if (stageElem) {
         const raycaster = new THREE.Raycaster();
         const clickVec = new THREE.Vector2();
@@ -3890,10 +4295,10 @@
           clickVec.y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
           raycaster.setFromCamera(clickVec, camera);
 
-          pedestals.forEach(p => {
-            const intersects = raycaster.intersectObjects(p.group.children, true);
-            if (intersects.length > 0) {
-              tierSelector.select(p.idx);
+          vaults.forEach(v => {
+            const hits = raycaster.intersectObjects(v.group.children, true);
+            if (hits.length > 0) {
+              tierSelector.select(v.idx);
             }
           });
         });
@@ -3901,41 +4306,108 @@
 
       return {
         update(time) {
-          // Smooth Camera Gliding Lerp
+          // Smooth Camera Glide
           currentCamPos.lerp(targetCamPos, 0.055);
           currentLookAt.lerp(targetLookAt, 0.055);
 
-          // Subtle Mouse Parallax offset
           const pX = mouseX * 0.22;
           const pY = -mouseY * 0.14;
           camera.position.set(currentCamPos.x + pX, currentCamPos.y + pY, currentCamPos.z);
           camera.lookAt(currentLookAt.x, currentLookAt.y, currentLookAt.z);
 
-          // Smooth pedestal elevation interpolation
-          pedestals.forEach(p => {
-            p.group.position.y += (p.targetY - p.group.position.y) * 0.08;
+          // Animate Vault Cubes, Wheel Locks & Head Plan Tablets
+          vaults.forEach(v => {
+            v.group.position.y += (v.targetY - v.group.position.y) * 0.08;
 
-            // Bobbing floating items on top
-            p.itemGroup.position.y = (p.group.children[0].geometry.parameters.height || 2.5) + 0.35 + Math.sin(time * 2.2 + p.idx) * 0.08;
+            // Rotate 3D mechanical lock wheel
+            v.currentWheelRotZ += (v.targetWheelRotZ - v.currentWheelRotZ) * 0.08;
+            v.wheelGroup.rotation.z = v.currentWheelRotZ;
 
-            // Pro crown rotation
-            if (p.itemGroup.userData.crown) {
-              p.itemGroup.userData.crown.rotation.z = time * 0.6;
+            // Swing lid smoothly
+            v.lidGroup.rotation.x += (v.targetLidRotX - v.lidGroup.rotation.x) * 0.08;
+
+            // Move plan tablet to head of vault
+            v.currentScreenY += (v.targetScreenY - v.currentScreenY) * 0.08;
+            const currentScale = v.screenGroup.scale.x;
+            const nextScale = currentScale + (v.targetScreenScale - currentScale) * 0.08;
+            v.screenGroup.scale.set(nextScale, nextScale, nextScale);
+
+            // Floating gentle hover at head of vault when open
+            if (nextScale > 0.5) {
+              v.screenGroup.position.y = v.currentScreenY + Math.sin(time * 2.2 + v.idx) * 0.06;
+              v.screenGroup.rotation.y = Math.sin(time * 1.2) * 0.03;
+              v.screenGroup.rotation.x = -0.05;
+
+              // Update 4 projection beams from head emitter to tablet corners
+              const posAttr = v.beamLines.geometry.attributes.position;
+              const emitterX = 0, emitterY = v.h / 2 + 0.15, emitterZ = v.d / 2;
+              const scrX = v.screenGroup.position.x;
+              const scrY = v.screenGroup.position.y;
+              const scrZ = v.screenGroup.position.z;
+              const hw = v.screenW / 2;
+              const hh = v.screenH / 2;
+
+              const corners = [
+                [scrX - hw, scrY - hh, scrZ],
+                [scrX + hw, scrY - hh, scrZ],
+                [scrX - hw, scrY + hh, scrZ],
+                [scrX + hw, scrY + hh, scrZ]
+              ];
+
+              let ptr = 0;
+              corners.forEach(([cx, cy, cz]) => {
+                posAttr.setXYZ(ptr++, emitterX, emitterY, emitterZ);
+                posAttr.setXYZ(ptr++, cx, cy, cz);
+              });
+              posAttr.needsUpdate = true;
             }
-            // Max AI icosahedron rotation
-            if (p.itemGroup.userData.ico) {
-              p.itemGroup.userData.ico.rotation.y = time * 0.8;
-              p.itemGroup.userData.ico.rotation.x = time * 0.4;
+
+            // Internal Item Animations
+            if (v.coreGroup.userData.crown) {
+              v.coreGroup.userData.crown.rotation.z = time * 0.7;
+            }
+            if (v.coreGroup.userData.halo2) {
+              v.coreGroup.userData.halo2.rotation.y = time * 0.9;
+            }
+            if (v.coreGroup.userData.starCore) {
+              v.coreGroup.userData.starCore.rotation.y = time * 0.5;
+            }
+            if (v.coreGroup.userData.ico) {
+              v.coreGroup.userData.ico.rotation.y = time * 0.8;
+              v.coreGroup.userData.ico.rotation.x = time * 0.5;
             }
           });
 
-          // Floating gauges gentle hover
-          gaugePayback.position.y = 2.7 + Math.sin(time * 1.5) * 0.06;
-          gaugeLtvCac.position.y = 3.4 + Math.sin(time * 1.5 + 1.0) * 0.08;
-          gaugeBreakeven.position.y = 2.7 + Math.sin(time * 1.5 + 2.0) * 0.06;
+          // Central Vault Core Pulsing & Iris Spin
+          vCore.scale.setScalar(1.0 + Math.sin(time * 3.0) * 0.08);
+          vHatch.rotation.z = time * 0.4;
 
-          // Particle drift
-          particles.rotation.y = time * 0.02;
+          // Stream Energy Particles into Central Vault
+          streamParticles.forEach(sp => {
+            sp.progress = (sp.progress + 0.012) % 1.0;
+            const v = vaults[sp.vaultIdx];
+            if (v) {
+              const startX = v.group.position.x;
+              const startY = v.group.position.y - v.h / 2;
+              const startZ = v.group.position.z;
+
+              const endX = 0;
+              const endY = -2.3;
+              const endZ = 0.2;
+
+              sp.mesh.position.x = startX + (endX - startX) * sp.progress;
+              sp.mesh.position.y = startY + (endY - startY) * sp.progress;
+              sp.mesh.position.z = startZ + (endZ - startZ) * sp.progress;
+            }
+          });
+
+          // Floating metric gauges gentle bob
+          gaugePayback.position.y = 3.5 + Math.sin(time * 1.5) * 0.06;
+          gaugeLtvCac.position.y = 4.3 + Math.sin(time * 1.5 + 1.0) * 0.08;
+          gaugeBreakeven.position.y = 3.5 + Math.sin(time * 1.5 + 2.0) * 0.06;
+
+          // Ambient dust drift
+          ambientDust.rotation.y = time * 0.02;
         }
       };
     }
