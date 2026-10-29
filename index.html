@@ -1015,32 +1015,31 @@
       <!-- SLIDE 6: GO TO MARKET -->
       <section class="slide" id="slide-6" data-title="استراتيجية النفاذ للسوق | GTM">
         <div class="slide-content">
-          <div class="slide-kicker">3-Stage Commercial Expansion</div>
-          <h2 class="slide-title">حسم النطاق الأولي. <span class="highlight">إثبات النموذج. التوسع.</span></h2>
-          <p class="slide-subtitle">"Win one territory. Prove the model. Expand." — مسار تدريجي منخفض المخاطر وسريع التحقق.</p>
+          <div class="slide-kicker">استراتيجية النمو</div>
+          <h2 class="slide-title">خطة انطلاق <span class="highlight">ثلاثية المراحل</span></h2>
 
           <div class="feature-points">
             <div class="point-card active" id="card-gtm-0" onclick="selectGtmStage(0)">
-              <div class="point-icon">1️⃣</div>
+              <div class="point-icon">🏪</div>
               <div>
-                <div class="point-title">المرحلة الأولى: النفاذ الميداني المباشر (شرق الإسكندرية)</div>
-                <div class="point-desc">زيارات ميدانية وعروض حية لكاميرا الهاتف بالشوارع التجارية (سموحة، ميامي، لوران) مع تجربة مجانية 14 يوماً وإعلانات Meta (100 ج/يوم).</div>
+                <div class="point-title">1: النفاذ الميداني</div>
+                <div class="point-desc">عروض حية لتجار شرق الإسكندرية.</div>
               </div>
             </div>
 
             <div class="point-card" id="card-gtm-1" onclick="selectGtmStage(1)">
-              <div class="point-icon">2️⃣</div>
+              <div class="point-icon">🔄</div>
               <div>
-                <div class="point-title">المرحلة الثانية: محركات الإحالة والشراكات المحلية</div>
-                <div class="point-desc">منح شهر مجاني لكل متجر مُحال، وبناء شبكة شراكات مع المحاسبين المحليين وموردي طابعات ومعدات نقاط البيع.</div>
+                <div class="point-title">2: محركات الإحالة</div>
+                <div class="point-desc">شهر مجاني وشراكات مع المحاسبين.</div>
               </div>
             </div>
 
             <div class="point-card" id="card-gtm-2" onclick="selectGtmStage(2)">
-              <div class="point-icon">3️⃣</div>
+              <div class="point-icon">🚀</div>
               <div>
-                <div class="point-title">المرحلة الثالثة: التوسع الجغرافي والإقليمي</div>
-                <div class="point-desc">التمدد نحو كامل الإسكندرية ومدن الدلتا والقاهرة الكبرى، تمهيداً للتوسع بدول الخليج (متطلبات ZATCA).</div>
+                <div class="point-title">3: التوسع الإقليمي</div>
+                <div class="point-desc">التمدد للدلتا والقاهرة والخليج.</div>
               </div>
             </div>
           </div>
@@ -1360,13 +1359,22 @@
       ],
 
       init() {
-        this.updateSlide(0);
+        let startIdx = 0;
+        const match = (window.location.href || '').match(/slide[-=](d+)/i);
+        if (match) {
+          startIdx = parseInt(match[1], 10) - 1;
+        }
+        this.updateSlide(Math.max(0, Math.min(startIdx, this.total - 1)));
         this.setupEvents();
       },
 
       updateSlide(index) {
         if (index < 0 || index >= this.total) return;
         this.currentIndex = index;
+
+        if (window.location.hash !== ('#slide-' + (index + 1)) && window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', '#slide-' + (index + 1));
+        }
 
         this.slides.forEach((s, idx) => {
           if (idx === index) {
@@ -4416,12 +4424,12 @@
       if (tierSelector) tierSelector.select(idx);
     };
 
-    // --- SLIDE 6: 3D Interactive Stepped Expansion Highway & Launchpad (GTM) ---
+    // --- SLIDE 6: 3D Interactive Alexandria Retail Street & Storefronts Diorama (GTM) ---
     let gtmSelector = null;
 
     function buildSlide6Scene(scene, camera) {
-      camera.position.set(0, 0.2, 11.8);
-      camera.lookAt(0, 0.0, 0);
+      camera.position.set(-2.9, 0.9, 6.4);
+      camera.lookAt(-2.6, 0.6, 0.0);
 
       const rootGroup = new THREE.Group();
       scene.add(rootGroup);
@@ -4441,104 +4449,299 @@
         });
       }
 
-      // Lights
-      const dirLight = new THREE.DirectionalLight(0xffffff, 1.3);
-      dirLight.position.set(6, 12, 10);
-      scene.add(dirLight);
+      // ------------------------------------------
+      // LIGHTING RIG
+      // ------------------------------------------
+      const ambientLight = new THREE.AmbientLight(0x94a3b8, 0.6);
+      scene.add(ambientLight);
 
-      const cyanLight = new THREE.PointLight(0x38bdf8, 1.6, 25);
-      cyanLight.position.set(-2, 2, 6);
-      scene.add(cyanLight);
+      const sunLight = new THREE.DirectionalLight(0xfffbeb, 1.1);
+      sunLight.position.set(5, 12, 7);
+      scene.add(sunLight);
 
-      const amberLight = new THREE.PointLight(0xf59e0b, 1.4, 22);
-      amberLight.position.set(2, 4, 5);
-      scene.add(amberLight);
+      const streetLight1 = new THREE.PointLight(0xffb703, 1.8, 6);
+      streetLight1.position.set(-4.5, 1.4, 0.5);
+      scene.add(streetLight1);
+
+      const streetLight2 = new THREE.PointLight(0xffb703, 1.8, 6);
+      streetLight2.position.set(1.5, 1.4, 0.5);
+      scene.add(streetLight2);
+
+      const stage0Spot = new THREE.PointLight(0x38bdf8, 1.5, 7);
+      stage0Spot.position.set(-3.4, 1.0, 0.8);
+      scene.add(stage0Spot);
+
+      const stage1Spot = new THREE.PointLight(0xf59e0b, 1.5, 7);
+      stage1Spot.position.set(0.0, 1.0, 0.8);
+      scene.add(stage1Spot);
+
+      const stage2Spot = new THREE.PointLight(0xa78bfa, 1.8, 8);
+      stage2Spot.position.set(3.6, 2.5, 0.4);
+      scene.add(stage2Spot);
 
       // ------------------------------------------
-      // TEXTURE GENERATORS FOR GTM CARDS & BADGES
+      // PROCEDURAL TEXTURE GENERATORS
       // ------------------------------------------
-      function makeGtmCardTexture(stageNum, tag, title, bullets, targetText, accentColor) {
+      function makeAwningTexture(c1, c2) {
         const c = document.createElement('canvas');
-        c.width = 460;
-        c.height = 270;
+        c.width = 256;
+        c.height = 256;
+        const ctx = c.getContext('2d');
+        const stripeWidth = 32;
+        for (let x = 0; x < c.width; x += stripeWidth * 2) {
+          ctx.fillStyle = c1;
+          ctx.fillRect(x, 0, stripeWidth, c.height);
+          ctx.fillStyle = c2;
+          ctx.fillRect(x + stripeWidth, 0, stripeWidth, c.height);
+        }
+        // Subtle fabric shadow gradient
+        const grad = ctx.createLinearGradient(0, 0, 0, c.height);
+        grad.addColorStop(0, 'rgba(0,0,0,0.3)');
+        grad.addColorStop(0.3, 'rgba(0,0,0,0)');
+        grad.addColorStop(1, 'rgba(0,0,0,0.35)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, c.width, c.height);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.wrapS = THREE.RepeatWrapping;
+        tex.wrapT = THREE.RepeatWrapping;
+        tex.repeat.set(2, 1);
+        return tex;
+      }
+
+      function makeShopSignTexture(titleAr, subEn, icon, bgGrad1, bgGrad2, accent) {
+        const c = document.createElement('canvas');
+        c.width = 512;
+        c.height = 140;
         const ctx = c.getContext('2d');
 
-        // Background
-        ctx.fillStyle = 'rgba(7, 17, 31, 0.95)';
-        ctx.fillRect(0, 0, 460, 270);
+        // Background gradient
+        const bg = ctx.createLinearGradient(0, 0, 512, 140);
+        bg.addColorStop(0, bgGrad1);
+        bg.addColorStop(1, bgGrad2);
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, 512, 140);
 
         // Border
+        ctx.strokeStyle = accent;
+        ctx.lineWidth = 6;
+        ctx.strokeRect(3, 3, 506, 134);
+
+        // Inner glowing border line
+        ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(8, 8, 496, 124);
+
+        // Icon
+        ctx.font = '48px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(icon, 60, 85);
+
+        // Arabic Title
+        ctx.font = 'bold 34px Cairo, sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.direction = 'rtl';
+        ctx.fillText(titleAr, 485, 62);
+
+        // Subtitle English
+        ctx.font = 'bold 15px Outfit, sans-serif';
+        ctx.fillStyle = accent;
+        ctx.direction = 'ltr';
+        ctx.fillText(subEn, 120, 105);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.anisotropy = 4;
+        return tex;
+      }
+
+      function makeGroceryWindowTexture() {
+        const c = document.createElement('canvas');
+        c.width = 256;
+        c.height = 256;
+        const ctx = c.getContext('2d');
+
+        ctx.fillStyle = '#0f172a';
+        ctx.fillRect(0, 0, 256, 256);
+
+        // Warm interior shop shelves
+        for (let row = 0; row < 4; row++) {
+          const y = row * 60 + 20;
+          ctx.fillStyle = '#334155';
+          ctx.fillRect(10, y + 35, 236, 6);
+
+          // Products on shelf
+          for (let col = 0; col < 6; col++) {
+            const x = 20 + col * 38;
+            const colors = ['#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+            ctx.fillStyle = colors[(row + col) % colors.length];
+            ctx.fillRect(x, y + 10, 26, 25);
+            // Cap / detail
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(x + 5, y + 5, 16, 5);
+          }
+        }
+        const tex = new THREE.CanvasTexture(c);
+        return tex;
+      }
+
+      function makeRoasteryWindowTexture() {
+        const c = document.createElement('canvas');
+        c.width = 256;
+        c.height = 256;
+        const ctx = c.getContext('2d');
+
+        ctx.fillStyle = '#1c1917';
+        ctx.fillRect(0, 0, 256, 256);
+
+        // Glass jars of coffee beans & spices
+        for (let row = 0; row < 3; row++) {
+          const y = row * 75 + 30;
+          ctx.fillStyle = '#78350f';
+          ctx.fillRect(10, y + 50, 236, 8);
+
+          for (let col = 0; col < 5; col++) {
+            const x = 25 + col * 46;
+            ctx.fillStyle = 'rgba(245, 158, 11, 0.4)';
+            ctx.fillRect(x, y + 12, 32, 38);
+            ctx.strokeStyle = '#d97706';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(x, y + 12, 32, 38);
+            // Brass lid
+            ctx.fillStyle = '#fbbf24';
+            ctx.fillRect(x + 2, y + 4, 28, 8);
+          }
+        }
+        const tex = new THREE.CanvasTexture(c);
+        return tex;
+      }
+
+      function makeRoadTexture() {
+        const c = document.createElement('canvas');
+        c.width = 512;
+        c.height = 256;
+        const ctx = c.getContext('2d');
+
+        // Dark asphalt with subtle noise
+        ctx.fillStyle = '#1e293b';
+        ctx.fillRect(0, 0, 512, 256);
+
+        // White dashed center line
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 6;
+        ctx.setLineDash([28, 20]);
+        ctx.beginPath();
+        ctx.moveTo(0, 128);
+        ctx.lineTo(512, 128);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Zebra pedestrian crosswalk stripes
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        for (let i = 0; i < 7; i++) {
+          ctx.fillRect(200 + i * 24, 20, 14, 216);
+        }
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.wrapS = THREE.RepeatWrapping;
+        tex.repeat.set(2, 1);
+        return tex;
+      }
+
+      function makePavementTexture() {
+        const c = document.createElement('canvas');
+        c.width = 256;
+        c.height = 256;
+        const ctx = c.getContext('2d');
+
+        ctx.fillStyle = '#334155';
+        ctx.fillRect(0, 0, 256, 256);
+
+        // Tile grid
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = 3;
+        const step = 32;
+        for (let x = 0; x <= 256; x += step) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 256); ctx.stroke();
+        }
+        for (let y = 0; y <= 256; y += step) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(256, y); ctx.stroke();
+        }
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.wrapS = THREE.RepeatWrapping;
+        tex.wrapT = THREE.RepeatWrapping;
+        tex.repeat.set(4, 3);
+        return tex;
+      }
+
+      function makeFloatingBadgeTexture(emoji, label, color) {
+        const c = document.createElement('canvas');
+        c.width = 240;
+        c.height = 90;
+        const ctx = c.getContext('2d');
+
+        ctx.fillStyle = 'rgba(11, 22, 44, 0.95)';
+        ctx.beginPath();
+        ctx.roundRect(4, 4, 232, 82, 18);
+        ctx.fill();
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 3.5;
+        ctx.stroke();
+
+        ctx.font = '36px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(emoji, 44, 58);
+
+        ctx.font = 'bold 20px Cairo, sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.textAlign = 'right';
+        ctx.fillText(label, 220, 52);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.anisotropy = 4;
+        return tex;
+      }
+
+      function makeStageBannerTexture(stageTitle, tag, subText, accentColor) {
+        const c = document.createElement('canvas');
+        c.width = 480;
+        c.height = 140;
+        const ctx = c.getContext('2d');
+
+        // Glass dark backdrop
+        ctx.fillStyle = 'rgba(6, 15, 30, 0.94)';
+        ctx.beginPath();
+        ctx.roundRect(4, 4, 472, 132, 14);
+        ctx.fill();
+
+        // Glowing border
         ctx.strokeStyle = accentColor;
         ctx.lineWidth = 3.5;
-        ctx.strokeRect(2, 2, 456, 266);
+        ctx.stroke();
 
-        // Header bar
-        ctx.fillStyle = 'rgba(30, 58, 138, 0.35)';
-        ctx.fillRect(0, 0, 460, 48);
-
-        // Stage Number badge
-        ctx.font = 'bold 16px Cairo, sans-serif';
+        // Top Tag
+        ctx.font = 'bold 13px Outfit, sans-serif';
         ctx.fillStyle = accentColor;
-        ctx.direction = 'rtl';
-        ctx.fillText(stageNum, 440, 32);
+        ctx.direction = 'ltr';
+        ctx.fillText(tag, 22, 34);
 
-        // Tag
-        ctx.font = '13px Cairo, sans-serif';
-        ctx.fillStyle = '#94a3b8';
-        ctx.fillText(tag, 230, 32);
-
-        // Main Title
-        ctx.font = 'bold 20px Cairo, sans-serif';
+        // Stage Title
+        ctx.font = 'bold 22px Cairo, sans-serif';
         ctx.fillStyle = '#f8fafc';
-        ctx.fillText(title, 440, 85);
+        ctx.direction = 'rtl';
+        ctx.fillText(stageTitle, 455, 68);
 
         // Divider
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
         ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(20, 102); ctx.lineTo(440, 102); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(22, 85); ctx.lineTo(455, 85); ctx.stroke();
 
-        // Bullets
-        ctx.font = '14px Cairo, sans-serif';
+        // Subtext / description
+        ctx.font = 'bold 14px Cairo, sans-serif';
         ctx.fillStyle = '#cbd5e1';
-        bullets.forEach((b, idx) => {
-          ctx.fillText(b, 440, 134 + idx * 28);
-        });
-
-        // Target Box at bottom
-        ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
-        ctx.fillRect(15, 202, 430, 50);
-        ctx.strokeStyle = accentColor;
-        ctx.lineWidth = 1.5;
-        ctx.strokeRect(15, 202, 430, 50);
-
-        ctx.font = 'bold 15px Cairo, sans-serif';
-        ctx.fillStyle = accentColor;
-        ctx.fillText(targetText, 430, 234);
-
-        const tex = new THREE.CanvasTexture(c);
-        tex.anisotropy = 4;
-        return tex;
-      }
-
-      function makeBadgeIconTexture(emoji, label, color) {
-        const c = document.createElement('canvas');
-        c.width = 160;
-        c.height = 160;
-        const ctx = c.getContext('2d');
-
-        ctx.fillStyle = 'rgba(11, 22, 44, 0.95)';
-        ctx.beginPath(); ctx.arc(80, 80, 76, 0, Math.PI * 2); ctx.fill();
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 6;
-        ctx.stroke();
-
-        ctx.font = '54px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(emoji, 80, 75);
-
-        ctx.font = 'bold 18px Cairo, sans-serif';
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText(label, 80, 122);
+        ctx.direction = 'rtl';
+        ctx.fillText(subText, 455, 116);
 
         const tex = new THREE.CanvasTexture(c);
         tex.anisotropy = 4;
@@ -4546,371 +4749,599 @@
       }
 
       // ------------------------------------------
-      // CONNECTING ASCENDING NEON HIGHWAY
+      // URBAN BLOCK DIORAMA BASE
       // ------------------------------------------
-      const highwayCurve = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-3.2, -1.8, 0.0),
-        new THREE.Vector3(-1.6, -0.9, 0.25),
-        new THREE.Vector3(0.0, 0.0, 0.2),
-        new THREE.Vector3(1.6, 0.8, 0.25),
-        new THREE.Vector3(3.2, 1.6, 0.0)
-      ]);
+      const dioramaGroup = new THREE.Group();
+      rootGroup.add(dioramaGroup);
 
-      const highwayGeo = new THREE.TubeGeometry(highwayCurve, 50, 0.09, 12, false);
-      const highwayMat = new THREE.MeshStandardMaterial({
-        color: 0x0284c7,
-        emissive: 0x0369a1,
-        emissiveIntensity: 0.6,
-        metalness: 0.85,
-        roughness: 0.2,
-        transparent: true,
-        opacity: 0.8
+      // Main structural base slab
+      const baseSlabGeo = new THREE.BoxGeometry(12.4, 0.45, 6.4);
+      const baseSlabMat = new THREE.MeshStandardMaterial({
+        color: 0x090d16,
+        roughness: 0.3,
+        metalness: 0.8
       });
-      const highwayMesh = new THREE.Mesh(highwayGeo, highwayMat);
-      rootGroup.add(highwayMesh);
+      const baseSlab = new THREE.Mesh(baseSlabGeo, baseSlabMat);
+      baseSlab.position.set(0, -1.2, 0);
+      dioramaGroup.add(baseSlab);
 
-      // Highway wireframe shell
-      const hwWireMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, wireframe: true, transparent: true, opacity: 0.35 });
-      const hwWireMesh = new THREE.Mesh(new THREE.TubeGeometry(highwayCurve, 50, 0.12, 8, false), hwWireMat);
-      rootGroup.add(hwWireMesh);
+      // Neon base rim accent
+      const baseTrimGeo = new THREE.BoxGeometry(12.46, 0.05, 6.46);
+      const baseTrimMat = new THREE.MeshBasicMaterial({ color: 0x0284c7 });
+      const baseTrim = new THREE.Mesh(baseTrimGeo, baseTrimMat);
+      baseTrim.position.set(0, -0.98, 0);
+      dioramaGroup.add(baseTrim);
 
-      // Energetic Growth Transit Particles along the Highway
-      const transitCount = 14;
-      const transitSpheres = [];
-      const particleGeo = new THREE.SphereGeometry(0.075, 12, 12);
-      for (let i = 0; i < transitCount; i++) {
-        const pMat = new THREE.MeshBasicMaterial({
-          color: i % 2 === 0 ? 0x38bdf8 : 0xf59e0b
-        });
-        const pMesh = new THREE.Mesh(particleGeo, pMat);
-        rootGroup.add(pMesh);
-        transitSpheres.push({ mesh: pMesh, offset: i / transitCount });
+      // Asphalt Roadway (in front)
+      const roadGeo = new THREE.BoxGeometry(12.4, 0.06, 2.4);
+      const roadMat = new THREE.MeshStandardMaterial({
+        map: makeRoadTexture(),
+        roughness: 0.8,
+        metalness: 0.1
+      });
+      const roadMesh = new THREE.Mesh(roadGeo, roadMat);
+      roadMesh.position.set(0, -0.95, 2.0);
+      dioramaGroup.add(roadMesh);
+
+      // Concrete Sidewalk (raised pavement)
+      const sidewalkGeo = new THREE.BoxGeometry(12.4, 0.18, 4.0);
+      const sidewalkMat = new THREE.MeshStandardMaterial({
+        map: makePavementTexture(),
+        roughness: 0.7,
+        metalness: 0.1
+      });
+      const sidewalkMesh = new THREE.Mesh(sidewalkGeo, sidewalkMat);
+      sidewalkMesh.position.set(0, -0.87, -1.2);
+      dioramaGroup.add(sidewalkMesh);
+
+      // Sidewalk Curb Stone
+      const curbGeo = new THREE.BoxGeometry(12.4, 0.22, 0.14);
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0x64748b, roughness: 0.5 });
+      const curbMesh = new THREE.Mesh(curbGeo, curbMat);
+      curbMesh.position.set(0, -0.85, 0.76);
+      dioramaGroup.add(curbMesh);
+
+      // Street Lamps (Vintage Alexandria street style)
+      function createStreetLamp(x, z) {
+        const lampGroup = new THREE.Group();
+        lampGroup.position.set(x, -0.78, z);
+
+        // Base
+        const base = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.12, 0.16, 0.2, 8),
+          new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.9, roughness: 0.2 })
+        );
+        lampGroup.add(base);
+
+        // Pole
+        const pole = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.045, 0.06, 2.3, 8),
+          new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.2 })
+        );
+        pole.position.y = 1.15;
+        lampGroup.add(pole);
+
+        // Lantern head
+        const lantern = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.12, 0.08, 0.28, 6),
+          new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.8 })
+        );
+        lantern.position.y = 2.35;
+        lampGroup.add(lantern);
+
+        // Glowing bulb inside
+        const bulb = new THREE.Mesh(
+          new THREE.SphereGeometry(0.09, 12, 12),
+          new THREE.MeshBasicMaterial({ color: 0xfef08a })
+        );
+        bulb.position.y = 2.35;
+        lampGroup.add(bulb);
+
+        dioramaGroup.add(lampGroup);
       }
+      createStreetLamp(-4.5, 0.5);
+      createStreetLamp(1.5, 0.5);
+
+      // Sidewalk Planter Box
+      function createPlanter(x, z) {
+        const planter = new THREE.Mesh(
+          new THREE.BoxGeometry(0.65, 0.35, 0.35),
+          new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.6 })
+        );
+        planter.position.set(x, -0.65, z);
+        dioramaGroup.add(planter);
+
+        const bush = new THREE.Mesh(
+          new THREE.DodecahedronGeometry(0.24),
+          new THREE.MeshStandardMaterial({ color: 0x15803d, roughness: 0.8 })
+        );
+        bush.position.set(x, -0.4, z);
+        dioramaGroup.add(bush);
+      }
+      createPlanter(-1.8, 0.5);
+      createPlanter(1.0, 0.5);
 
       // ------------------------------------------
-      // THREE STEPPED STAGE PLATFORMS
+      // STAGE 0: DIRECT FIELD BEACHHEAD (SUPERMARKET)
       // ------------------------------------------
-      const gtmStages = [];
+      const stage0Group = new THREE.Group();
+      stage0Group.position.set(-3.4, 0, -0.6);
+      rootGroup.add(stage0Group);
 
-      function createStagePodium(idx, x, baseY, z, radius, color, rimColor, badgeTexture, buildContentFn) {
-        const sGroup = new THREE.Group();
-        sGroup.position.set(x, baseY, z);
-        rootGroup.add(sGroup);
+      // Building Structure
+      const bldg0Mat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.5, metalness: 0.2 });
+      const bldg0 = new THREE.Mesh(new THREE.BoxGeometry(3.0, 3.2, 2.0), bldg0Mat);
+      bldg0.position.set(0, 0.8, 0);
+      stage0Group.add(bldg0);
 
-        // Hex Podium Cylinder
-        const podGeo = new THREE.CylinderGeometry(radius, radius * 1.1, 0.38, 6);
-        const podMat = new THREE.MeshStandardMaterial({
-          color: color,
-          emissive: 0x031738,
-          emissiveIntensity: 0.3,
-          metalness: 0.9,
+      // Ground Floor Storefront Glass
+      const storeWindow0 = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.6, 1.4),
+        new THREE.MeshStandardMaterial({ map: makeGroceryWindowTexture(), roughness: 0.1 })
+      );
+      storeWindow0.position.set(0, 0.05, 1.01);
+      stage0Group.add(storeWindow0);
+
+      // Red & White Striped Awning
+      const awning0 = new THREE.Mesh(
+        new THREE.BoxGeometry(2.8, 0.08, 0.85),
+        new THREE.MeshStandardMaterial({ map: makeAwningTexture('#dc2626', '#ffffff'), roughness: 0.4 })
+      );
+      awning0.position.set(0, 0.85, 1.35);
+      awning0.rotation.x = 0.38;
+      stage0Group.add(awning0);
+
+      // Shop Signboard
+      const sign0 = new THREE.Mesh(
+        new THREE.BoxGeometry(2.9, 0.55, 0.1),
+        new THREE.MeshStandardMaterial({
+          map: makeShopSignTexture('سوبرماركت البركة', 'AL-BARAKA MARKET • EAST ALEX', '🛒', '#020617', '#1e3a8a', '#38bdf8'),
           roughness: 0.2
-        });
-        const podMesh = new THREE.Mesh(podGeo, podMat);
-        sGroup.add(podMesh);
+        })
+      );
+      sign0.position.set(0, 1.35, 1.05);
+      stage0Group.add(sign0);
 
-        // Glowing Hex Rim
-        const rimGeo = new THREE.TorusGeometry(radius * 1.03, 0.035, 16, 6);
-        const rimMat = new THREE.MeshBasicMaterial({ color: rimColor });
-        const rim = new THREE.Mesh(rimGeo, rimMat);
-        rim.position.y = 0.2;
-        rim.rotation.x = Math.PI / 2;
-        sGroup.add(rim);
+      // Fruit Crates on Sidewalk
+      const crateMat = new THREE.MeshStandardMaterial({ color: 0xa16207, roughness: 0.7 });
+      const crate1 = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.28, 0.35), crateMat);
+      crate1.position.set(-0.9, -0.62, 1.35);
+      stage0Group.add(crate1);
 
-        // Floating Info Card Badge
-        const cardGeo = new THREE.PlaneGeometry(2.35, 1.38);
-        const cardMat = new THREE.MeshBasicMaterial({ map: badgeTexture, side: THREE.DoubleSide });
-        const cardMesh = new THREE.Mesh(cardGeo, cardMat);
-        cardMesh.position.set(0, 1.55, 0.35);
-        sGroup.add(cardMesh);
-
-        // Content items container
-        const contentGroup = new THREE.Group();
-        contentGroup.position.set(0, 0.25, 0);
-        sGroup.add(contentGroup);
-
-        if (buildContentFn) {
-          buildContentFn(contentGroup);
+      // Orange fruits inside crate
+      for (let fx = -0.15; fx <= 0.15; fx += 0.15) {
+        for (let fz = -0.08; fz <= 0.08; fz += 0.08) {
+          const fruit = new THREE.Mesh(
+            new THREE.SphereGeometry(0.045, 8, 8),
+            new THREE.MeshStandardMaterial({ color: 0xf97316 })
+          );
+          fruit.position.set(-0.9 + fx, -0.45, 1.35 + fz);
+          stage0Group.add(fruit);
         }
-
-        gtmStages.push({
-          group: sGroup,
-          baseY: baseY,
-          targetY: baseY,
-          rim: rim,
-          contentGroup: contentGroup,
-          idx: idx
-        });
       }
 
-      // --- STAGE 0: Direct Field Outreach (Beachhead: Eastern Alex) ---
-      let phoneLaser = null;
-      let waBeacon = null;
-      createStagePodium(
-        0,
-        -3.2, -1.8, 0.0,
-        1.55,
-        0x1e3a8a,
-        0x38bdf8,
-        makeGtmCardTexture(
-          '1️⃣ المرحلة الأولى',
-          '📍 Beachhead: شرق الإسكندرية',
-          'النفاذ الميداني المباشر',
-          [
-            '• عروض حية لكاميرا الهاتف أمام التاجر في دقيقتين',
-            '• تركيز جغرافي بشوارع سموحة، ميامي، ولوران',
-            '• إعلانات Meta موجهة Click-to-WhatsApp (100 ج/يوم)'
-          ],
-          '🎯 المستهدف: 10 - 30 متجراً مرجعياً وتجربة مجانية 14 يوماً',
+      // Checkout Counter Desk
+      const counterDesk = new THREE.Mesh(
+        new THREE.BoxGeometry(0.85, 0.5, 0.45),
+        new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.3 })
+      );
+      counterDesk.position.set(0.45, -0.52, 1.35);
+      stage0Group.add(counterDesk);
+
+      // Smartphone on Stand running Hesabaty POS
+      const phoneGroup = new THREE.Group();
+      phoneGroup.position.set(0.45, -0.08, 1.38);
+      phoneGroup.rotation.y = 0.25;
+      stage0Group.add(phoneGroup);
+
+      const phoneBody = new THREE.Mesh(
+        new THREE.BoxGeometry(0.24, 0.44, 0.03),
+        new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.2 })
+      );
+      phoneGroup.add(phoneBody);
+
+      // Phone screen
+      const phoneScreen = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.21, 0.4),
+        new THREE.MeshBasicMaterial({ color: 0x0284c7 })
+      );
+      phoneScreen.position.z = 0.018;
+      phoneGroup.add(phoneScreen);
+
+      // Laser Scanner Beam Plane
+      const laserMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.25, 0.03),
+        new THREE.MeshBasicMaterial({ color: 0x10b981, side: THREE.DoubleSide })
+      );
+      laserMesh.position.set(0, 0, 0.025);
+      phoneGroup.add(laserMesh);
+
+      // Product box with barcode
+      const productBox = new THREE.Mesh(
+        new THREE.BoxGeometry(0.16, 0.22, 0.12),
+        new THREE.MeshStandardMaterial({ color: 0xef4444, roughness: 0.4 })
+      );
+      productBox.position.set(0.68, -0.42, 1.38);
+      stage0Group.add(productBox);
+
+      // Floating WhatsApp Beacon Badge
+      const waBadgeMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.0, 0.38),
+        new THREE.MeshBasicMaterial({
+          map: makeFloatingBadgeTexture('💬', 'واتساب 2 دقيقة', '#22c55e'),
+          side: THREE.DoubleSide
+        })
+      );
+      waBadgeMesh.position.set(0.45, 0.32, 1.4);
+      stage0Group.add(waBadgeMesh);
+
+      // Floating Alexandria District Map Pin (Roof Corner Indicator)
+      const pinGroup = new THREE.Group();
+      pinGroup.position.set(-1.15, 2.45, 0.85);
+      stage0Group.add(pinGroup);
+
+      const pinStem = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.02, 0.02, 0.35, 8),
+        new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.8 })
+      );
+      pinGroup.add(pinStem);
+
+      const pinSphere = new THREE.Mesh(
+        new THREE.SphereGeometry(0.12, 16, 16),
+        new THREE.MeshStandardMaterial({ color: 0x38bdf8, emissive: 0x0284c7, emissiveIntensity: 0.8 })
+      );
+      pinSphere.position.y = 0.2;
+      pinGroup.add(pinSphere);
+
+      // Stage 0 Floating Banner
+      const plaque0Mat = new THREE.MeshBasicMaterial({
+        map: makeStageBannerTexture(
+          '1️⃣ النفاذ الميداني المباشر',
+          'BEACHHEAD • EAST ALEX',
+          '📍 شوارع سموحة وميامي • عروض حية لكاميرا الهاتف في دقيقتين',
           '#38bdf8'
         ),
-        (grp) => {
-          // Mini Retail Counter Desk
-          const counter = new THREE.Mesh(
-            new THREE.BoxGeometry(0.9, 0.2, 0.5),
-            new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.4 })
-          );
-          counter.position.set(0, 0.1, 0.1);
-          grp.add(counter);
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.95
+      });
+      const plaque0 = new THREE.Mesh(new THREE.PlaneGeometry(2.3, 0.68), plaque0Mat);
+      plaque0.position.set(0.1, 2.45, 0.7);
+      stage0Group.add(plaque0);
 
-          // Upright Smartphone
-          const phone = new THREE.Mesh(
-            new THREE.BoxGeometry(0.32, 0.62, 0.035),
-            new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.2 })
-          );
-          phone.position.set(-0.15, 0.48, 0.12);
-          phone.rotation.y = 0.2;
-          grp.add(phone);
+      // ------------------------------------------
+      // STAGE 1: VIRAL REFERRAL & PARTNER ECOSYSTEM (ROASTERY)
+      // ------------------------------------------
+      const stage1Group = new THREE.Group();
+      stage1Group.position.set(0.0, 0, -0.6);
+      rootGroup.add(stage1Group);
 
-          // Laser Scanning Beam
-          phoneLaser = new THREE.Mesh(
-            new THREE.PlaneGeometry(0.28, 0.03),
-            new THREE.MeshBasicMaterial({ color: 0x10b981, side: THREE.DoubleSide })
-          );
-          phoneLaser.position.set(0, 0, 0.025);
-          phone.add(phoneLaser);
+      // Roastery Building Structure
+      const bldg1Mat = new THREE.MeshStandardMaterial({ color: 0x1c1917, roughness: 0.4, metalness: 0.3 });
+      const bldg1 = new THREE.Mesh(new THREE.BoxGeometry(3.0, 3.2, 2.0), bldg1Mat);
+      bldg1.position.set(0, 0.8, 0);
+      stage1Group.add(bldg1);
 
-          // Floating WhatsApp Beacon Disc
-          waBeacon = new THREE.Mesh(
-            new THREE.CircleGeometry(0.26, 32),
-            new THREE.MeshBasicMaterial({
-              map: makeBadgeIconTexture('💬', 'واتساب', '#22c55e'),
-              side: THREE.DoubleSide
-            })
-          );
-          waBeacon.position.set(0.35, 0.65, 0.15);
-          grp.add(waBeacon);
-
-          // 3 Landmark Map Pins: Smouha, Miami, Loran
-          const pinPositions = [
-            { x: -0.45, z: -0.3, label: 'سموحة' },
-            { x: 0.0, z: -0.45, label: 'ميامي' },
-            { x: 0.45, z: -0.3, label: 'لوران' }
-          ];
-          pinPositions.forEach(pin => {
-            const stem = new THREE.Mesh(
-              new THREE.CylinderGeometry(0.015, 0.015, 0.35, 8),
-              new THREE.MeshStandardMaterial({ color: 0x94a3b8 })
-            );
-            stem.position.set(pin.x, 0.2, pin.z);
-            grp.add(stem);
-
-            const head = new THREE.Mesh(
-              new THREE.SphereGeometry(0.07, 12, 12),
-              new THREE.MeshStandardMaterial({ color: 0x38bdf8, emissive: 0x0284c7, emissiveIntensity: 0.7 })
-            );
-            head.position.set(pin.x, 0.38, pin.z);
-            grp.add(head);
-          });
-        }
+      // Roastery Glass Window
+      const storeWindow1 = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.6, 1.4),
+        new THREE.MeshStandardMaterial({ map: makeRoasteryWindowTexture(), roughness: 0.1 })
       );
+      storeWindow1.position.set(0, 0.05, 1.01);
+      stage1Group.add(storeWindow1);
 
-      // --- STAGE 1: Viral Referral & Local Partner Ecosystem ---
-      let flywheelRing = null;
-      const partnerNodes = [];
-      createStagePodium(
-        1,
-        0.0, 0.0, 0.2,
-        1.65,
-        0x0c4a6e,
-        0xf59e0b,
-        makeGtmCardTexture(
-          '2️⃣ المرحلة الثانية',
-          '🔄 Viral Referral & CPAs',
-          'محركات الإحالة والشراكات',
-          [
-            '• شهر مجاني لكل متجر مُحال يضمن انتشاراً عضوياً ذاتياً',
-            '• تحالفات مع المحاسبين القانونيين (CPAs) المعتمدين',
-            '• شبكة موزعي طابعات الإيصالات وأجهزة نقاط البيع'
-          ],
-          '🎯 المستهدف: الوصول إلى 50 متجراً ونقطة التعادل المالي',
+      // Green & Gold Striped Awning
+      const awning1 = new THREE.Mesh(
+        new THREE.BoxGeometry(2.8, 0.08, 0.85),
+        new THREE.MeshStandardMaterial({ map: makeAwningTexture('#15803d', '#fef08a'), roughness: 0.4 })
+      );
+      awning1.position.set(0, 0.85, 1.35);
+      awning1.rotation.x = 0.38;
+      stage1Group.add(awning1);
+
+      // Shop Signboard
+      const sign1 = new THREE.Mesh(
+        new THREE.BoxGeometry(2.9, 0.55, 0.1),
+        new THREE.MeshStandardMaterial({
+          map: makeShopSignTexture('محمصة ومطحنة الفيروز', 'AL-FAYROUZ ROASTERY & SPICES', '☕', '#1c1917', '#451a03', '#f59e0b'),
+          roughness: 0.2
+        })
+      );
+      sign1.position.set(0, 1.35, 1.05);
+      stage1Group.add(sign1);
+
+      // CPA & Hardware Partner Desk (outside Roastery)
+      const partnerDesk = new THREE.Mesh(
+        new THREE.BoxGeometry(0.85, 0.5, 0.45),
+        new THREE.MeshStandardMaterial({ color: 0x292524, roughness: 0.3 })
+      );
+      partnerDesk.position.set(0.65, -0.52, 1.35);
+      stage1Group.add(partnerDesk);
+
+      // Thermal Receipt Printer Model
+      const printerMesh = new THREE.Mesh(
+        new THREE.BoxGeometry(0.22, 0.18, 0.22),
+        new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.6 })
+      );
+      printerMesh.position.set(0.65, -0.22, 1.35);
+      stage1Group.add(printerMesh);
+
+      // Paper Receipt Ribbon
+      const receiptSlip = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.12, 0.22),
+        new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
+      );
+      receiptSlip.position.set(0.65, -0.06, 1.4);
+      receiptSlip.rotation.x = 0.3;
+      stage1Group.add(receiptSlip);
+
+      // CPA Wall Plaque
+      const cpaPlaque = new THREE.Mesh(
+        new THREE.BoxGeometry(0.48, 0.32, 0.04),
+        new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.8, roughness: 0.2 })
+      );
+      cpaPlaque.position.set(1.15, 0.1, 1.02);
+      stage1Group.add(cpaPlaque);
+
+      // ------------------------------------------
+      // REFERRAL BRIDGE (STORE 0 -> STORE 1)
+      // ------------------------------------------
+      const bridgeCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-2.9, -0.3, 0.8),
+        new THREE.Vector3(-1.8, 0.6, 1.1),
+        new THREE.Vector3(-0.7, -0.3, 0.8)
+      ]);
+
+      const bridgeGeo = new THREE.TubeGeometry(bridgeCurve, 32, 0.04, 10, false);
+      const bridgeMat = new THREE.MeshStandardMaterial({
+        color: 0xf59e0b,
+        emissive: 0xd97706,
+        emissiveIntensity: 0.7,
+        metalness: 0.8,
+        roughness: 0.2
+      });
+      const bridgeMesh = new THREE.Mesh(bridgeGeo, bridgeMat);
+      rootGroup.add(bridgeMesh);
+
+      // Referral Energy Transit Particles
+      const refParticles = [];
+      const refPartGeo = new THREE.SphereGeometry(0.06, 10, 10);
+      const refPartMat = new THREE.MeshBasicMaterial({ color: 0xfde047 });
+      for (let i = 0; i < 6; i++) {
+        const rp = new THREE.Mesh(refPartGeo, refPartMat);
+        rootGroup.add(rp);
+        refParticles.push({ mesh: rp, offset: i / 6 });
+      }
+
+      // Floating 3D Gift Box (1 Month Free Referral Token)
+      const giftGroup = new THREE.Group();
+      giftGroup.position.set(-1.8, 0.75, 1.1);
+      rootGroup.add(giftGroup);
+
+      const giftBox = new THREE.Mesh(
+        new THREE.BoxGeometry(0.32, 0.32, 0.32),
+        new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.7, roughness: 0.2 })
+      );
+      giftGroup.add(giftBox);
+
+      const ribbon1 = new THREE.Mesh(
+        new THREE.BoxGeometry(0.33, 0.33, 0.06),
+        new THREE.MeshBasicMaterial({ color: 0xef4444 })
+      );
+      giftGroup.add(ribbon1);
+
+      const ribbon2 = new THREE.Mesh(
+        new THREE.BoxGeometry(0.06, 0.33, 0.33),
+        new THREE.MeshBasicMaterial({ color: 0xef4444 })
+      );
+      giftGroup.add(ribbon2);
+
+      const giftBadge = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.2, 0.4),
+        new THREE.MeshBasicMaterial({
+          map: makeFloatingBadgeTexture('🎁', 'شهر مجاني لكل إحالة', '#f59e0b'),
+          side: THREE.DoubleSide
+        })
+      );
+      giftBadge.position.set(0, 0.45, 0);
+      giftGroup.add(giftBadge);
+
+      // Stage 1 Floating Banner
+      const plaque1Mat = new THREE.MeshBasicMaterial({
+        map: makeStageBannerTexture(
+          '2️⃣ محركات الإحالة والشراكات',
+          'VIRAL REFERRAL & CPAS',
+          '🎁 شهر مجاني لكل متجر مُحال • تحالفات مع المحاسبين القانونيين',
           '#f59e0b'
         ),
-        (grp) => {
-          // Central Referral Flywheel Outer Gear Ring
-          flywheelRing = new THREE.Mesh(
-            new THREE.TorusGeometry(0.72, 0.045, 16, 32),
-            new THREE.MeshStandardMaterial({
-              color: 0xf59e0b,
-              emissive: 0xd97706,
-              emissiveIntensity: 0.5,
-              metalness: 0.85,
-              roughness: 0.2
-            })
-          );
-          flywheelRing.position.set(0, 0.55, 0);
-          flywheelRing.rotation.x = Math.PI / 2;
-          grp.add(flywheelRing);
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.95
+      });
+      const plaque1 = new THREE.Mesh(new THREE.PlaneGeometry(2.3, 0.68), plaque1Mat);
+      plaque1.position.set(0.0, 2.45, 0.7);
+      stage1Group.add(plaque1);
 
-          // Flywheel Spokes
-          for (let s = 0; s < 4; s++) {
-            const spoke = new THREE.Mesh(
-              new THREE.CylinderGeometry(0.018, 0.018, 1.4, 8),
-              new THREE.MeshStandardMaterial({ color: 0xb45309 })
-            );
-            spoke.rotation.z = (s * Math.PI) / 4;
-            spoke.position.y = 0.55;
-            grp.add(spoke);
-          }
+      // ------------------------------------------
+      // STAGE 2: REGIONAL PAN-EGYPT & GULF EXPANSION (TOWER & WAYPOINTS)
+      // ------------------------------------------
+      const stage2Group = new THREE.Group();
+      stage2Group.position.set(3.6, 0, -0.4);
+      rootGroup.add(stage2Group);
 
-          // Center Gift / Referral Coin
-          const coin = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.2, 0.2, 0.05, 24),
-            new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.9, roughness: 0.1 })
-          );
-          coin.position.set(0, 0.55, 0);
-          grp.add(coin);
+      // Cyber pedestal base
+      const pedGeo = new THREE.CylinderGeometry(1.1, 1.3, 0.4, 8);
+      const pedMat = new THREE.MeshStandardMaterial({ color: 0x1e1b4b, metalness: 0.8, roughness: 0.2 });
+      const pedMesh = new THREE.Mesh(pedGeo, pedMat);
+      pedMesh.position.y = -0.58;
+      stage2Group.add(pedMesh);
 
-          // 3 Orbiting Partner Satellites: CPAs, Hardware POS, Retailers
-          const partners = [
-            { emoji: '⚖️', label: 'المحاسبين', color: '#38bdf8' },
-            { emoji: '🖨️', label: 'الموزعين', color: '#f59e0b' },
-            { emoji: '🏪', label: 'المتاجر', color: '#10b981' }
-          ];
-          partners.forEach((p, idx) => {
-            const nodeMesh = new THREE.Mesh(
-              new THREE.CircleGeometry(0.22, 24),
-              new THREE.MeshBasicMaterial({
-                map: makeBadgeIconTexture(p.emoji, p.label, p.color),
-                side: THREE.DoubleSide
-              })
-            );
-            grp.add(nodeMesh);
-            partnerNodes.push({ mesh: nodeMesh, baseAngle: (idx * Math.PI * 2) / 3, radius: 0.85 });
-          });
-        }
+      // Glowing cyber ring
+      const cyberRing = new THREE.Mesh(
+        new THREE.TorusGeometry(1.2, 0.035, 12, 32),
+        new THREE.MeshBasicMaterial({ color: 0xa78bfa })
       );
+      cyberRing.position.y = -0.38;
+      cyberRing.rotation.x = Math.PI / 2;
+      stage2Group.add(cyberRing);
 
-      // --- STAGE 2: Regional Pan-Egypt & Gulf Expansion ---
-      let globeWire = null;
-      let globeCore = null;
-      let zatcaShield = null;
-      createStagePodium(
-        2,
-        3.2, 1.6, 0.0,
-        1.55,
-        0x312e81,
-        0xa78bfa,
-        makeGtmCardTexture(
-          '3️⃣ المرحلة الثالثة',
-          '🚀 National & Gulf Expansion',
-          'التوسع الجغرافي والإقليمي',
-          [
-            '• التمدد لكامل الإسكندرية، مدن الدلتا، والقاهرة الكبرى',
-            '• استهداف قطاع التجزئة الوطني (2.2 مليون منشأة تجارية)',
-            '• التوسع بأسواق الخليج (معايير الفوترة ZATCA بالسعودية)'
-          ],
-          '🎯 المستهدف: 80 - 270 متجراً نشطاً وحصة سوقية رائدة',
-          '#a78bfa'
-        ),
-        (grp) => {
-          // 3D Holographic Globe
-          globeWire = new THREE.Mesh(
-            new THREE.SphereGeometry(0.62, 18, 18),
-            new THREE.MeshStandardMaterial({
-              color: 0x818cf8,
-              wireframe: true,
-              transparent: true,
-              opacity: 0.65
-            })
-          );
-          globeWire.position.set(0, 0.65, 0);
-          globeWire.rotation.z = 0.41; // Earth axial tilt
-          grp.add(globeWire);
+      // Telecom Lattice Tower (3.6m tall)
+      const towerGroup = new THREE.Group();
+      towerGroup.position.set(0, -0.38, 0);
+      stage2Group.add(towerGroup);
 
-          // Inner Glowing Core
-          globeCore = new THREE.Mesh(
-            new THREE.SphereGeometry(0.3, 16, 16),
-            new THREE.MeshStandardMaterial({
-              color: 0x4f46e5,
-              emissive: 0x3730a3,
-              emissiveIntensity: 0.8,
-              roughness: 0.3
-            })
-          );
-          globeCore.position.set(0, 0.65, 0);
-          grp.add(globeCore);
+      // Central Mast
+      const mastGeo = new THREE.CylinderGeometry(0.04, 0.12, 3.4, 8);
+      const mastMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.9, roughness: 0.2 });
+      const mast = new THREE.Mesh(mastGeo, mastMat);
+      mast.position.y = 1.7;
+      towerGroup.add(mast);
 
-          // ZATCA / Tax Compliance Floating Shield
-          zatcaShield = new THREE.Mesh(
-            new THREE.CircleGeometry(0.24, 6),
-            new THREE.MeshBasicMaterial({
-              map: makeBadgeIconTexture('🛡️', 'ZATCA', '#10b981'),
-              side: THREE.DoubleSide
-            })
-          );
-          zatcaShield.position.set(0.65, 0.85, 0.2);
-          grp.add(zatcaShield);
-
-          // Ascending Expansion Laser Arcs towards Egypt & Gulf
-          const arcGeo = new THREE.TorusGeometry(0.85, 0.02, 12, 48, Math.PI);
-          const arcMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.7 });
-          const arc = new THREE.Mesh(arcGeo, arcMat);
-          arc.position.set(0, 0.65, 0);
-          arc.rotation.y = 0.6;
-          grp.add(arc);
-        }
-      );
-
-      // Ambient Space Dust
-      const dustGeo = new THREE.BufferGeometry();
-      const dustCount = 80;
-      const dustPos = new Float32Array(dustCount * 3);
-      for (let i = 0; i < dustCount * 3; i++) {
-        dustPos[i] = (Math.random() - 0.5) * 18;
+      // Truss Rings along mast
+      for (let tr = 1; tr <= 4; tr++) {
+        const ring = new THREE.Mesh(
+          new THREE.TorusGeometry(0.35 - tr * 0.06, 0.02, 8, 8),
+          new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.8 })
+        );
+        ring.position.y = tr * 0.7;
+        ring.rotation.x = Math.PI / 2;
+        towerGroup.add(ring);
       }
-      dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
-      const dustMat = new THREE.PointsMaterial({ size: 0.075, color: 0x38bdf8, transparent: true, opacity: 0.6 });
-      const dustParticles = new THREE.Points(dustGeo, dustMat);
-      rootGroup.add(dustParticles);
 
-      // ------------------------------------------
-      // CAMERA GLIDE TARGETS FOR THE 3 STAGES
-      // ------------------------------------------
-      const gtmCamTargets = [
-        // 0: Stage 1 (Direct Field Outreach)
+      // Rotating Radar Dish at top
+      const radarDish = new THREE.Mesh(
+        new THREE.ConeGeometry(0.28, 0.12, 16, 1, true),
+        new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.9, side: THREE.DoubleSide })
+      );
+      radarDish.position.set(0, 3.3, 0);
+      radarDish.rotation.x = -Math.PI / 3;
+      towerGroup.add(radarDish);
+
+      // Top Obstruction Flashing Beacon
+      const towerBeacon = new THREE.Mesh(
+        new THREE.SphereGeometry(0.08, 12, 12),
+        new THREE.MeshBasicMaterial({ color: 0xef4444 })
+      );
+      towerBeacon.position.y = 3.5;
+      towerGroup.add(towerBeacon);
+
+      // Expanding Broadcast Signal Waves
+      const broadcastRings = [];
+      for (let br = 0; br < 3; br++) {
+        const bRing = new THREE.Mesh(
+          new THREE.TorusGeometry(0.5, 0.025, 8, 32),
+          new THREE.MeshBasicMaterial({ color: 0xa78bfa, transparent: true, opacity: 0.7 })
+        );
+        bRing.position.set(0, 3.4, 0);
+        bRing.rotation.x = Math.PI / 2;
+        stage2Group.add(bRing);
+        broadcastRings.push({ mesh: bRing, offset: br * 0.33 });
+      }
+
+      // Floating Regional Spatial Waypoints: Delta, Cairo, Saudi ZATCA
+      const waypoints = [
         {
-          camPos: new THREE.Vector3(-1.8, -0.4, 11.2),
-          lookAt: new THREE.Vector3(-1.4, -0.7, 0.0)
+          emoji: '🌾',
+          label: 'مدن الدلتا',
+          color: '#38bdf8',
+          pos: new THREE.Vector3(-1.1, 1.4, 0.6)
         },
-        // 1: Stage 2 (Viral Referral & CPAs)
         {
-          camPos: new THREE.Vector3(0.0, 0.2, 11.6),
-          lookAt: new THREE.Vector3(0.0, 0.0, 0.0)
+          emoji: '🏛️',
+          label: 'القاهرة (2.2M)',
+          color: '#f59e0b',
+          pos: new THREE.Vector3(0.0, 2.2, 0.8)
         },
-        // 2: Stage 3 (National & Gulf Expansion)
         {
-          camPos: new THREE.Vector3(1.8, 0.8, 11.2),
-          lookAt: new THREE.Vector3(1.4, 0.5, 0.0)
+          emoji: '🛡️',
+          label: 'الخليج ZATCA',
+          color: '#10b981',
+          pos: new THREE.Vector3(1.2, 1.5, 0.5)
         }
       ];
 
-      let currentCamPos = new THREE.Vector3(-1.8, -0.4, 11.2);
-      let currentLookAt = new THREE.Vector3(-1.4, -0.7, 0.0);
+      const waypointMeshes = [];
+      waypoints.forEach((wp) => {
+        const wpGroup = new THREE.Group();
+        wpGroup.position.copy(wp.pos);
+        stage2Group.add(wpGroup);
+
+        const orb = new THREE.Mesh(
+          new THREE.SphereGeometry(0.12, 16, 16),
+          new THREE.MeshStandardMaterial({ color: wp.color, emissive: wp.color, emissiveIntensity: 0.8 })
+        );
+        wpGroup.add(orb);
+
+        const wpBadge = new THREE.Mesh(
+          new THREE.PlaneGeometry(1.25, 0.42),
+          new THREE.MeshBasicMaterial({
+            map: makeFloatingBadgeTexture(wp.emoji, wp.label, wp.color),
+            side: THREE.DoubleSide
+          })
+        );
+        wpBadge.position.set(0, 0.42, 0);
+        wpGroup.add(wpBadge);
+
+        // Beam linking tower to waypoint
+        const beamGeo = new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(0, 3.4, 0),
+          wp.pos
+        ]);
+        const beamMat = new THREE.LineBasicMaterial({ color: wp.color, transparent: true, opacity: 0.6 });
+        const beamLine = new THREE.Line(beamGeo, beamMat);
+        stage2Group.add(beamLine);
+
+        waypointMeshes.push({ group: wpGroup, baseY: wp.pos.y, speed: Math.random() * 0.5 + 1.5 });
+      });
+
+      // Stage 2 Floating Banner
+      const plaque2Mat = new THREE.MeshBasicMaterial({
+        map: makeStageBannerTexture(
+          '3️⃣ التوسع الجغرافي والإقليمي',
+          'NATIONAL & GULF SCALE',
+          '🚀 الدلتا • القاهرة الكبرى (2.2M) • السعودية والخليج (ZATCA)',
+          '#a78bfa'
+        ),
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.95
+      });
+      const plaque2 = new THREE.Mesh(new THREE.PlaneGeometry(2.3, 0.68), plaque2Mat);
+      plaque2.position.set(0.0, 2.55, 0.7);
+      stage2Group.add(plaque2);
+
+      // ------------------------------------------
+      // CAMERA GLIDE TARGETS FOR THE 3 REAL STAGES
+      // ------------------------------------------
+      const gtmCamTargets = [
+        // 0: Storefront 1 (Direct Field Beachhead: East Alex)
+        {
+          camPos: new THREE.Vector3(-2.9, 0.9, 6.4),
+          lookAt: new THREE.Vector3(-2.6, 0.6, 0.0)
+        },
+        // 1: Storefront 2 (Referral Bridge & CPA Partner Desk)
+        {
+          camPos: new THREE.Vector3(-0.3, 1.0, 6.8),
+          lookAt: new THREE.Vector3(-0.3, 0.7, 0.0)
+        },
+        // 2: Expansion Hub (Telecom Tower, Egypt & Gulf Waypoints)
+        {
+          camPos: new THREE.Vector3(2.6, 1.3, 7.2),
+          lookAt: new THREE.Vector3(2.4, 0.9, 0.0)
+        }
+      ];
+
+      let currentCamPos = gtmCamTargets[0].camPos.clone();
+      let currentLookAt = gtmCamTargets[0].lookAt.clone();
       let targetCamPos = gtmCamTargets[0].camPos.clone();
       let targetLookAt = gtmCamTargets[0].lookAt.clone();
 
-      // Selector controller
+      const stages = [
+        { group: stage0Group, plaque: plaque0, spot: stage0Spot, idx: 0 },
+        { group: stage1Group, plaque: plaque1, spot: stage1Spot, idx: 1 },
+        { group: stage2Group, plaque: plaque2, spot: stage2Spot, idx: 2 }
+      ];
+
       gtmSelector = {
         select(idx) {
           if (gtmCamTargets[idx]) {
@@ -4918,7 +5349,7 @@
             targetLookAt.copy(gtmCamTargets[idx].lookAt);
           }
 
-          // Sync buttons & right-hand cards
+          // Sync buttons & side cards
           [0, 1, 2].forEach(i => {
             const btn = document.getElementById('btn-gtm-' + i);
             if (btn) {
@@ -4932,14 +5363,16 @@
             }
           });
 
-          // Elevate selected platform
-          gtmStages.forEach(st => {
+          // Spotlight & Plaque Highlighting
+          stages.forEach(st => {
             if (st.idx === idx) {
-              st.targetY = st.baseY + 0.35;
-              st.rim.scale.set(1.15, 1.15, 1.15);
+              st.spot.intensity = 2.2;
+              st.plaque.scale.set(1.1, 1.1, 1.1);
+              st.plaque.material.opacity = 1.0;
             } else {
-              st.targetY = st.baseY;
-              st.rim.scale.set(1.0, 1.0, 1.0);
+              st.spot.intensity = 0.8;
+              st.plaque.scale.set(0.95, 0.95, 0.95);
+              st.plaque.material.opacity = 0.55;
             }
           });
         }
@@ -4958,7 +5391,7 @@
           clickVec.y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
           raycaster.setFromCamera(clickVec, camera);
 
-          gtmStages.forEach(st => {
+          stages.forEach(st => {
             const intersects = raycaster.intersectObjects(st.group.children, true);
             if (intersects.length > 0) {
               gtmSelector.select(st.idx);
@@ -4978,48 +5411,44 @@
           camera.position.set(currentCamPos.x + pX, currentCamPos.y + pY, currentCamPos.z);
           camera.lookAt(currentLookAt.x, currentLookAt.y, currentLookAt.z);
 
-          // Elevate platforms smoothly
-          gtmStages.forEach(st => {
-            st.group.position.y += (st.targetY - st.group.position.y) * 0.08;
+          // Stage 0 Animations: Barcode laser sweep & WhatsApp beacon
+          if (laserMesh) {
+            laserMesh.position.y = Math.sin(time * 4.0) * 0.15;
+          }
+          if (waBadgeMesh) {
+            waBadgeMesh.position.y = 0.32 + Math.sin(time * 2.5) * 0.04;
+          }
+          if (pinSphere) {
+            pinSphere.position.y = 0.24 + Math.sin(time * 2.0) * 0.03;
+          }
+
+          // Stage 1 Animations: Referral Particles along arch & Gift Box
+          refParticles.forEach(rp => {
+            const t = (time * 0.25 + rp.offset) % 1.0;
+            const pt = bridgeCurve.getPointAt(t);
+            rp.mesh.position.copy(pt);
           });
+          if (giftGroup) {
+            giftGroup.rotation.y = time * 0.8;
+            giftGroup.position.y = 0.75 + Math.sin(time * 2.5) * 0.06;
+          }
 
-          // Pulse growth transit spheres along highway
-          transitSpheres.forEach(ts => {
-            const t = (time * 0.12 + ts.offset) % 1.0;
-            const pt = highwayCurve.getPointAt(t);
-            ts.mesh.position.copy(pt);
+          // Stage 2 Animations: Radar Dish rotation, Tower Beacon pulse, Broadcast waves
+          if (radarDish) {
+            radarDish.rotation.z = time * 1.5;
+          }
+          if (towerBeacon) {
+            towerBeacon.material.color.setHex((Math.floor(time * 3) % 2 === 0) ? 0xef4444 : 0x0284c7);
+          }
+          broadcastRings.forEach(br => {
+            const progress = (time * 0.4 + br.offset) % 1.0;
+            const scale = 0.4 + progress * 2.2;
+            br.mesh.scale.set(scale, scale, scale);
+            br.mesh.material.opacity = Math.max(0, (1.0 - progress) * 0.8);
           });
-
-          // Stage 0: Phone barcode laser scanning sweep
-          if (phoneLaser) {
-            phoneLaser.position.y = Math.sin(time * 3.5) * 0.22;
-          }
-          if (waBeacon) {
-            waBeacon.position.y = 0.65 + Math.sin(time * 2.0) * 0.05;
-          }
-
-          // Stage 1: Flywheel rotation & satellite orbit
-          if (flywheelRing) {
-            flywheelRing.rotation.z = time * 0.5;
-          }
-          partnerNodes.forEach(pn => {
-            const angle = pn.baseAngle + time * 0.6;
-            pn.mesh.position.set(Math.cos(angle) * pn.radius, 0.55 + Math.sin(time * 2.5 + pn.baseAngle) * 0.04, Math.sin(angle) * pn.radius * 0.5);
+          waypointMeshes.forEach((wm, idx) => {
+            wm.group.position.y = wm.baseY + Math.sin(time * wm.speed + idx) * 0.06;
           });
-
-          // Stage 2: Globe rotation & shield hover
-          if (globeWire) {
-            globeWire.rotation.y = time * 0.4;
-          }
-          if (globeCore) {
-            globeCore.rotation.y = -time * 0.2;
-          }
-          if (zatcaShield) {
-            zatcaShield.position.y = 0.85 + Math.sin(time * 2.0 + 1.0) * 0.05;
-          }
-
-          // Dust particle gentle drift
-          dustParticles.rotation.y = time * 0.02;
         }
       };
     }
@@ -7710,8 +8139,6 @@
 
     // Initialize Deck & Scenes
     window.addEventListener('DOMContentLoaded', () => {
-      deck.init();
-
       // Build 3D scenes for all slides
       initThreeStage(1, buildSlide1Scene);
       initThreeStage(2, buildSlide2Scene);
@@ -7723,6 +8150,8 @@
       initThreeStage(8, buildSlide8Scene);
       initThreeStage(9, buildSlide9Scene);
       initThreeStage(10, buildSlide10Scene);
+
+      deck.init();
 
       requestAnimationFrame(masterAnimate);
     });
