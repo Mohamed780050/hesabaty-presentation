@@ -439,6 +439,44 @@
       letter-spacing: 0.05em;
     }
 
+    /* Scoped styling for Slide 4 Market Opportunity Cards */
+    #slide-4 .slide-content {
+      gap: 2.2vh;
+    }
+    #slide-4 .point-card {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+    #slide-4 .point-card:hover {
+      transform: translateX(-6px);
+      border-color: #38bdf8;
+      background: rgba(22, 38, 70, 0.95);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
+    }
+    #slide-4 .point-card.active {
+      border-color: #38bdf8 !important;
+      background: rgba(37, 99, 235, 0.28) !important;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.35), inset 0 0 15px rgba(56, 189, 248, 0.15);
+      transform: translateX(-8px) scale(1.02);
+    }
+    #slide-4 .point-card.active::after {
+      content: '🗺️ تركيز الخريطة';
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+    }
+
     /* Scoped styling for Slide 10 4-card layout */
     #slide-10 .feature-points {
       gap: 0.8vh;
@@ -828,32 +866,36 @@
       <!-- SLIDE 4: MARKET OPPORTUNITY (TAM / SAM / SOM) -->
       <section class="slide" id="slide-4" data-title="الفرصة السوقية | TAM SAM SOM">
         <div class="slide-content">
-          <div class="slide-kicker">Market Sizing & 3D Geography</div>
-          <h2 class="slide-title">فرصة وطنية كبرى. <span class="highlight">انطلاق إقليمي مركز.</span></h2>
-          <p class="slide-subtitle">"Large national opportunity. Focused regional entry. Measurable local expansion."</p>
+          <div class="hero-kicker-badge">
+            <span class="hero-kicker-dot"></span>
+            حجم السوق
+          </div>
+          <h2 class="slide-title" style="font-size: 3vw; font-weight: 800; color: #FFFFFF; line-height: 1.2;">
+            فرصة التوسع في <span class="highlight">مصر</span>
+          </h2>
 
           <div class="feature-points">
             <div class="point-card active" id="card-tam" onclick="focusMap('tam')">
-              <div class="point-icon">🇪🇬</div>
+              <div class="point-icon" style="color: var(--cyan-accent); background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35);">🇪🇬</div>
               <div>
-                <div class="point-title">TAM: جمهورية مصر العربية</div>
-                <div class="point-desc"><strong>2.2 مليون</strong> منشأة تجارة تجزئة وجملة (54.4% من 3.858 مليون منشأة بالتعداد الاقتصادي 2022/2023) | فرصة سنوية: <strong>13.2B - 39.6B ج.م</strong>.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.1rem;">TAM: مصر بالكامل</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.92rem;">2.2 مليون منشأة تجزئة.</div>
               </div>
             </div>
 
             <div class="point-card" id="card-sam" onclick="focusMap('sam')">
-              <div class="point-icon">🌊</div>
+              <div class="point-icon" style="color: var(--light-blue); background: rgba(96, 165, 250, 0.15); border: 1px solid rgba(96, 165, 250, 0.35);">🌊</div>
               <div>
-                <div class="point-title">SAM: محافظة الإسكندرية والدلتا</div>
-                <div class="point-desc"><strong>20,000 - 30,000</strong> متجر تجزئة منظم ومؤهل لتبني المنظومة السحابية | فرصة سنوية: <strong>168M - 252M ج.م</strong>.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.1rem;">SAM: الإسكندرية والدلتا</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.92rem;">30,000 متجر مؤهل سحابياً.</div>
               </div>
             </div>
 
             <div class="point-card" id="card-som" onclick="focusMap('som')">
-              <div class="point-icon">🎯</div>
+              <div class="point-icon" style="color: var(--emerald-accent); background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35);">🎯</div>
               <div>
-                <div class="point-title">SOM: نطاق الانطلاق بشرق الإسكندرية</div>
-                <div class="point-desc"><strong>50 - 80 متجراً</strong> بالسنة الأولى (270k-720k ج.م)، مستهدفاً <strong>200 - 270 متجراً</strong> خلال 36 شهراً (1.2M - 4.8M ج.م ARR) في أحياء الرمل والمنتزه وسيدي جابر.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.1rem;">SOM: شرق الإسكندرية</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.92rem;">270 متجراً مستهدفاً بالانطلاق.</div>
               </div>
             </div>
           </div>
