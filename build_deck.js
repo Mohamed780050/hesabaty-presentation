@@ -11,6 +11,13 @@ const logoWordmarkSrc = logoWordmarkB64.startsWith('data:') ? logoWordmarkB64 : 
 const logoIconB64 = fs.readFileSync(path.join(dir, 'images', 'image3_base64.txt'), 'utf8').trim();
 const logo3DPolys = JSON.parse(fs.readFileSync(path.join(dir, 'clean_logo_polys.json'), 'utf8'));
 
+// 5 Institutional Partner / Watermark Logos
+const partnerPlanSrc = 'data:image/png;base64,' + fs.readFileSync(path.join(dir, 'images', 'logo_plan_base64.txt'), 'utf8').trim();
+const partnerDenmarkSrc = 'data:image/png;base64,' + fs.readFileSync(path.join(dir, 'images', 'logo_denmark_base64.txt'), 'utf8').trim();
+const partnerDappSrc = 'data:image/png;base64,' + fs.readFileSync(path.join(dir, 'images', 'logo_dapp_base64.txt'), 'utf8').trim();
+const partnerDanskSrc = 'data:image/png;base64,' + fs.readFileSync(path.join(dir, 'images', 'logo_dansk_base64.txt'), 'utf8').trim();
+const partnerIcealexSrc = 'data:image/png;base64,' + fs.readFileSync(path.join(dir, 'images', 'logo_icealex_base64.txt'), 'utf8').trim();
+
 console.log('Generating index.html...');
 
 const htmlContent = `<!DOCTYPE html>
@@ -587,16 +594,203 @@ const htmlContent = `<!DOCTYPE html>
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
       z-index: 50;
-      height: 5vh;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 1vh;
+      height: 5.5vh;
+      min-height: 46px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 0.6vh;
+      position: relative;
     }
 
     .footer-note {
       font-size: 0.78rem;
       color: var(--text-dim);
       font-family: var(--font-en);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Continuous Ambient Watermark Marquee Ribbon Across All Slides */
+    .deck-watermark-ribbon {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(11, 22, 44, 0.72);
+      border: 1px solid rgba(96, 165, 250, 0.24);
+      border-radius: 999px;
+      padding: 3px 12px 3px 14px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+      max-width: 580px;
+      height: 38px;
+      opacity: 0.62;
+      transition: opacity 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+      direction: rtl;
+    }
+
+    .deck-watermark-ribbon:hover,
+    .deck-watermark-ribbon.featured {
+      opacity: 0.98;
+      border-color: rgba(56, 189, 248, 0.65);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .watermark-ribbon-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      font-family: var(--font-ar);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--cyan-accent);
+      padding-left: 10px;
+      border-left: 1px solid rgba(96, 165, 250, 0.25);
+      flex-shrink: 0;
+    }
+
+    .watermark-ribbon-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan-accent);
+      box-shadow: 0 0 8px var(--cyan-accent);
+      animation: watermarkPulseDot 2s infinite ease-in-out;
+    }
+
+    @keyframes watermarkPulseDot {
+      0%, 100% { opacity: 0.45; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.25); }
+    }
+
+    .watermark-marquee-track {
+      direction: ltr !important;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      flex: 1;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .watermark-marquee-inner {
+      direction: ltr !important;
+      display: flex;
+      align-items: center;
+      animation: watermarkMarqueeGlide 24s linear infinite;
+      will-change: transform;
+    }
+
+    .watermark-marquee-track:hover .watermark-marquee-inner {
+      animation-play-state: paused;
+    }
+
+    @keyframes watermarkMarqueeGlide {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    .watermark-marquee-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .partner-logo-pill {
+      height: 28px;
+      padding: 3px 10px;
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(255, 255, 255, 0.9);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s var(--ease-smooth);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .partner-logo-pill:hover {
+      transform: translateY(-2px) scale(1.08);
+      background: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.45);
+    }
+
+    .partner-logo-pill img {
+      height: 20px;
+      width: auto;
+      max-width: 105px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .hero-partners-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1.2vh;
+      padding: 6px 14px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.28);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      width: fit-content;
+      backdrop-filter: blur(8px);
+    }
+    .hero-partners-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald-accent);
+      box-shadow: 0 0 8px var(--emerald-accent);
+    }
+    .hero-partner-names {
+      color: var(--cyan-accent);
+      font-weight: 600;
+      font-family: var(--font-en);
+    }
+
+    .ask-partner-endorsement {
+      margin-top: 1.2vh;
+      padding: 8px 14px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .ask-partner-badge {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--cyan-accent);
+      letter-spacing: 0.05em;
+    }
+    .ask-partner-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .footer-note {
+        display: none;
+      }
+      .deck-watermark-ribbon {
+        max-width: 100%;
+      }
     }
 
     .nav-group {
@@ -823,6 +1017,11 @@ const htmlContent = `<!DOCTYPE html>
           <p class="hero-tagline-ar">
             المنظومة السحابية الذكية لإدارة المبيعات، المخزون، والديون لتجار التجزئة في مصر.
           </p>
+          <div class="hero-partners-pill">
+            <span class="hero-partners-dot"></span>
+            <span>بدعم وشراكة:</span>
+            <span class="hero-partner-names">Plan Int. • سفارة الدنمارك • DAPP • Dansk Erhverv • icealex</span>
+          </div>
         </div>
 
         <div class="visual-stage" id="stage-slide-1">
@@ -1230,6 +1429,11 @@ const htmlContent = `<!DOCTYPE html>
               </div>
             </div>
           </div>
+
+          <div class="ask-partner-endorsement">
+            <span class="ask-partner-badge">🛡️ شركاء المسار الاستراتيجي</span>
+            <span class="ask-partner-sub">بدعم من هيئة بلان إنترناشونال، سفارة الدنمارك، DAPP، غرفة التجارة الدنماركية، و icealex</span>
+          </div>
         </div>
 
         <div class="visual-stage" id="stage-slide-10">
@@ -1247,6 +1451,54 @@ const htmlContent = `<!DOCTYPE html>
     <!-- Bottom Deck Footer -->
     <footer class="deck-footer">
       <div class="footer-note">Hesabaty © 2026 | Confidential Investor Presentation | Alex, Egypt</div>
+
+      <!-- Moving Watermark Marquee Ribbon Across All Slides -->
+      <div class="deck-watermark-ribbon featured" id="deck-watermark-ribbon" title="الشركاء الاستراتيجيون وجهات الدعم">
+        <div class="watermark-ribbon-tag">
+          <span class="watermark-ribbon-tag-dot"></span>
+          <span>شركاء النجاح</span>
+        </div>
+        <div class="watermark-marquee-track">
+          <div class="watermark-marquee-inner">
+            <!-- Group 1 -->
+            <div class="watermark-marquee-group">
+              <div class="partner-logo-pill" title="Plan International | هيئة بلان إنترناشونال">
+                <img src="${partnerPlanSrc}" alt="Plan International">
+              </div>
+              <div class="partner-logo-pill" title="Embassy of Denmark in Egypt | سفارة الدنمارك بالقاهرة">
+                <img src="${partnerDenmarkSrc}" alt="Embassy of Denmark in Egypt">
+              </div>
+              <div class="partner-logo-pill" title="Danish-Arab Partnership Programme | برنامج الشراكة الدنماركية العربية">
+                <img src="${partnerDappSrc}" alt="DAPP">
+              </div>
+              <div class="partner-logo-pill" title="Dansk Erhverv | غرفة التجارة الدنماركية">
+                <img src="${partnerDanskSrc}" alt="Dansk Erhverv">
+              </div>
+              <div class="partner-logo-pill" title="icealex | مجتمع آيس أليكس لريادة الأعمال والابتكار">
+                <img src="${partnerIcealexSrc}" alt="icealex">
+              </div>
+            </div>
+            <!-- Group 2 (for seamless loop) -->
+            <div class="watermark-marquee-group">
+              <div class="partner-logo-pill" title="Plan International | هيئة بلان إنترناشونال">
+                <img src="${partnerPlanSrc}" alt="Plan International">
+              </div>
+              <div class="partner-logo-pill" title="Embassy of Denmark in Egypt | سفارة الدنمارك بالقاهرة">
+                <img src="${partnerDenmarkSrc}" alt="Embassy of Denmark in Egypt">
+              </div>
+              <div class="partner-logo-pill" title="Danish-Arab Partnership Programme | برنامج الشراكة الدنماركية العربية">
+                <img src="${partnerDappSrc}" alt="DAPP">
+              </div>
+              <div class="partner-logo-pill" title="Dansk Erhverv | غرفة التجارة الدنماركية">
+                <img src="${partnerDanskSrc}" alt="Dansk Erhverv">
+              </div>
+              <div class="partner-logo-pill" title="icealex | مجتمع آيس أليكس لريادة الأعمال والابتكار">
+                <img src="${partnerIcealexSrc}" alt="icealex">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="nav-group">
         <button class="nav-btn" id="btn-prev" onclick="deck.prev()">السابق ➔</button>
@@ -1345,6 +1597,16 @@ const htmlContent = `<!DOCTYPE html>
         document.getElementById('notes-slide-title').textContent = this.slides[index].getAttribute('data-title') || 'ملاحظات العارض';
         document.getElementById('notes-text').textContent = this.notes[index];
 
+        // Highlight partner watermark ribbon on Slide 1 & Slide 10
+        const watermarkRibbon = document.getElementById('deck-watermark-ribbon');
+        if (watermarkRibbon) {
+          if (index === 0 || index === 9) {
+            watermarkRibbon.classList.add('featured');
+          } else {
+            watermarkRibbon.classList.remove('featured');
+          }
+        }
+
         // Trigger Scene Render for Active Slide
         if (window.renderSceneForSlide) {
           window.renderSceneForSlide(index);
@@ -1424,6 +1686,10 @@ const htmlContent = `<!DOCTYPE html>
       const btn = document.getElementById('btn-reduced-motion');
       btn.style.borderColor = deck.reducedMotion ? 'var(--amber-accent)' : 'var(--border-subtle)';
       btn.style.color = deck.reducedMotion ? 'var(--amber-accent)' : 'var(--text-muted)';
+      const track = document.querySelector('.watermark-marquee-inner');
+      if (track) {
+        track.style.animationPlayState = deck.reducedMotion ? 'paused' : 'running';
+      }
     }
 
     document.getElementById('btn-notes').addEventListener('click', toggleNotes);
