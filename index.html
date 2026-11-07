@@ -477,17 +477,17 @@
       letter-spacing: 0.05em;
     }
 
-    /* Scoped styling for Slide 8 SaaS Vault & Cubes (Business Model) */
-    #slide-8 .slide-content {
+    /* Scoped styling for Slide 6 SaaS Vault & Cubes (Revenue & Business Model) */
+    #slide-6 .slide-content {
       gap: 1.8vh;
     }
-    #slide-8 .stat-row {
+    #slide-6 .stat-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-top: 0.5vh;
     }
-    #slide-8 .stat-box {
+    #slide-6 .stat-box {
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       padding: 1.2vh 1vw;
@@ -496,28 +496,28 @@
       background: rgba(15, 23, 42, 0.7);
       text-align: center;
     }
-    #slide-8 .stat-box:hover {
+    #slide-6 .stat-box:hover {
       border-color: #38bdf8;
       transform: translateY(-3px);
       background: rgba(22, 38, 70, 0.9);
     }
-    #slide-8 .stat-box.active {
+    #slide-6 .stat-box.active {
       border-color: #38bdf8 !important;
       background: rgba(37, 99, 235, 0.25) !important;
       box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
       transform: translateY(-4px) scale(1.03);
     }
-    #slide-8 .feature-points {
+    #slide-6 .feature-points {
       gap: 1vh;
       margin-top: 1vh;
     }
-    #slide-8 .point-card {
+    #slide-6 .point-card {
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       padding: 1.1vh 1.2vw;
       gap: 12px;
     }
-    #slide-8 .point-card:hover {
+    #slide-6 .point-card:hover {
       transform: translateX(-6px);
       border-color: #38bdf8;
       background: rgba(22, 38, 70, 0.95);
@@ -1198,34 +1198,46 @@
         </div>
       </section>
 
-      <!-- SLIDE 6: GO TO MARKET -->
-      <section class="slide" id="slide-6" data-title="استراتيجية النفاذ للسوق | GTM">
+      <!-- SLIDE 6: BUSINESS MODEL & REVENUE -->
+      <section class="slide" id="slide-6" data-title="نموذج العمل والوحدة الاقتصادية | Revenue">
         <div class="slide-content">
-          <div class="slide-kicker">استراتيجية النمو</div>
-          <h2 class="slide-title">خطة انطلاق <span class="highlight">ثلاثية المراحل</span></h2>
+          <div class="hero-kicker-badge">
+            <span class="hero-kicker-dot"></span>
+            نموذج العمل والإيرادات
+          </div>
+          <h2 class="slide-title" style="font-size: 3vw; font-weight: 800; color: #FFFFFF; line-height: 1.2;">
+            اشتراكات متكررة <span class="highlight">وهوامش 90%</span>
+          </h2>
 
-          <div class="feature-points">
-            <div class="point-card active" id="card-gtm-0" onclick="selectGtmStage(0)">
-              <div class="point-icon">🏪</div>
+          <div class="stat-row">
+            <div class="stat-box" id="stat-tier-0" onclick="selectTier(0)" title="انقر لعرض تفاصيل باقة Starter في الـ 3D">
+              <div class="stat-num">500 <span style="font-size: 1rem;">ج.م/ش</span></div>
+              <div class="stat-label">Starter</div>
+            </div>
+            <div class="stat-box active" id="stat-tier-1" onclick="selectTier(1)" title="انقر لعرض تفاصيل باقة Pro في الـ 3D">
+              <div class="stat-num" style="color: var(--cyan-accent);">1,500 <span style="font-size: 1rem;">ج.م/ش</span></div>
+              <div class="stat-label">Pro ⭐</div>
+            </div>
+            <div class="stat-box" id="stat-tier-2" onclick="selectTier(2)" title="انقر لعرض تفاصيل باقة Max AI في الـ 3D">
+              <div class="stat-num" style="color: #c084fc;">مخصصة</div>
+              <div class="stat-label">Max AI</div>
+            </div>
+          </div>
+
+          <div class="feature-points" style="margin-top: 1.2vh; gap: 1vh;">
+            <div class="point-card" id="card-tier-unit" onclick="selectTier(1)">
+              <div class="point-icon" style="color: var(--amber-accent); background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35);">🎯</div>
               <div>
-                <div class="point-title">1: النفاذ الميداني</div>
-                <div class="point-desc">عروض حية لتجار شرق الإسكندرية.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">كفاءة استثنائية LTV/CAC</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">عائد يصل 32:1.</div>
               </div>
             </div>
 
-            <div class="point-card" id="card-gtm-1" onclick="selectGtmStage(1)">
-              <div class="point-icon">🔄</div>
+            <div class="point-card" id="card-tier-break" onclick="selectTier(1)">
+              <div class="point-icon" style="color: var(--emerald-accent); background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35);">⚖️</div>
               <div>
-                <div class="point-title">2: محركات الإحالة</div>
-                <div class="point-desc">شهر مجاني وشراكات مع المحاسبين.</div>
-              </div>
-            </div>
-
-            <div class="point-card" id="card-gtm-2" onclick="selectGtmStage(2)">
-              <div class="point-icon">🚀</div>
-              <div>
-                <div class="point-title">3: التوسع الإقليمي</div>
-                <div class="point-desc">التمدد للدلتا والقاهرة والخليج.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">أمان مالي واسترداد سريع</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">تعادل عند 20 متجراً.</div>
               </div>
             </div>
           </div>
@@ -1233,9 +1245,9 @@
 
         <div class="visual-stage" id="stage-slide-6">
           <div class="map-controls-bar">
-            <button class="map-btn active" id="btn-gtm-0" onclick="selectGtmStage(0)">📍 1: النفاذ الميداني</button>
-            <button class="map-btn" id="btn-gtm-1" onclick="selectGtmStage(1)">🔄 2: محرك الإحالة</button>
-            <button class="map-btn" id="btn-gtm-2" onclick="selectGtmStage(2)">🚀 3: التوسع الإقليمي</button>
+            <button class="map-btn" id="btn-tier-0" onclick="selectTier(0)">Starter (500 ج)</button>
+            <button class="map-btn active" id="btn-tier-1" onclick="selectTier(1)">Pro (1,500 ج) ⭐</button>
+            <button class="map-btn" id="btn-tier-2" onclick="selectTier(2)">Max AI (مخصصة)</button>
           </div>
           <canvas class="visual-canvas" id="canvas-slide-6"></canvas>
         </div>
@@ -1284,46 +1296,39 @@
         </div>
       </section>
 
-      <!-- SLIDE 8: BUSINESS MODEL & UNIT ECONOMICS -->
-      <section class="slide" id="slide-8" data-title="نموذج العمل والوحدة الاقتصادية">
+      <!-- SLIDE 8: GO TO MARKET -->
+      <section class="slide" id="slide-8" data-title="استراتيجية النفاذ للسوق | GTM">
         <div class="slide-content">
           <div class="hero-kicker-badge">
             <span class="hero-kicker-dot"></span>
-            نموذج العمل
+            استراتيجية النمو والتوسع
           </div>
           <h2 class="slide-title" style="font-size: 3vw; font-weight: 800; color: #FFFFFF; line-height: 1.2;">
-            اشتراكات متكررة <span class="highlight">وهوامش 90%</span>
+            خطة انطلاق <span class="highlight">ثلاثية المراحل</span>
           </h2>
 
-          <div class="stat-row">
-            <div class="stat-box" id="stat-tier-0" onclick="selectTier(0)" title="انقر لعرض تفاصيل باقة Starter في الـ 3D">
-              <div class="stat-num">500 <span style="font-size: 1rem;">ج.م/ش</span></div>
-              <div class="stat-label">Starter</div>
-            </div>
-            <div class="stat-box active" id="stat-tier-1" onclick="selectTier(1)" title="انقر لعرض تفاصيل باقة Pro في الـ 3D">
-              <div class="stat-num" style="color: var(--cyan-accent);">1,500 <span style="font-size: 1rem;">ج.م/ش</span></div>
-              <div class="stat-label">Pro ⭐</div>
-            </div>
-            <div class="stat-box" id="stat-tier-2" onclick="selectTier(2)" title="انقر لعرض تفاصيل باقة Max AI في الـ 3D">
-              <div class="stat-num" style="color: #c084fc;">مخصصة</div>
-              <div class="stat-label">Max AI</div>
-            </div>
-          </div>
-
-          <div class="feature-points" style="margin-top: 1.2vh; gap: 1vh;">
-            <div class="point-card" id="card-tier-unit" onclick="selectTier(1)">
-              <div class="point-icon" style="color: var(--amber-accent); background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35);">🎯</div>
+          <div class="feature-points">
+            <div class="point-card active" id="card-gtm-0" onclick="selectGtmStage(0)">
+              <div class="point-icon">🏪</div>
               <div>
-                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">كفاءة استثنائية LTV/CAC</div>
-                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">عائد يصل 32:1.</div>
+                <div class="point-title">1: النفاذ الميداني</div>
+                <div class="point-desc">عروض حية لتجار شرق الإسكندرية.</div>
               </div>
             </div>
 
-            <div class="point-card" id="card-tier-break" onclick="selectTier(1)">
-              <div class="point-icon" style="color: var(--emerald-accent); background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35);">⚖️</div>
+            <div class="point-card" id="card-gtm-1" onclick="selectGtmStage(1)">
+              <div class="point-icon">🔄</div>
               <div>
-                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">أمان مالي واسترداد سريع</div>
-                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">تعادل عند 20 متجراً.</div>
+                <div class="point-title">2: محركات الإحالة</div>
+                <div class="point-desc">شهر مجاني وشراكات مع المحاسبين.</div>
+              </div>
+            </div>
+
+            <div class="point-card" id="card-gtm-2" onclick="selectGtmStage(2)">
+              <div class="point-icon">🚀</div>
+              <div>
+                <div class="point-title">3: التوسع الإقليمي</div>
+                <div class="point-desc">التمدد للدلتا والقاهرة والخليج.</div>
               </div>
             </div>
           </div>
@@ -1331,9 +1336,9 @@
 
         <div class="visual-stage" id="stage-slide-8">
           <div class="map-controls-bar">
-            <button class="map-btn" id="btn-tier-0" onclick="selectTier(0)">Starter (500 ج)</button>
-            <button class="map-btn active" id="btn-tier-1" onclick="selectTier(1)">Pro (1,500 ج) ⭐</button>
-            <button class="map-btn" id="btn-tier-2" onclick="selectTier(2)">Max AI (مخصصة)</button>
+            <button class="map-btn active" id="btn-gtm-0" onclick="selectGtmStage(0)">📍 1: النفاذ الميداني</button>
+            <button class="map-btn" id="btn-gtm-1" onclick="selectGtmStage(1)">🔄 2: محرك الإحالة</button>
+            <button class="map-btn" id="btn-gtm-2" onclick="selectGtmStage(2)">🚀 3: التوسع الإقليمي</button>
           </div>
           <canvas class="visual-canvas" id="canvas-slide-8"></canvas>
         </div>
@@ -1535,11 +1540,11 @@
         // Slide 5
         "الشريحة الخامسة: المنافسون في السوق والبدائل: الأنظمة المكتبية القديمة (Desktop POS) تفرض تكلفة عتاد باهظة (25,000+ جنيه) وتفتقر للسحابة والأوفلاين الذكي. أنظمة ERP الكبرى تسعيرها دولاري مرتفع ورسوم على كل فرع وتتطلب أجهزة لوحية وتدريباً معقداً. حساباتي تحسم المنافسة: صفر أجهزة، كاميرا الهاتف كاشير سحابي وأوفلاين، وتسعير بالجنيه المصري.",
         // Slide 6
-        "الشريحة السادسة: استراتيجية النفاذ ترتكز على 3 مراحل: النزول الميداني المباشر بعرض تجربة حية لكاميرا الهاتف أمام التاجر في دقيقتين، ثم تفعيل شبكة الإحالات والشراكات مع محاسبي وموردي أجهزة التجزئة، ثم التوسع نحو باقي المحافظات والخليج العربي.",
+        "الشريحة السادسة: وحدة الاقتصاديات ونموذج الإيرادات مبني على تسعير المنشأة لا الموظف: Starter بـ 500 ج/ش، Pro بـ 1500 ج/ش. تكلفة الاستحواذ CAC بين 300 و600 ج.م عبر حملات ميتا المركزة (3000 ج.م/ش) والنزول الميداني. القيمة الممتدة LTV تقارب 10,000 ج.م بنسبة LTV:CAC قياسية تصل إلى 32:1، ونقطة التعادل تتحقق عند 20 متجراً فقط.",
         // Slide 7
         "الشريحة السابعة: تم إثبات الجاهزية التشغيلية عبر تجارب حية: قراءة الباركود بكاميرات هواتف اقتصادية في أقل من ثانية، إصدار 50 فاتورة متتالية أوفلاين في IndexedDB ومزامنتها بنجاح 100%، واعتماد التوافق مع قانون 152 للإيصال الإلكتروني بواسطة 5 محاسبين قانونيين.",
         // Slide 8
-        "الشريحة الثامنة: وحدة الاقتصاديات مبنية على تسعير المنشأة لا الموظف: Starter بـ 500 ج/ش، Pro بـ 1500 ج/ش. تكلفة الاستحواذ CAC بين 300 و600 ج.م عبر حملات ميتا المركزة (3000 ج.م/ش) والنزول الميداني. القيمة الممتدة LTV تقارب 10,000 ج.م بنسبة LTV:CAC قياسية تصل إلى 32:1، ونقطة التعادل تتحقق عند 20 متجراً فقط.",
+        "الشريحة الثامنة: استراتيجية النفاذ للسوق ترتكز على 3 مراحل: النزول الميداني المباشر بعرض تجربة حية لكاميرا الهاتف أمام التاجر في دقيقتين، ثم تفعيل شبكة الإحالات والشراكات مع محاسبي وموردي أجهزة التجزئة، ثم التوسع نحو باقي المحافظات والخليج العربي.",
         // Slide 9
         "الشريحة التاسعة: المؤسسان: محمد عمر رمضان (هندسة البرمجيات السحابية والمنتج والمبيعات الميدانية)، ومحمد نبيل أحمد (المدير المالي والمطابقة الضريبية والمحاسبية). تكامل بين سرعة بناء المنتج وضبط الجدوى المالية.",
         // Slide 10
@@ -3684,10 +3689,10 @@
       if (mapController) mapController.setMode(mode);
     };
 
-    // --- SLIDE 8: 3D Cloud Revenue Vault & Crystalline Tier Cubes (Business Model) ---
+    // --- SLIDE 6: 3D Cloud Revenue Vault & Crystalline Tier Cubes (Revenue) ---
     let tierSelector = null;
 
-    function buildSlide8Scene(scene, camera) {
+    function buildSlide6Scene(scene, camera) {
       camera.position.set(0, 0.6, 11.5);
       camera.lookAt(0, 0.0, 0);
 
@@ -3696,7 +3701,7 @@
 
       // Mouse Parallax Setup
       let mouseX = 0, mouseY = 0;
-      const stageElem = document.getElementById('stage-slide-8');
+      const stageElem = document.getElementById('stage-slide-6');
       if (stageElem) {
         stageElem.addEventListener('mousemove', (e) => {
           const rect = stageElem.getBoundingClientRect();
@@ -4626,10 +4631,10 @@
       if (tierSelector) tierSelector.select(idx);
     };
 
-    // --- SLIDE 6: 3D Interactive Alexandria Retail Street & Storefronts Diorama (GTM) ---
+    // --- SLIDE 8: 3D Interactive Alexandria Retail Street & Storefronts Diorama (GTM) ---
     let gtmSelector = null;
 
-    function buildSlide6Scene(scene, camera) {
+    function buildSlide8Scene(scene, camera) {
       camera.position.set(-2.9, 0.9, 6.4);
       camera.lookAt(-2.6, 0.6, 0.0);
 
@@ -4638,7 +4643,7 @@
 
       // Mouse Parallax Setup
       let mouseX = 0, mouseY = 0;
-      const stageElem = document.getElementById('stage-slide-6');
+      const stageElem = document.getElementById('stage-slide-8');
       if (stageElem) {
         stageElem.addEventListener('mousemove', (e) => {
           const rect = stageElem.getBoundingClientRect();
