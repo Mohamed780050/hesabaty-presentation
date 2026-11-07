@@ -499,17 +499,17 @@ const htmlContent = `<!DOCTYPE html>
       letter-spacing: 0.05em;
     }
 
-    /* Scoped styling for Slide 5 SaaS Vault & Cubes */
-    #slide-5 .slide-content {
+    /* Scoped styling for Slide 8 SaaS Vault & Cubes (Business Model) */
+    #slide-8 .slide-content {
       gap: 1.8vh;
     }
-    #slide-5 .stat-row {
+    #slide-8 .stat-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-top: 0.5vh;
     }
-    #slide-5 .stat-box {
+    #slide-8 .stat-box {
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       padding: 1.2vh 1vw;
@@ -518,28 +518,28 @@ const htmlContent = `<!DOCTYPE html>
       background: rgba(15, 23, 42, 0.7);
       text-align: center;
     }
-    #slide-5 .stat-box:hover {
+    #slide-8 .stat-box:hover {
       border-color: #38bdf8;
       transform: translateY(-3px);
       background: rgba(22, 38, 70, 0.9);
     }
-    #slide-5 .stat-box.active {
+    #slide-8 .stat-box.active {
       border-color: #38bdf8 !important;
       background: rgba(37, 99, 235, 0.25) !important;
       box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
       transform: translateY(-4px) scale(1.03);
     }
-    #slide-5 .feature-points {
+    #slide-8 .feature-points {
       gap: 1vh;
       margin-top: 1vh;
     }
-    #slide-5 .point-card {
+    #slide-8 .point-card {
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       padding: 1.1vh 1.2vw;
       gap: 12px;
     }
-    #slide-5 .point-card:hover {
+    #slide-8 .point-card:hover {
       transform: translateX(-6px);
       border-color: #38bdf8;
       background: rgba(22, 38, 70, 0.95);
@@ -1171,46 +1171,39 @@ const htmlContent = `<!DOCTYPE html>
         </div>
       </section>
 
-      <!-- SLIDE 5: BUSINESS MODEL & UNIT ECONOMICS -->
-      <section class="slide" id="slide-5" data-title="نموذج العمل والوحدة الاقتصادية">
+      <!-- SLIDE 5: THE COMPETITORS -->
+      <section class="slide" id="slide-5" data-title="المنافسون في السوق | The Competitors">
         <div class="slide-content">
           <div class="hero-kicker-badge">
             <span class="hero-kicker-dot"></span>
-            نموذج العمل
+            The Competitors | المنافسون
           </div>
           <h2 class="slide-title" style="font-size: 3vw; font-weight: 800; color: #FFFFFF; line-height: 1.2;">
-            اشتراكات متكررة <span class="highlight">وهوامش 90%</span>
+            المنافسون <span class="highlight">وفجوة السوق</span>
           </h2>
 
-          <div class="stat-row">
-            <div class="stat-box" id="stat-tier-0" onclick="selectTier(0)" title="انقر لعرض تفاصيل باقة Starter في الـ 3D">
-              <div class="stat-num">500 <span style="font-size: 1rem;">ج.م/ش</span></div>
-              <div class="stat-label">Starter</div>
-            </div>
-            <div class="stat-box active" id="stat-tier-1" onclick="selectTier(1)" title="انقر لعرض تفاصيل باقة Pro في الـ 3D">
-              <div class="stat-num" style="color: var(--cyan-accent);">1,500 <span style="font-size: 1rem;">ج.م/ش</span></div>
-              <div class="stat-label">Pro ⭐</div>
-            </div>
-            <div class="stat-box" id="stat-tier-2" onclick="selectTier(2)" title="انقر لعرض تفاصيل باقة Max AI في الـ 3D">
-              <div class="stat-num" style="color: #c084fc;">مخصصة</div>
-              <div class="stat-label">Max AI</div>
-            </div>
-          </div>
-
-          <div class="feature-points" style="margin-top: 1.2vh; gap: 1vh;">
-            <div class="point-card" id="card-tier-unit" onclick="selectTier(1)">
-              <div class="point-icon" style="color: var(--amber-accent); background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35);">🎯</div>
+          <div class="feature-points">
+            <div class="point-card active" id="card-comp-0" onclick="selectCompLayer(0)" title="انقر للتركيز على مجسم حساباتي ثلاثي الأبعاد">
+              <div class="point-icon" style="color: var(--cyan-accent); background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35);">✨</div>
               <div>
-                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">كفاءة استثنائية LTV/CAC</div>
-                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">عائد يصل 32:1.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">حساباتي (الجيل السحابي)</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">صفر أجهزة • مسح بكاميرا الموبايل • تسعير مصري بالجنيه.</div>
               </div>
             </div>
 
-            <div class="point-card" id="card-tier-break" onclick="selectTier(1)">
-              <div class="point-icon" style="color: var(--emerald-accent); background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35);">⚖️</div>
+            <div class="point-card" id="card-comp-1" onclick="selectCompLayer(1)" title="انقر للتركيز على مجسم الكاشير المكتبي القديم">
+              <div class="point-icon" style="color: var(--danger-accent); background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35);">🖥️</div>
               <div>
-                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">أمان مالي واسترداد سريع</div>
-                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">تعادل عند 20 متجراً.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">كاشير مكتبي قديم (Desktop POS)</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">أجهزة مكلفة (25k+) • كمبيوتر ودرج ثقيل • بلا سحابة ومعرض للتلف.</div>
+              </div>
+            </div>
+
+            <div class="point-card" id="card-comp-2" onclick="selectCompLayer(2)" title="انقر للتركيز على مجسم أنظمة ERP السحابية">
+              <div class="point-icon" style="color: var(--amber-accent); background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35);">🏢</div>
+              <div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">أنظمة ERP السحابية الكبرى</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">اشتراك دولاري ($) • رسوم لكل فرع • واجهات معقدة وغير ملائمة للتجزئة.</div>
               </div>
             </div>
           </div>
@@ -1218,9 +1211,10 @@ const htmlContent = `<!DOCTYPE html>
 
         <div class="visual-stage" id="stage-slide-5">
           <div class="map-controls-bar">
-            <button class="map-btn" id="btn-tier-0" onclick="selectTier(0)">Starter (500 ج)</button>
-            <button class="map-btn active" id="btn-tier-1" onclick="selectTier(1)">Pro (1,500 ج) ⭐</button>
-            <button class="map-btn" id="btn-tier-2" onclick="selectTier(2)">Max AI (مخصصة)</button>
+            <button class="map-btn active" id="btn-comp-0" onclick="selectCompLayer(0)">✨ حساباتي (PWA)</button>
+            <button class="map-btn" id="btn-comp-1" onclick="selectCompLayer(1)">🖥️ كاشير قديم</button>
+            <button class="map-btn" id="btn-comp-2" onclick="selectCompLayer(2)">🏢 أنظمة ERP</button>
+            <button class="map-btn" id="btn-comp-3" onclick="selectCompLayer(3)">🌐 عرض الكل</button>
           </div>
           <canvas class="visual-canvas" id="canvas-slide-5"></canvas>
         </div>
@@ -1312,34 +1306,46 @@ const htmlContent = `<!DOCTYPE html>
         </div>
       </section>
 
-      <!-- SLIDE 8: COMPETITION -->
-      <section class="slide" id="slide-8" data-title="المنافسة والتموضع | Competition">
+      <!-- SLIDE 8: BUSINESS MODEL & UNIT ECONOMICS -->
+      <section class="slide" id="slide-8" data-title="نموذج العمل والوحدة الاقتصادية">
         <div class="slide-content">
-          <div class="slide-kicker">التموضع التنافسي</div>
-          <h2 class="slide-title">سد فجوة السوق</h2>
+          <div class="hero-kicker-badge">
+            <span class="hero-kicker-dot"></span>
+            نموذج العمل
+          </div>
+          <h2 class="slide-title" style="font-size: 3vw; font-weight: 800; color: #FFFFFF; line-height: 1.2;">
+            اشتراكات متكررة <span class="highlight">وهوامش 90%</span>
+          </h2>
 
-          <div class="feature-points">
-            <div class="point-card active" id="card-comp-0" onclick="selectCompLayer(0)">
-              <div class="point-icon" style="color: var(--cyan-accent);">✨</div>
+          <div class="stat-row">
+            <div class="stat-box" id="stat-tier-0" onclick="selectTier(0)" title="انقر لعرض تفاصيل باقة Starter في الـ 3D">
+              <div class="stat-num">500 <span style="font-size: 1rem;">ج.م/ش</span></div>
+              <div class="stat-label">Starter</div>
+            </div>
+            <div class="stat-box active" id="stat-tier-1" onclick="selectTier(1)" title="انقر لعرض تفاصيل باقة Pro في الـ 3D">
+              <div class="stat-num" style="color: var(--cyan-accent);">1,500 <span style="font-size: 1rem;">ج.م/ش</span></div>
+              <div class="stat-label">Pro ⭐</div>
+            </div>
+            <div class="stat-box" id="stat-tier-2" onclick="selectTier(2)" title="انقر لعرض تفاصيل باقة Max AI في الـ 3D">
+              <div class="stat-num" style="color: #c084fc;">مخصصة</div>
+              <div class="stat-label">Max AI</div>
+            </div>
+          </div>
+
+          <div class="feature-points" style="margin-top: 1.2vh; gap: 1vh;">
+            <div class="point-card" id="card-tier-unit" onclick="selectTier(1)">
+              <div class="point-icon" style="color: var(--amber-accent); background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35);">🎯</div>
               <div>
-                <div class="point-title">حساباتي (100%)</div>
-                <div class="point-desc">صفر أجهزة، مسح فوري، وتسعير بالجنيه.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">كفاءة استثنائية LTV/CAC</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">عائد يصل 32:1.</div>
               </div>
             </div>
 
-            <div class="point-card" id="card-comp-1" onclick="selectCompLayer(1)">
-              <div class="point-icon">❌</div>
+            <div class="point-card" id="card-tier-break" onclick="selectTier(1)">
+              <div class="point-icon" style="color: var(--emerald-accent); background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35);">⚖️</div>
               <div>
-                <div class="point-title">الأنظمة القديمة</div>
-                <div class="point-desc">عتاد مكلف (25k) وبلا سحابة.</div>
-              </div>
-            </div>
-
-            <div class="point-card" id="card-comp-2" onclick="selectCompLayer(2)">
-              <div class="point-icon">⚠️</div>
-              <div>
-                <div class="point-title">أنظمة ERP</div>
-                <div class="point-desc">اشتراك دولاري وبلا كاميرا.</div>
+                <div class="point-title" style="color: #F8FAFC; font-weight: 700; font-size: 1.05rem;">أمان مالي واسترداد سريع</div>
+                <div class="point-desc" style="color: #93C5FD; font-size: 0.88rem;">تعادل عند 20 متجراً.</div>
               </div>
             </div>
           </div>
@@ -1347,9 +1353,9 @@ const htmlContent = `<!DOCTYPE html>
 
         <div class="visual-stage" id="stage-slide-8">
           <div class="map-controls-bar">
-            <button class="map-btn active" id="btn-comp-0" onclick="selectCompLayer(0)">✨ حساباتي</button>
-            <button class="map-btn" id="btn-comp-1" onclick="selectCompLayer(1)">❌ قديمة</button>
-            <button class="map-btn" id="btn-comp-2" onclick="selectCompLayer(2)">⚠️ ERP</button>
+            <button class="map-btn" id="btn-tier-0" onclick="selectTier(0)">Starter (500 ج)</button>
+            <button class="map-btn active" id="btn-tier-1" onclick="selectTier(1)">Pro (1,500 ج) ⭐</button>
+            <button class="map-btn" id="btn-tier-2" onclick="selectTier(2)">Max AI (مخصصة)</button>
           </div>
           <canvas class="visual-canvas" id="canvas-slide-8"></canvas>
         </div>
@@ -1549,13 +1555,13 @@ const htmlContent = `<!DOCTYPE html>
         // Slide 4
         "الشريحة الرابعة: استناداً للتعداد الاقتصادي السادس 2022/2023 للجهاز المركزي للتعبئة العامة والإحصاء (CAPMAS): إجمالي المنشآت الاقتصادية بمصر 3.858 مليون منشأة، تجارة التجزئة والجملة تمثل 54.4% (2.2 مليون منشأة). فجوة الرقمنة تتجاوز 99% حيث لا يستخدم البيع الرقمي سوى 21,844 منشأة. نطاق الانطلاق Beachhead بشرق الإسكندرية يركز على أحياء الرمل والمنتزه وسيدي جابر لاقتناص 50-80 متجراً بالسنة الأولى.",
         // Slide 5
-        "الشريحة الخامسة: وحدة الاقتصاديات مبنية على تسعير المنشأة لا الموظف: Starter بـ 500 ج/ش، Pro بـ 1500 ج/ش. تكلفة الاستحواذ CAC بين 300 و600 ج.م عبر حملات ميتا المركزة (3000 ج.م/ش) والنزول الميداني. القيمة الممتدة LTV تقارب 10,000 ج.م بنسبة LTV:CAC قياسية تصل إلى 32:1، ونقطة التعادل تتحقق عند 20 متجراً فقط.",
+        "الشريحة الخامسة: المنافسون في السوق والبدائل: الأنظمة المكتبية القديمة (Desktop POS) تفرض تكلفة عتاد باهظة (25,000+ جنيه) وتفتقر للسحابة والأوفلاين الذكي. أنظمة ERP الكبرى تسعيرها دولاري مرتفع ورسوم على كل فرع وتتطلب أجهزة لوحية وتدريباً معقداً. حساباتي تحسم المنافسة: صفر أجهزة، كاميرا الهاتف كاشير سحابي وأوفلاين، وتسعير بالجنيه المصري.",
         // Slide 6
         "الشريحة السادسة: استراتيجية النفاذ ترتكز على 3 مراحل: النزول الميداني المباشر بعرض تجربة حية لكاميرا الهاتف أمام التاجر في دقيقتين، ثم تفعيل شبكة الإحالات والشراكات مع محاسبي وموردي أجهزة التجزئة، ثم التوسع نحو باقي المحافظات والخليج العربي.",
         // Slide 7
         "الشريحة السابعة: تم إثبات الجاهزية التشغيلية عبر تجارب حية: قراءة الباركود بكاميرات هواتف اقتصادية في أقل من ثانية، إصدار 50 فاتورة متتالية أوفلاين في IndexedDB ومزامنتها بنجاح 100%، واعتماد التوافق مع قانون 152 للإيصال الإلكتروني بواسطة 5 محاسبين قانونيين.",
         // Slide 8
-        "الشريحة الثامنة: التموضع التنافسي: الأنظمة المكتبية (MegaStore) تكلف 15-25 ألف عتاد + 10 آلاف ترقية وتفتقر للسحابة. الأنظمة السحابية الكبرى (دفترة) تسعيرها دولاري مرتفع ورسوم على كل فرع. حساباتي تقدم البديل المتكامل بالجنيه المصري وبدون أي تكلفة عتاد.",
+        "الشريحة الثامنة: وحدة الاقتصاديات مبنية على تسعير المنشأة لا الموظف: Starter بـ 500 ج/ش، Pro بـ 1500 ج/ش. تكلفة الاستحواذ CAC بين 300 و600 ج.م عبر حملات ميتا المركزة (3000 ج.م/ش) والنزول الميداني. القيمة الممتدة LTV تقارب 10,000 ج.م بنسبة LTV:CAC قياسية تصل إلى 32:1، ونقطة التعادل تتحقق عند 20 متجراً فقط.",
         // Slide 9
         "الشريحة التاسعة: المؤسسان: محمد عمر رمضان (هندسة البرمجيات السحابية والمنتج والمبيعات الميدانية)، ومحمد نبيل أحمد (المدير المالي والمطابقة الضريبية والمحاسبية). تكامل بين سرعة بناء المنتج وضبط الجدوى المالية.",
         // Slide 10
@@ -3700,10 +3706,10 @@ const htmlContent = `<!DOCTYPE html>
       if (mapController) mapController.setMode(mode);
     };
 
-    // --- SLIDE 5: 3D Cloud Revenue Vault & Crystalline Tier Cubes ---
+    // --- SLIDE 8: 3D Cloud Revenue Vault & Crystalline Tier Cubes (Business Model) ---
     let tierSelector = null;
 
-    function buildSlide5Scene(scene, camera) {
+    function buildSlide8Scene(scene, camera) {
       camera.position.set(0, 0.6, 11.5);
       camera.lookAt(0, 0.0, 0);
 
@@ -3712,7 +3718,7 @@ const htmlContent = `<!DOCTYPE html>
 
       // Mouse Parallax Setup
       let mouseX = 0, mouseY = 0;
-      const stageElem = document.getElementById('stage-slide-5');
+      const stageElem = document.getElementById('stage-slide-8');
       if (stageElem) {
         stageElem.addEventListener('mousemove', (e) => {
           const rect = stageElem.getBoundingClientRect();
@@ -6636,19 +6642,19 @@ const htmlContent = `<!DOCTYPE html>
       if (valSelector) valSelector.select(idx);
     };
 
-    // --- SLIDE 8: Cinematic 3D Comparative Benchmark Arena ---
+        // --- SLIDE 5: 3D Physical Showcase of the Competitors vs. Hesabaty ---
     let compSelector = null;
 
-    function buildSlide8Scene(scene, camera) {
-      camera.position.set(0.0, 9.4, 6.8);
-      camera.lookAt(0.0, 0.2, 0.0);
+    function buildSlide5Scene(scene, camera) {
+      camera.position.set(0.0, 3.2, 9.6);
+      camera.lookAt(0.0, 0.5, 0.0);
 
       const rootGroup = new THREE.Group();
       scene.add(rootGroup);
 
       // Mouse Parallax Setup
       let mouseX = 0, mouseY = 0;
-      const stageElem = document.getElementById('stage-slide-8');
+      const stageElem = document.getElementById('stage-slide-5');
       if (stageElem) {
         stageElem.addEventListener('mousemove', (e) => {
           const rect = stageElem.getBoundingClientRect();
@@ -6661,441 +6667,873 @@ const htmlContent = `<!DOCTYPE html>
         });
       }
 
-      // Lights - Cinematic Moody Lighting
-      const ambientLight = new THREE.AmbientLight(0x0a1122, 1.2);
+      // Lights - Dynamic Studio Lighting
+      const ambientLight = new THREE.AmbientLight(0x0a1424, 1.5);
       scene.add(ambientLight);
 
-      const mainSpot = new THREE.SpotLight(0x38bdf8, 3.2, 28, Math.PI / 3.5, 0.4, 1.2);
-      mainSpot.position.set(0, 10, 6);
+      const mainSpot = new THREE.SpotLight(0x38bdf8, 3.6, 32, Math.PI / 4, 0.4, 1.2);
+      mainSpot.position.set(0, 9, 6);
       scene.add(mainSpot);
+      const spotTarget = new THREE.Object3D();
+      spotTarget.position.set(0, 0.8, 0);
+      scene.add(spotTarget);
+      mainSpot.target = spotTarget;
 
-      const rimLight = new THREE.DirectionalLight(0x00f0ff, 1.5);
-      rimLight.position.set(-8, 6, -5);
+      const fillLight = new THREE.DirectionalLight(0x1e3a8a, 1.2);
+      fillLight.position.set(-6, 8, -4);
+      scene.add(fillLight);
+
+      const rimLight = new THREE.DirectionalLight(0x38bdf8, 1.1);
+      rimLight.position.set(6, 6, -5);
       scene.add(rimLight);
 
-      const warmAccentLight = new THREE.PointLight(0xf59e0b, 1.4, 18);
-      warmAccentLight.position.set(5, 2, 4);
-      scene.add(warmAccentLight);
+      // Station Point Lights
+      const station0Light = new THREE.PointLight(0x38bdf8, 2.2, 7);
+      station0Light.position.set(0, 1.5, 1.2);
+      scene.add(station0Light);
 
-      const redAccentLight = new THREE.PointLight(0xef4444, 1.2, 18);
-      redAccentLight.position.set(-5, 2, 4);
-      scene.add(redAccentLight);
+      const station1Light = new THREE.PointLight(0xef4444, 2.0, 7);
+      station1Light.position.set(-3.8, 1.5, 1.2);
+      scene.add(station1Light);
 
-      // -------------------------------------------------------------
-      // 1. PHYSICAL 3D ARENA PLATFORM (Obsidian & Titanium Base)
-      // -------------------------------------------------------------
-      const arenaGroup = new THREE.Group();
-      arenaGroup.position.set(0.0, -0.3, 0.0);
-      arenaGroup.scale.set(0.88, 0.88, 0.88);
-      rootGroup.add(arenaGroup);
-
-      // Tier 1 Base: Beveled Dark Carbon Plinth
-      const baseGeo = new THREE.CylinderGeometry(4.6, 4.85, 0.35, 64);
-      const baseMat = new THREE.MeshStandardMaterial({
-        color: 0x070d18,
-        metalness: 0.9,
-        roughness: 0.22
-      });
-      const baseMesh = new THREE.Mesh(baseGeo, baseMat);
-      baseMesh.position.y = -0.175;
-      arenaGroup.add(baseMesh);
-
-      // Tier 2: Inset Dark Reflective Glass Platform
-      const floorGeo = new THREE.CylinderGeometry(4.35, 4.35, 0.08, 64);
-      const floorMat = new THREE.MeshStandardMaterial({
-        color: 0x091428,
-        metalness: 0.95,
-        roughness: 0.12
-      });
-      const floorMesh = new THREE.Mesh(floorGeo, floorMat);
-      floorMesh.position.y = 0.04;
-      arenaGroup.add(floorMesh);
-
-      // Outer Recessed Glowing Neon Tube Rim
-      const rimGeo = new THREE.TorusGeometry(4.42, 0.038, 16, 64);
-      const rimMat = new THREE.MeshStandardMaterial({
-        color: 0x00f0ff,
-        emissive: 0x00f0ff,
-        emissiveIntensity: 2.5
-      });
-      const rimMesh = new THREE.Mesh(rimGeo, rimMat);
-      rimMesh.rotation.x = Math.PI / 2;
-      rimMesh.position.y = 0.07;
-      arenaGroup.add(rimMesh);
-
-      // Concentric Laser Floor Rings (Grid lines)
-      [1.1, 2.1, 3.1].forEach((rad, rIdx) => {
-        const ringGeo = new THREE.RingGeometry(rad - 0.012, rad + 0.012, 64);
-        const ringMat = new THREE.MeshBasicMaterial({
-          color: rIdx === 2 ? 0x38bdf8 : 0x1e3a8a,
-          transparent: true,
-          opacity: rIdx === 2 ? 0.75 : 0.35,
-          side: THREE.DoubleSide
-        });
-        const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-        ringMesh.rotation.x = Math.PI / 2;
-        ringMesh.position.y = 0.082;
-        arenaGroup.add(ringMesh);
-      });
+      const station2Light = new THREE.PointLight(0xf59e0b, 2.0, 7);
+      station2Light.position.set(3.8, 1.5, 1.2);
+      scene.add(station2Light);
 
       // -------------------------------------------------------------
-      // 2. CENTER HOLOGRAPHIC GYROSCOPE CORE
+      // PROCEDURAL CANVAS TEXTURE HELPERS
       // -------------------------------------------------------------
-      const coreGroup = new THREE.Group();
-      coreGroup.position.set(0, 0.35, 0);
-      arenaGroup.add(coreGroup);
+      function createPhoneScreenTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 1024;
+        const ctx = canvas.getContext('2d');
 
-      // Central Floating Power Crystal
-      const crystalGeo = new THREE.OctahedronGeometry(0.3, 0);
-      const crystalMat = new THREE.MeshStandardMaterial({
-        color: 0x38bdf8,
-        emissive: 0x0284c7,
-        emissiveIntensity: 1.2,
-        roughness: 0.15,
-        metalness: 0.8
-      });
-      const crystalMesh = new THREE.Mesh(crystalGeo, crystalMat);
-      coreGroup.add(crystalMesh);
+        const bg = ctx.createLinearGradient(0, 0, 0, 1024);
+        bg.addColorStop(0, '#07111F');
+        bg.addColorStop(0.5, '#0B162C');
+        bg.addColorStop(1, '#07111F');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, 512, 1024);
 
-      // Nested Gyroscope Rings
-      const ring1 = new THREE.Mesh(
-        new THREE.TorusGeometry(0.55, 0.018, 16, 48),
-        new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.9, roughness: 0.1, emissive: 0xf59e0b, emissiveIntensity: 0.4 })
-      );
-      coreGroup.add(ring1);
+        // Status bar
+        ctx.fillStyle = '#94A3B8';
+        ctx.font = 'bold 22px Outfit, sans-serif';
+        ctx.fillText('10:42', 40, 48);
+        ctx.textAlign = 'right';
+        ctx.fillText('5G 100% 🔋', 472, 48);
 
-      const ring2 = new THREE.Mesh(
-        new THREE.TorusGeometry(0.72, 0.018, 16, 48),
-        new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.9, roughness: 0.1, emissive: 0x38bdf8, emissiveIntensity: 0.5 })
-      );
-      ring2.rotation.x = Math.PI / 3;
-      coreGroup.add(ring2);
+        // App Header
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#38BDF8';
+        ctx.font = 'bold 36px Cairo, sans-serif';
+        ctx.fillText('حساباتي | كاشير ذكي', 256, 115);
 
-      // -------------------------------------------------------------
-      // 3. THE 6 BENCHMARK STATIONS (Pedestals, Badges & 3D Pillars)
-      // -------------------------------------------------------------
-      const stationRadius = 3.15;
-      const axesCount = 6;
-      const stationAngles = [];
-      for (let i = 0; i < axesCount; i++) {
-        stationAngles.push(i * (Math.PI / 3) - Math.PI / 2);
-      }
+        ctx.fillStyle = '#64748B';
+        ctx.font = '20px Outfit, sans-serif';
+        ctx.fillText('Cloud Mini-ERP & Mobile POS', 256, 148);
 
-      // Station Definitions
-      const stationDefs = [
-        { icon: '📱', title: '0 ج.م عتاد', en: 'Zero Hardware' },
-        { icon: '⚡', title: 'مسح < 1s', en: 'Fast Camera' },
-        { icon: '💾', title: 'صمود أوفلاين', en: 'IndexedDB' },
-        { icon: '📖', title: 'نوتة شكك FIFO', en: 'Debt Ledger' },
-        { icon: '💬', title: 'واتساب وتليجرام', en: 'Instant Share' },
-        { icon: '💰', title: 'تسعير عادل EGP', en: 'Local EGP' }
-      ];
-
-      // Station Badge Texture Generator
-      function makeStationBadgeTexture(icon, title, en) {
-        const c = document.createElement('canvas');
-        c.width = 260;
-        c.height = 80;
-        const ctx = c.getContext('2d');
-
-        // Dark Rounded Glass Card
-        ctx.fillStyle = 'rgba(7, 15, 30, 0.95)';
-        ctx.beginPath();
-        ctx.roundRect(4, 4, 252, 72, 12);
-        ctx.fill();
-
-        // Glowing border
-        ctx.strokeStyle = '#38bdf8';
+        // Camera Viewfinder Box
+        ctx.strokeStyle = '#38BDF8';
         ctx.lineWidth = 3;
+        ctx.strokeRect(64, 195, 384, 300);
+
+        // Corner glowing brackets
+        ctx.fillStyle = '#38BDF8';
+        ctx.fillRect(56, 187, 36, 10);
+        ctx.fillRect(56, 187, 10, 36);
+        ctx.fillRect(420, 187, 36, 10);
+        ctx.fillRect(446, 187, 10, 36);
+        ctx.fillRect(56, 483, 36, 10);
+        ctx.fillRect(56, 457, 10, 36);
+        ctx.fillRect(420, 483, 36, 10);
+        ctx.fillRect(446, 457, 10, 36);
+
+        // Laser scan line
+        const laserGrad = ctx.createLinearGradient(64, 335, 448, 335);
+        laserGrad.addColorStop(0, 'rgba(56,189,248,0.1)');
+        laserGrad.addColorStop(0.5, 'rgba(56,189,248,0.95)');
+        laserGrad.addColorStop(1, 'rgba(56,189,248,0.1)');
+        ctx.fillStyle = laserGrad;
+        ctx.fillRect(64, 340, 384, 8);
+
+        ctx.fillStyle = '#38BDF8';
+        ctx.font = 'bold 22px Cairo, sans-serif';
+        ctx.fillText('⚡ مسح فوري بكاميرا الهاتف (< 1s)', 256, 460);
+
+        // Scanned Item Card
+        ctx.fillStyle = 'rgba(15, 26, 49, 0.9)';
+        ctx.strokeStyle = '#2563EB';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(48, 530, 416, 210, 16);
+        else ctx.rect(48, 530, 416, 210);
+        ctx.fill();
         ctx.stroke();
 
-        // Arabic Title
-        ctx.font = 'bold 21px Cairo, sans-serif';
-        ctx.fillStyle = '#ffffff';
         ctx.textAlign = 'right';
-        ctx.direction = 'rtl';
-        ctx.fillText(icon + ' ' + title, 245, 36);
+        ctx.fillStyle = '#10B981';
+        ctx.font = 'bold 22px Cairo, sans-serif';
+        ctx.fillText('✅ تم المسح بنجاح', 436, 575);
 
-        // English Subtitle
-        ctx.font = '13px Cairo, sans-serif';
-        ctx.fillStyle = '#38bdf8';
-        ctx.fillText(en, 245, 60);
+        ctx.fillStyle = '#F8FAFC';
+        ctx.font = 'bold 28px Cairo, sans-serif';
+        ctx.fillText('شاي العروسة 250 جم', 436, 625);
 
-        const tex = new THREE.CanvasTexture(c);
+        ctx.fillStyle = '#94A3B8';
+        ctx.font = '20px Outfit, sans-serif';
+        ctx.fillText('الباركود: 6221234005128', 436, 665);
+
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#38BDF8';
+        ctx.font = 'bold 34px Outfit, sans-serif';
+        ctx.fillText('45.00 EGP', 76, 660);
+
+        // Total Bottom Button
+        ctx.fillStyle = '#10B981';
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(48, 775, 416, 130, 16);
+        else ctx.rect(48, 775, 416, 130);
+        ctx.fill();
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#07111F';
+        ctx.font = 'bold 30px Cairo, sans-serif';
+        ctx.fillText('🧾 إصدار إيصال معتمد (أوفلاين)', 256, 835);
+        ctx.font = '20px Cairo, sans-serif';
+        ctx.fillText('مطابق لقانون 152 للإيصال الإلكتروني', 256, 875);
+
+        // Bottom home bar
+        ctx.fillStyle = '#64748B';
+        ctx.fillRect(180, 985, 152, 6);
+
+        const tex = new THREE.CanvasTexture(canvas);
         tex.anisotropy = 4;
         return tex;
       }
 
-      // Benchmark Scores per Competitor:
-      // Hesabaty: 100% across all 6 axes
-      const scoresHesabaty = [2.2, 2.2, 2.2, 2.2, 2.2, 2.2];
-      // Legacy Desktop (MegaStore): Only high on offline, fails mobile & messaging & zero-capex
-      const scoresLegacy = [0.3, 0.25, 1.85, 0.55, 0.2, 0.6];
-      // Cloud ERP (Odoo / Daftra): Moderate, but expensive USD and no fast mobile camera
-      const scoresCloudERP = [0.85, 0.4, 0.7, 0.6, 1.1, 0.75];
+      function createBarcodeCardTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 320;
+        const ctx = canvas.getContext('2d');
 
-      const stations = [];
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, 512, 320);
 
-      stationAngles.forEach((angle, idx) => {
-        const stGroup = new THREE.Group();
-        const sx = Math.cos(angle) * stationRadius;
-        const sz = Math.sin(angle) * stationRadius;
-        stGroup.position.set(sx, 0.05, sz);
-        arenaGroup.add(stGroup);
+        ctx.fillStyle = '#0F172A';
+        ctx.font = 'bold 26px Cairo, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('شاي أسود ناعم 250 جم', 256, 45);
 
-        // Radial Guide Track connecting center to station
-        const trackPts = [new THREE.Vector3(0, 0.083, 0), new THREE.Vector3(sx, 0.083, sz)];
-        const trackGeo = new THREE.BufferGeometry().setFromPoints(trackPts);
-        const trackMat = new THREE.LineBasicMaterial({ color: 0x1e3a8a, transparent: true, opacity: 0.6 });
-        arenaGroup.add(new THREE.Line(trackGeo, trackMat));
+        const startX = 64;
+        const barY = 65;
+        const barHeight = 160;
 
-        // Pedestal Base: Dark machined titanium disc
-        const plinthGeo = new THREE.CylinderGeometry(0.52, 0.58, 0.16, 32);
-        const plinthMat = new THREE.MeshStandardMaterial({ color: 0x0b162c, metalness: 0.9, roughness: 0.25 });
-        const plinth = new THREE.Mesh(plinthGeo, plinthMat);
-        plinth.position.y = 0.08;
-        stGroup.add(plinth);
-
-        // Plinth Neon Ring
-        const pRingGeo = new THREE.TorusGeometry(0.53, 0.016, 16, 32);
-        const pRingMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8, emissive: 0x38bdf8, emissiveIntensity: 1.5 });
-        const pRing = new THREE.Mesh(pRingGeo, pRingMat);
-        pRing.rotation.x = Math.PI / 2;
-        pRing.position.y = 0.16;
-        stGroup.add(pRing);
-
-        // 3D PHYSICAL VOLUMETRIC PILLARS AT EACH STATION:
-        // 1. Hesabaty Column (Center of pedestal)
-        const hHeight = scoresHesabaty[idx];
-        const hGeo = new THREE.CylinderGeometry(0.16, 0.18, hHeight, 16);
-        const hMat = new THREE.MeshStandardMaterial({
-          color: 0x0284c7,
-          emissive: 0x38bdf8,
-          emissiveIntensity: 0.7,
-          metalness: 0.45,
-          roughness: 0.12,
-          transparent: true,
-          opacity: 0.92
+        ctx.fillStyle = '#000000';
+        const pattern = [3,1,2,1,4,1,2,3,1,2,4,1,1,3,2,1,3,1,2,1,4,1,2,3,1,2,4,1,1,3,2,1,3,1,2,1,4,1,2,3,1,2,4,1,1,3,2,1,3,1];
+        let currX = startX;
+        pattern.forEach((w, idx) => {
+          if (idx % 2 === 0) {
+            ctx.fillRect(currX, barY, w * 3, barHeight);
+          }
+          currX += w * 3 + 2;
         });
-        const hMesh = new THREE.Mesh(hGeo, hMat);
-        hMesh.position.set(0, 0.16 + hHeight / 2, 0);
-        stGroup.add(hMesh);
 
-        // Glowing internal fiber/core inside Hesabaty column
-        const coreFiberGeo = new THREE.CylinderGeometry(0.04, 0.04, hHeight * 0.95, 8);
-        const coreFiberMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
-        const coreFiber = new THREE.Mesh(coreFiberGeo, coreFiberMat);
-        hMesh.add(coreFiber);
+        ctx.font = 'bold 24px Outfit, monospace';
+        ctx.fillText('6  221234  005128', 256, 260);
 
-        // Golden Pyramid Crown on top of Hesabaty column
-        const crownGeo = new THREE.ConeGeometry(0.22, 0.28, 4);
-        const crownMat = new THREE.MeshStandardMaterial({
-          color: 0xf59e0b,
-          emissive: 0xb45309,
-          emissiveIntensity: 0.5,
-          metalness: 0.95,
-          roughness: 0.1
+        ctx.fillStyle = '#2563EB';
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(160, 275, 192, 35, 8);
+        else ctx.rect(160, 275, 192, 35);
+        ctx.fill();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 20px Outfit, sans-serif';
+        ctx.fillText('45.00 EGP', 256, 298);
+
+        const tex = new THREE.CanvasTexture(canvas);
+        return tex;
+      }
+
+      function createReceiptTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 320;
+        canvas.height = 640;
+        const ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = '#F8FAFC';
+        ctx.fillRect(0, 0, 320, 640);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#0F172A';
+        ctx.font = 'bold 24px Cairo, sans-serif';
+        ctx.fillText('حساباتي | متجر الأمل', 160, 45);
+        ctx.font = '15px Cairo, sans-serif';
+        ctx.fillStyle = '#64748B';
+        ctx.fillText('إيصال إلكتروني معتمد - قانون 152', 160, 75);
+        ctx.fillText('2026-11-07 10:42 AM', 160, 98);
+
+        ctx.strokeStyle = '#94A3B8';
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(20, 115);
+        ctx.lineTo(300, 115);
+        ctx.stroke();
+
+        ctx.textAlign = 'right';
+        ctx.font = 'bold 17px Cairo, sans-serif';
+        ctx.fillStyle = '#0F172A';
+        ctx.fillText('1x شاي العروسة 250جم', 290, 150);
+        ctx.fillText('2x جبنة بيضاء 500جم', 290, 185);
+        ctx.fillText('1x خبز طازج', 290, 220);
+
+        ctx.textAlign = 'left';
+        ctx.font = '17px Outfit, sans-serif';
+        ctx.fillText('45.00', 30, 150);
+        ctx.fillText('70.00', 30, 185);
+        ctx.fillText('9.00', 30, 220);
+
+        ctx.beginPath();
+        ctx.moveTo(20, 245);
+        ctx.lineTo(300, 245);
+        ctx.stroke();
+
+        ctx.textAlign = 'right';
+        ctx.font = 'bold 20px Cairo, sans-serif';
+        ctx.fillText('الإجمالي:', 290, 285);
+        ctx.textAlign = 'left';
+        ctx.font = 'bold 22px Outfit, sans-serif';
+        ctx.fillStyle = '#2563EB';
+        ctx.fillText('124.00 EGP', 30, 285);
+
+        // QR Code Stamp
+        ctx.fillStyle = '#0F172A';
+        ctx.fillRect(95, 330, 130, 130);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(105, 340, 110, 110);
+        ctx.fillStyle = '#0F172A';
+        ctx.fillRect(115, 350, 30, 30);
+        ctx.fillRect(175, 350, 30, 30);
+        ctx.fillRect(115, 410, 30, 30);
+        ctx.fillRect(160, 395, 20, 20);
+        ctx.fillRect(185, 415, 20, 20);
+
+        ctx.textAlign = 'center';
+        ctx.font = 'bold 16px Cairo, sans-serif';
+        ctx.fillStyle = '#10B981';
+        ctx.fillText('✅ مشفر ومطابق للضرائب', 160, 490);
+        ctx.fillStyle = '#64748B';
+        ctx.font = '14px Cairo, sans-serif';
+        ctx.fillText('حساباتي • شكراً لزيارتكم', 160, 520);
+
+        const tex = new THREE.CanvasTexture(canvas);
+        return tex;
+      }
+
+      function createLegacyScreenTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = '#C0C0C0';
+        ctx.fillRect(0, 0, 512, 512);
+
+        // Classic Titlebar
+        const titleGrad = ctx.createLinearGradient(0, 0, 512, 0);
+        titleGrad.addColorStop(0, '#000080');
+        titleGrad.addColorStop(1, '#1084D0');
+        ctx.fillStyle = titleGrad;
+        ctx.fillRect(4, 4, 504, 36);
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 18px Cairo, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.fillText('برنامج إدارة المبيعات والكاشير v2.4 (محلي أوفلاين)', 490, 28);
+
+        ctx.fillStyle = '#E0E0E0';
+        ctx.fillRect(4, 42, 504, 30);
+        ctx.fillStyle = '#000000';
+        ctx.font = '15px Cairo, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.fillText('ملف     تعديل     فواتير     المخزن     قاعدة البيانات     مساعدة', 490, 62);
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(12, 80, 488, 230);
+        ctx.strokeStyle = '#808080';
+        ctx.strokeRect(12, 80, 488, 230);
+
+        ctx.fillStyle = '#E8E8E8';
+        ctx.fillRect(12, 80, 488, 28);
+        ctx.fillStyle = '#000000';
+        ctx.font = 'bold 14px Cairo, sans-serif';
+        ctx.fillText('كود الصنف           اسم الصنف           سعر البيع           الرصيد بالمخزن', 480, 99);
+
+        ctx.font = '14px Cairo, monospace';
+        ctx.fillText('1001           زيت طعام 1 لتر           65.00           12', 480, 135);
+        ctx.fillText('1002           أرز مصري 1 كجم           32.00           24', 480, 165);
+        ctx.fillText('1003           سكر ناعم 1 كجم           35.00           08', 480, 195);
+        ctx.fillText('1004           مكرونة 400 جم           14.50           40', 480, 225);
+
+        // Error Dialog Box
+        ctx.fillStyle = '#ECE9D8';
+        ctx.strokeStyle = '#000080';
+        ctx.lineWidth = 3;
+        ctx.fillRect(35, 325, 442, 170);
+        ctx.strokeRect(35, 325, 442, 170);
+
+        ctx.fillStyle = '#000080';
+        ctx.fillRect(38, 328, 436, 28);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 15px Cairo, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.fillText('خطأ: قاعدة البيانات المحلية معطلة (Database Error)', 465, 348);
+
+        ctx.fillStyle = '#EF4444';
+        ctx.font = 'bold 36px sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('❌', 55, 415);
+
+        ctx.fillStyle = '#991B1B';
+        ctx.font = 'bold 18px Cairo, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.fillText('تحذير: لا توجد سحابة! البيانات محصورة بالقرص الصلب.', 455, 400);
+        ctx.fillStyle = '#000000';
+        ctx.font = '15px Cairo, sans-serif';
+        ctx.fillText('تلف الجهاز أو انقطاع الكهرباء يهدد بضياع فوري لكافة السجلات.', 455, 435);
+
+        const tex = new THREE.CanvasTexture(canvas);
+        return tex;
+      }
+
+      function createErpScreenTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 384;
+        const ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = '#111827';
+        ctx.fillRect(0, 0, 512, 384);
+
+        ctx.fillStyle = '#1F2937';
+        ctx.fillRect(0, 0, 512, 50);
+
+        ctx.fillStyle = '#F59E0B';
+        ctx.font = 'bold 18px Outfit, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('GLOBAL ERP ENTERPRISE', 20, 32);
+
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#EF4444';
+        ctx.font = 'bold 16px Outfit, sans-serif';
+        ctx.fillText('$149/mo + $35/branch 💵', 490, 32);
+
+        ctx.fillStyle = '#1F2937';
+        ctx.fillRect(0, 50, 110, 334);
+        ctx.fillStyle = '#9CA3AF';
+        ctx.font = '13px Outfit, sans-serif';
+        ctx.textAlign = 'left';
+        const tabs = ['Dashboard', 'General Ledger', 'Multi-Branch', 'Supply Chain', 'HR & Payroll', 'Audit Trail', 'API Webhooks'];
+        tabs.forEach((t, i) => {
+          ctx.fillText('▸ ' + t, 12, 85 + i * 40);
         });
-        const crown = new THREE.Mesh(crownGeo, crownMat);
-        crown.position.set(0, 0.16 + hHeight + 0.14, 0);
-        crown.rotation.y = Math.PI / 4;
-        stGroup.add(crown);
 
-        // 2. Legacy Desktop Column (Offset left)
-        const lHeight = scoresLegacy[idx];
-        const lGeo = new THREE.CylinderGeometry(0.11, 0.13, lHeight, 12);
-        const lMat = new THREE.MeshStandardMaterial({
-          color: 0x450a0a,
-          emissive: 0xef4444,
-          emissiveIntensity: 0.35,
-          metalness: 0.7,
-          roughness: 0.75
-        });
-        const lMesh = new THREE.Mesh(lGeo, lMat);
-        lMesh.position.set(-0.25, 0.16 + lHeight / 2, 0.1);
-        stGroup.add(lMesh);
+        // Crowded complex charts
+        ctx.fillStyle = '#1E293B';
+        ctx.fillRect(125, 65, 175, 130);
+        ctx.fillRect(315, 65, 185, 130);
+        ctx.fillRect(125, 210, 375, 105);
 
-        // Red indicator cap
-        const lCap = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.12, 0.12, 0.04, 12),
-          new THREE.MeshBasicMaterial({ color: 0xef4444 })
-        );
-        lCap.position.set(-0.25, 0.16 + lHeight + 0.02, 0.1);
-        stGroup.add(lCap);
+        ctx.fillStyle = '#38BDF8';
+        ctx.fillRect(145, 130, 20, 50);
+        ctx.fillRect(175, 105, 20, 75);
+        ctx.fillRect(205, 145, 20, 35);
+        ctx.fillRect(235, 90, 20, 90);
 
-        // 3. Cloud ERP Column (Offset right)
-        const cHeight = scoresCloudERP[idx];
-        const cGeo = new THREE.CylinderGeometry(0.11, 0.13, cHeight, 12);
+        ctx.fillStyle = '#F59E0B';
+        ctx.beginPath();
+        ctx.arc(400, 130, 42, 0, Math.PI * 1.4);
+        ctx.lineTo(400, 130);
+        ctx.fill();
+        ctx.fillStyle = '#EC4899';
+        ctx.beginPath();
+        ctx.arc(400, 130, 42, Math.PI * 1.4, Math.PI * 2);
+        ctx.lineTo(400, 130);
+        ctx.fill();
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#F8FAFC';
+        ctx.font = '14px Cairo, sans-serif';
+        ctx.fillText('لوحة معقدة تتطلب تدريباً وتكاليف استشارات باهظة', 312, 245);
+
+        ctx.fillStyle = '#EF4444';
+        ctx.font = 'bold 15px Cairo, sans-serif';
+        ctx.fillText('⚠️ اشتراك شهري بالدولار وغير ملائم لتجار التجزئة', 312, 280);
+
+        ctx.fillStyle = '#374151';
+        ctx.fillRect(0, 355, 512, 29);
+        ctx.fillStyle = '#9CA3AF';
+        ctx.font = '12px Outfit, sans-serif';
+        ctx.fillText('Strict iPad Kiosk Hardware Lock • Complex Training Required', 256, 374);
+
+        const tex = new THREE.CanvasTexture(canvas);
+        return tex;
+      }
+
+      function createBadgeTexture(title, subtitle, icon, accentColor, bgColor) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 140;
+        const ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = bgColor;
+        ctx.strokeStyle = accentColor;
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(10, 10, 492, 120, 24);
+        else ctx.rect(10, 10, 492, 120);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = accentColor;
+        ctx.font = 'bold 34px Cairo, sans-serif';
+        ctx.fillText(icon + ' ' + title, 256, 58);
+
+        ctx.fillStyle = '#F8FAFC';
+        ctx.font = '22px Cairo, sans-serif';
+        ctx.fillText(subtitle, 256, 102);
+
+        const tex = new THREE.CanvasTexture(canvas);
+        return tex;
+      }
+
+      function createLaserTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 256;
+        canvas.height = 256;
+        const ctx = canvas.getContext('2d');
+
+        const grad = ctx.createLinearGradient(0, 0, 0, 256);
+        grad.addColorStop(0, 'rgba(56, 189, 248, 0.0)');
+        grad.addColorStop(0.35, 'rgba(56, 189, 248, 0.25)');
+        grad.addColorStop(0.5, 'rgba(16, 185, 129, 0.95)');
+        grad.addColorStop(0.65, 'rgba(56, 189, 248, 0.25)');
+        grad.addColorStop(1, 'rgba(56, 189, 248, 0.0)');
+
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 256, 256);
+
+        // Core streak
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 124, 256, 8);
+
+        const tex = new THREE.CanvasTexture(canvas);
+        return tex;
+      }
+
+      // -------------------------------------------------------------
+      // 1. MASTER ARENA PLATFORM
+      // -------------------------------------------------------------
+      const arenaFloorGroup = new THREE.Group();
+      arenaFloorGroup.position.set(0, -0.6, 0);
+      rootGroup.add(arenaFloorGroup);
+
+      const floorGeo = new THREE.CylinderGeometry(7.0, 7.3, 0.25, 64);
+      const floorMat = new THREE.MeshStandardMaterial({
+        color: 0x07111F,
+        roughness: 0.35,
+        metalness: 0.75
+      });
+      const floorMesh = new THREE.Mesh(floorGeo, floorMat);
+      arenaFloorGroup.add(floorMesh);
+
+      // Floor cyber boundary rings
+      const outerRingGeo = new THREE.TorusGeometry(6.85, 0.035, 16, 80);
+      const outerRingMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.45 });
+      const outerRing = new THREE.Mesh(outerRingGeo, outerRingMat);
+      outerRing.rotation.x = Math.PI / 2;
+      outerRing.position.y = 0.13;
+      arenaFloorGroup.add(outerRing);
+
+      // -------------------------------------------------------------
+      // 2. STATION 0: HESABATY (Center Hero - X = 0)
+      // -------------------------------------------------------------
+      const st0Group = new THREE.Group();
+      st0Group.position.set(0, 0, 0);
+      rootGroup.add(st0Group);
+
+      // Plinth
+      const plinth0Geo = new THREE.CylinderGeometry(1.65, 1.75, 0.35, 48);
+      const plinth0Mat = new THREE.MeshStandardMaterial({ color: 0x091426, metalness: 0.85, roughness: 0.3 });
+      const plinth0 = new THREE.Mesh(plinth0Geo, plinth0Mat);
+      plinth0.position.y = -0.42;
+      st0Group.add(plinth0);
+
+      const ring0Geo = new THREE.TorusGeometry(1.68, 0.04, 16, 64);
+      const ring0Mat = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
+      const ring0 = new THREE.Mesh(ring0Geo, ring0Mat);
+      ring0.rotation.x = Math.PI / 2;
+      ring0.position.y = -0.24;
+      st0Group.add(ring0);
+
+      // Phone Sub-Group (Floating & Levitation)
+      const phoneAssembly = new THREE.Group();
+      phoneAssembly.position.set(0, 0.5, 0);
+      st0Group.add(phoneAssembly);
+
+      // Phone Body
+      const phoneGeo = new THREE.BoxGeometry(1.5, 3.0, 0.1);
+      const phoneMat = new THREE.MeshStandardMaterial({
+        color: 0x1e293b,
+        metalness: 0.85,
+        roughness: 0.25
+      });
+      const phoneMesh = new THREE.Mesh(phoneGeo, phoneMat);
+      phoneAssembly.add(phoneMesh);
+
+      // Phone Screen
+      const phoneScreenGeo = new THREE.PlaneGeometry(1.42, 2.92);
+      const phoneScreenMat = new THREE.MeshBasicMaterial({ map: createPhoneScreenTexture() });
+      const phoneScreen = new THREE.Mesh(phoneScreenGeo, phoneScreenMat);
+      phoneScreen.position.z = 0.055;
+      phoneAssembly.add(phoneScreen);
+
+      // Camera Bump on Back
+      const camBumpGeo = new THREE.BoxGeometry(0.42, 0.75, 0.06);
+      const camBumpMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.9, roughness: 0.2 });
+      const camBump = new THREE.Mesh(camBumpGeo, camBumpMat);
+      camBump.position.set(-0.45, 1.05, -0.07);
+      phoneAssembly.add(camBump);
+
+      // Camera Glass Lenses
+      const lensGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.03, 24);
+      const lensMat = new THREE.MeshStandardMaterial({ color: 0x00f0ff, metalness: 0.95, roughness: 0.1 });
+      const lens1 = new THREE.Mesh(lensGeo, lensMat);
+      lens1.rotation.x = Math.PI / 2;
+      lens1.position.set(-0.45, 1.22, -0.1);
+      phoneAssembly.add(lens1);
+      const lens2 = new THREE.Mesh(lensGeo, lensMat);
+      lens2.rotation.x = Math.PI / 2;
+      lens2.position.set(-0.45, 0.92, -0.1);
+      phoneAssembly.add(lens2);
+
+      // Hovering Barcode Product Card
+      const barcodeCardGeo = new THREE.BoxGeometry(0.95, 0.6, 0.02);
+      const barcodeCardMat = new THREE.MeshStandardMaterial({
+        map: createBarcodeCardTexture(),
+        roughness: 0.2
+      });
+      const barcodeCard = new THREE.Mesh(barcodeCardGeo, barcodeCardMat);
+      barcodeCard.position.set(0, -0.15, 0.65);
+      barcodeCard.rotation.x = -Math.PI * 0.12;
+      phoneAssembly.add(barcodeCard);
+
+      // Animated Laser Scan Plane
+      const laserGeo = new THREE.PlaneGeometry(1.05, 0.45);
+      const laserMat = new THREE.MeshBasicMaterial({
+        map: createLaserTexture(),
+        transparent: true,
+        opacity: 0.9,
+        side: THREE.DoubleSide
+      });
+      const laserPlane = new THREE.Mesh(laserGeo, laserMat);
+      laserPlane.position.set(0, -0.15, 0.68);
+      laserPlane.rotation.x = -Math.PI * 0.12;
+      phoneAssembly.add(laserPlane);
+
+      // Floating E-Receipt
+      const receiptGeo = new THREE.PlaneGeometry(0.72, 1.44);
+      const receiptMat = new THREE.MeshBasicMaterial({
+        map: createReceiptTexture(),
+        side: THREE.DoubleSide
+      });
+      const receiptMesh = new THREE.Mesh(receiptGeo, receiptMat);
+      receiptMesh.position.set(1.18, 0.2, 0.35);
+      receiptMesh.rotation.y = -Math.PI * 0.18;
+      receiptMesh.rotation.z = Math.PI * 0.04;
+      phoneAssembly.add(receiptMesh);
+
+      // Top Floating Holographic Badge
+      const badge0Geo = new THREE.PlaneGeometry(2.3, 0.65);
+      const badge0Mat = new THREE.MeshBasicMaterial({
+        map: createBadgeTexture('حساباتي', '0 ج أجهزة • كاشير بكاميرا الهاتف • سحابي', '✨', '#38bdf8', 'rgba(11,22,44,0.92)'),
+        transparent: true,
+        side: THREE.DoubleSide
+      });
+      const badge0 = new THREE.Mesh(badge0Geo, badge0Mat);
+      badge0.position.set(0, 2.5, 0);
+      st0Group.add(badge0);
+
+      // -------------------------------------------------------------
+      // 3. STATION 1: LEGACY DESKTOP POS (Left - X = -3.8)
+      // -------------------------------------------------------------
+      const st1Group = new THREE.Group();
+      st1Group.position.set(-3.8, 0, 0);
+      rootGroup.add(st1Group);
+
+      // Plinth
+      const plinth1Geo = new THREE.CylinderGeometry(1.65, 1.75, 0.35, 48);
+      const plinth1Mat = new THREE.MeshStandardMaterial({ color: 0x1f1418, metalness: 0.8, roughness: 0.4 });
+      const plinth1 = new THREE.Mesh(plinth1Geo, plinth1Mat);
+      plinth1.position.y = -0.42;
+      st1Group.add(plinth1);
+
+      const ring1Geo = new THREE.TorusGeometry(1.68, 0.04, 16, 64);
+      const ring1Mat = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+      const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
+      ring1.rotation.x = Math.PI / 2;
+      ring1.position.y = -0.24;
+      st1Group.add(ring1);
+
+      // Heavy Metal Cash Drawer (Base on Plinth)
+      const cashDrawerGeo = new THREE.BoxGeometry(2.1, 0.48, 1.8);
+      const cashDrawerMat = new THREE.MeshStandardMaterial({ color: 0x18202f, metalness: 0.75, roughness: 0.35 });
+      const cashDrawer = new THREE.Mesh(cashDrawerGeo, cashDrawerMat);
+      cashDrawer.position.y = -0.01;
+      st1Group.add(cashDrawer);
+
+      // Cash Drawer keyhole
+      const keyholeGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.02, 16);
+      const keyholeMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.9 });
+      const keyhole = new THREE.Mesh(keyholeGeo, keyholeMat);
+      keyhole.rotation.x = Math.PI / 2;
+      keyhole.position.set(0, -0.05, 0.91);
+      st1Group.add(keyhole);
+
+      // Bulky Desktop CRT/LCD Monitor Stand
+      const neckGeo = new THREE.BoxGeometry(0.35, 0.45, 0.35);
+      const neckMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.4 });
+      const neck = new THREE.Mesh(neckGeo, neckMat);
+      neck.position.set(-0.25, 0.45, 0);
+      st1Group.add(neck);
+
+      // Bulky Monitor Case
+      const monCaseGeo = new THREE.BoxGeometry(1.7, 1.35, 0.5);
+      const monCase = new THREE.Mesh(monCaseGeo, neckMat);
+      monCase.position.set(-0.25, 1.15, 0);
+      st1Group.add(monCase);
+
+      // CRT Rear Tapered Housing
+      const crtBackGeo = new THREE.ConeGeometry(0.85, 0.65, 4);
+      const crtBack = new THREE.Mesh(crtBackGeo, neckMat);
+      crtBack.rotation.x = -Math.PI / 2;
+      crtBack.position.set(-0.25, 1.15, -0.45);
+      st1Group.add(crtBack);
+
+      // Screen with Windows Gray Database Error UI
+      const monScreenGeo = new THREE.PlaneGeometry(1.55, 1.22);
+      const monScreenMat = new THREE.MeshBasicMaterial({ map: createLegacyScreenTexture() });
+      const monScreen = new THREE.Mesh(monScreenGeo, monScreenMat);
+      monScreen.position.set(-0.25, 1.15, 0.255);
+      st1Group.add(monScreen);
+
+      // Tower PC Chassis
+      const towerGeo = new THREE.BoxGeometry(0.55, 1.55, 1.4);
+      const towerMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.8, roughness: 0.3 });
+      const tower = new THREE.Mesh(towerGeo, towerMat);
+      tower.position.set(0.95, 0.85, 0);
+      st1Group.add(tower);
+
+      // Tower CD/DVD Drive Slots & Power Button
+      const driveSlotGeo = new THREE.BoxGeometry(0.48, 0.12, 0.02);
+      const driveSlotMat = new THREE.MeshBasicMaterial({ color: 0x334155 });
+      const driveSlot1 = new THREE.Mesh(driveSlotGeo, driveSlotMat);
+      driveSlot1.position.set(0.95, 1.45, 0.71);
+      st1Group.add(driveSlot1);
+      const driveSlot2 = new THREE.Mesh(driveSlotGeo, driveSlotMat);
+      driveSlot2.position.set(0.95, 1.28, 0.71);
+      st1Group.add(driveSlot2);
+
+      // Blinking Red HDD LED
+      const hddLedGeo = new THREE.SphereGeometry(0.03, 16, 16);
+      const hddLedMat = new THREE.MeshBasicMaterial({ color: 0xef4444 });
+      const hddLed = new THREE.Mesh(hddLedGeo, hddLedMat);
+      hddLed.position.set(0.85, 0.95, 0.71);
+      st1Group.add(hddLed);
+
+      // Handheld Barcode Scanner Gun on Stand
+      const gunStandGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.65, 16);
+      const gunStandMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.9 });
+      const gunStand = new THREE.Mesh(gunStandGeo, gunStandMat);
+      gunStand.position.set(-0.95, 0.45, 0.65);
+      gunStand.rotation.z = -Math.PI * 0.08;
+      st1Group.add(gunStand);
+
+      // Gun Body
+      const gunBodyGeo = new THREE.BoxGeometry(0.18, 0.35, 0.32);
+      const gunBodyMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.4 });
+      const gunBody = new THREE.Mesh(gunBodyGeo, gunBodyMat);
+      gunBody.position.set(-0.98, 0.78, 0.65);
+      gunBody.rotation.x = Math.PI * 0.2;
+      st1Group.add(gunBody);
+
+      // Coiled wire on ground
+      const wireGeo = new THREE.TorusGeometry(0.18, 0.025, 8, 32);
+      const wireMat = new THREE.MeshBasicMaterial({ color: 0x0f172a });
+      const wire1 = new THREE.Mesh(wireGeo, wireMat);
+      wire1.rotation.x = Math.PI / 2;
+      wire1.position.set(0.65, 0.25, 0.5);
+      st1Group.add(wire1);
+
+      // Top Floating Warning Tag
+      const badge1Geo = new THREE.PlaneGeometry(2.3, 0.65);
+      const badge1Mat = new THREE.MeshBasicMaterial({
+        map: createBadgeTexture('كاشير مكتبي قديم', '25,000+ ج.م عتاد • غير سحابي • معرض للتلف', '❌', '#ef4444', 'rgba(30,12,18,0.92)'),
+        transparent: true,
+        side: THREE.DoubleSide
+      });
+      const badge1 = new THREE.Mesh(badge1Geo, badge1Mat);
+      badge1.position.set(0, 2.5, 0);
+      st1Group.add(badge1);
+
+      // -------------------------------------------------------------
+      // 4. STATION 2: ENTERPRISE CLOUD ERP (Right - X = +3.8)
+      // -------------------------------------------------------------
+      const st2Group = new THREE.Group();
+      st2Group.position.set(3.8, 0, 0);
+      rootGroup.add(st2Group);
+
+      // Plinth
+      const plinth2Geo = new THREE.CylinderGeometry(1.65, 1.75, 0.35, 48);
+      const plinth2Mat = new THREE.MeshStandardMaterial({ color: 0x1c170d, metalness: 0.8, roughness: 0.4 });
+      const plinth2 = new THREE.Mesh(plinth2Geo, plinth2Mat);
+      plinth2.position.y = -0.42;
+      st2Group.add(plinth2);
+
+      const ring2Geo = new THREE.TorusGeometry(1.68, 0.04, 16, 64);
+      const ring2Mat = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
+      const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
+      ring2.rotation.x = Math.PI / 2;
+      ring2.position.y = -0.24;
+      st2Group.add(ring2);
+
+      // Heavy Brushed Metal Kiosk Stand Base
+      const kioskBaseGeo = new THREE.CylinderGeometry(0.65, 0.72, 0.08, 32);
+      const kioskMat = new THREE.MeshStandardMaterial({ color: 0xd4d4d8, metalness: 0.92, roughness: 0.15 });
+      const kioskBase = new THREE.Mesh(kioskBaseGeo, kioskMat);
+      kioskBase.position.y = -0.21;
+      st2Group.add(kioskBase);
+
+      // Tubular Angled Kiosk Stand Neck
+      const kioskPoleGeo = new THREE.CylinderGeometry(0.08, 0.08, 1.25, 24);
+      const kioskPole = new THREE.Mesh(kioskPoleGeo, kioskMat);
+      kioskPole.position.set(0, 0.42, -0.05);
+      kioskPole.rotation.x = Math.PI * 0.06;
+      st2Group.add(kioskPole);
+
+      // Security Heavy Enclosure Frame for iPad
+      const kioskFrameGeo = new THREE.BoxGeometry(2.0, 1.45, 0.12);
+      const kioskFrame = new THREE.Mesh(kioskFrameGeo, kioskMat);
+      kioskFrame.position.set(0, 1.15, 0.05);
+      kioskFrame.rotation.x = -Math.PI * 0.08;
+      st2Group.add(kioskFrame);
+
+      // Side Key Lock on Enclosure
+      const kioskLockGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.04, 16);
+      const kioskLockMat = new THREE.MeshStandardMaterial({ color: 0x71717a, metalness: 0.95 });
+      const kioskLock = new THREE.Mesh(kioskLockGeo, kioskLockMat);
+      kioskLock.rotation.z = Math.PI / 2;
+      kioskLock.position.set(1.02, 1.15, 0.05);
+      st2Group.add(kioskLock);
+
+      // Tablet Screen with Over-complicated Enterprise ERP UI
+      const tabletScreenGeo = new THREE.PlaneGeometry(1.85, 1.3);
+      const tabletScreenMat = new THREE.MeshBasicMaterial({ map: createErpScreenTexture() });
+      const tabletScreen = new THREE.Mesh(tabletScreenGeo, tabletScreenMat);
+      tabletScreen.position.set(0, 1.15, 0.115);
+      tabletScreen.rotation.x = -Math.PI * 0.08;
+      st2Group.add(tabletScreen);
+
+      // Floating 3D Golden Dollar Padlock
+      const padlockGroup = new THREE.Group();
+      padlockGroup.position.set(0, 2.05, 0.25);
+      st2Group.add(padlockGroup);
+
+      const lockBodyGeo = new THREE.BoxGeometry(0.48, 0.42, 0.18);
+      const lockBodyMat = new THREE.MeshStandardMaterial({
+        color: 0xf59e0b,
+        metalness: 0.95,
+        roughness: 0.2
+      });
+      const lockBody = new THREE.Mesh(lockBodyGeo, lockBodyMat);
+      padlockGroup.add(lockBody);
+
+      const shackleGeo = new THREE.TorusGeometry(0.18, 0.045, 16, 32, Math.PI);
+      const shackleMat = new THREE.MeshStandardMaterial({ color: 0xe4e4e7, metalness: 0.95, roughness: 0.1 });
+      const shackle = new THREE.Mesh(shackleGeo, shackleMat);
+      shackle.position.y = 0.21;
+      padlockGroup.add(shackle);
+
+      // Orbiting Complex Enterprise Cubes (Visualizing Feature Bloat)
+      const bloatCubes = [];
+      const bloatColors = [0x38bdf8, 0xf59e0b, 0xa855f7, 0xef4444];
+      for (let i = 0; i < 4; i++) {
+        const cGeo = new THREE.BoxGeometry(0.18, 0.18, 0.18);
         const cMat = new THREE.MeshStandardMaterial({
-          color: 0x78350f,
-          emissive: 0xf59e0b,
-          emissiveIntensity: 0.45,
-          metalness: 0.5,
-          roughness: 0.3
+          color: bloatColors[i],
+          metalness: 0.7,
+          roughness: 0.2,
+          transparent: true,
+          opacity: 0.85
         });
         const cMesh = new THREE.Mesh(cGeo, cMat);
-        cMesh.position.set(0.25, 0.16 + cHeight / 2, -0.1);
-        stGroup.add(cMesh);
+        st2Group.add(cMesh);
+        bloatCubes.push({ mesh: cMesh, angleOffset: (i * Math.PI) / 2, radius: 1.35 + i * 0.12, speed: 0.8 + i * 0.2 });
+      }
 
-        // Amber indicator cap
-        const cCap = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.12, 0.12, 0.04, 12),
-          new THREE.MeshBasicMaterial({ color: 0xf59e0b })
-        );
-        cCap.position.set(0.25, 0.16 + cHeight + 0.02, -0.1);
-        stGroup.add(cCap);
-
-        // Floating Station Badge (Positioned radially outward on the arena rim)
-        const badgeGeo = new THREE.PlaneGeometry(1.3, 0.4);
-        const badgeMat = new THREE.MeshBasicMaterial({
-          map: makeStationBadgeTexture(stationDefs[idx].icon, stationDefs[idx].title, stationDefs[idx].en),
-          side: THREE.DoubleSide,
-          transparent: true
-        });
-        const badgeMesh = new THREE.Mesh(badgeGeo, badgeMat);
-        badgeMesh.position.set(Math.cos(angle) * 0.95, 0.35, Math.sin(angle) * 0.95);
-        stGroup.add(badgeMesh);
-
-        stations.push({
-          group: stGroup,
-          angle: angle,
-          hMesh: hMesh,
-          hHeight: hHeight,
-          crown: crown,
-          lMesh: lMesh,
-          lHeight: lHeight,
-          cMesh: cMesh,
-          cHeight: cHeight,
-          badge: badgeMesh
-        });
-      });
-
-      // -------------------------------------------------------------
-      // 4. SMOOTH MORPHING 3D HOLOGRAPHIC RADAR CANOPY (Silk Energy Hull)
-      // -------------------------------------------------------------
-      // 6 Outer Vertices + 1 Center Apex Vertex = 7 Vertices
-      // 6 Triangular Faces connecting Center Apex to adjacent outer vertices
-      const canopyGeo = new THREE.BufferGeometry();
-      const vertexCount = 7;
-      const positions = new Float32Array(vertexCount * 3);
-      const targetHeights = new Float32Array(vertexCount);
-      const currentHeights = new Float32Array(vertexCount);
-      const targetRadii = new Float32Array(vertexCount);
-      const currentRadii = new Float32Array(vertexCount);
-
-      // Indices for 6 triangles from apex (index 0) to (1,2), (2,3), (3,4), (4,5), (5,6), (6,1)
-      const indices = [
-        0, 1, 2,
-        0, 2, 3,
-        0, 3, 4,
-        0, 4, 5,
-        0, 5, 6,
-        0, 6, 1,
-        // Double-sided backfaces
-        0, 2, 1,
-        0, 3, 2,
-        0, 4, 3,
-        0, 5, 4,
-        0, 6, 5,
-        0, 1, 6
-      ];
-      canopyGeo.setIndex(indices);
-      canopyGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-      const canopyMat = new THREE.MeshStandardMaterial({
-        color: 0x0284c7,
-        emissive: 0x38bdf8,
-        emissiveIntensity: 0.65,
-        roughness: 0.15,
-        metalness: 0.7,
+      // Top Floating Warning Tag
+      const badge2Geo = new THREE.PlaneGeometry(2.3, 0.65);
+      const badge2Mat = new THREE.MeshBasicMaterial({
+        map: createBadgeTexture('أنظمة ERP السحابية', 'اشتراك دولاري ($) • رسوم فروع • معقد للتجزئة', '⚠️', '#f59e0b', 'rgba(32,22,10,0.92)'),
         transparent: true,
-        opacity: 0.45,
         side: THREE.DoubleSide
       });
-      const canopyMesh = new THREE.Mesh(canopyGeo, canopyMat);
-      canopyMesh.position.y = 0.16;
-      arenaGroup.add(canopyMesh);
-
-      // Boundary Glowing Laser Ribbon
-      const ribbonPts = [];
-      for (let i = 0; i <= axesCount; i++) {
-        ribbonPts.push(new THREE.Vector3(0, 0, 0));
-      }
-      const ribbonGeo = new THREE.BufferGeometry().setFromPoints(ribbonPts);
-      const ribbonMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, linewidth: 2.5 });
-      const ribbonLine = new THREE.Line(ribbonGeo, ribbonMat);
-      ribbonLine.position.y = 0.16;
-      arenaGroup.add(ribbonLine);
-
-      // 6 Glowing Joint Spheres on the Canopy Rim
-      const jointSpheres = [];
-      const jointGeo = new THREE.SphereGeometry(0.08, 16, 16);
-      const jointMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
-      for (let i = 0; i < axesCount; i++) {
-        const jMesh = new THREE.Mesh(jointGeo, jointMat);
-        arenaGroup.add(jMesh);
-        jointSpheres.push(jMesh);
-      }
-
-      // Initialize canopy heights for Hesabaty (100% full dome)
-      targetHeights[0] = 2.6; // Apex
-      currentHeights[0] = 2.6;
-      for (let i = 0; i < axesCount; i++) {
-        targetHeights[i + 1] = scoresHesabaty[i];
-        currentHeights[i + 1] = scoresHesabaty[i];
-        targetRadii[i + 1] = stationRadius;
-        currentRadii[i + 1] = stationRadius;
-      }
+      const badge2 = new THREE.Mesh(badge2Geo, badge2Mat);
+      badge2.position.set(0, 2.5, 0);
+      st2Group.add(badge2);
 
       // -------------------------------------------------------------
-      // 5. CINEMATIC ROTATING RADAR SWEEP FAN
-      // -------------------------------------------------------------
-      const sweepGeo = new THREE.CylinderGeometry(0.01, 3.8, 0.02, 32, 1, false, 0, Math.PI / 3);
-      const sweepMat = new THREE.MeshBasicMaterial({
-        color: 0x38bdf8,
-        transparent: true,
-        opacity: 0.22,
-        side: THREE.DoubleSide
-      });
-      const sweepMesh = new THREE.Mesh(sweepGeo, sweepMat);
-      sweepMesh.position.y = 0.09;
-      arenaGroup.add(sweepMesh);
-
-      // Ambient Drifting Stardust
-      const dustGeo = new THREE.BufferGeometry();
-      const dustCount = 85;
-      const dustPos = new Float32Array(dustCount * 3);
-      for (let i = 0; i < dustCount * 3; i++) {
-        dustPos[i] = (Math.random() - 0.5) * 16;
-      }
-      dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
-      const dustMat = new THREE.PointsMaterial({ size: 0.07, color: 0x38bdf8, transparent: true, opacity: 0.6 });
-      const dustParticles = new THREE.Points(dustGeo, dustMat);
-      arenaGroup.add(dustParticles);
-
-      // -------------------------------------------------------------
-      // 6. CAMERA TARGETS & COMPETITOR SELECTION LOGIC
+      // 5. CAMERA FLYING TARGETS & CONTROLLER
       // -------------------------------------------------------------
       const compCamTargets = [
-        // 0: Hesabaty Hero View (Overhead Isometric Perspective)
+        // 0: Focus on Hesabaty (Center)
         {
-          camPos: new THREE.Vector3(0.0, 9.4, 6.8),
-          lookAt: new THREE.Vector3(0.0, 0.2, 0.0)
+          camPos: new THREE.Vector3(0.0, 1.4, 4.8),
+          lookAt: new THREE.Vector3(0.0, 0.85, 0.0),
+          spotPos: new THREE.Vector3(0.0, 8.0, 5.0),
+          spotTarget: new THREE.Vector3(0.0, 0.8, 0.0),
+          spotColor: 0x38bdf8
         },
-        // 1: Legacy Desktop (Overhead view craning slightly left)
+        // 1: Focus on Legacy Desktop POS (Left)
         {
-          camPos: new THREE.Vector3(-2.8, 9.0, 6.4),
-          lookAt: new THREE.Vector3(-0.6, 0.2, 0.0)
+          camPos: new THREE.Vector3(-3.8, 1.6, 5.0),
+          lookAt: new THREE.Vector3(-3.8, 0.8, 0.0),
+          spotPos: new THREE.Vector3(-3.8, 8.0, 5.0),
+          spotTarget: new THREE.Vector3(-3.8, 0.8, 0.0),
+          spotColor: 0xef4444
         },
-        // 2: Cloud ERP (Overhead view craning slightly right)
+        // 2: Focus on Enterprise Cloud ERP (Right)
         {
-          camPos: new THREE.Vector3(2.8, 9.0, 6.4),
-          lookAt: new THREE.Vector3(0.6, 0.2, 0.0)
+          camPos: new THREE.Vector3(3.8, 1.6, 5.0),
+          lookAt: new THREE.Vector3(3.8, 0.8, 0.0),
+          spotPos: new THREE.Vector3(3.8, 8.0, 5.0),
+          spotTarget: new THREE.Vector3(3.8, 0.8, 0.0),
+          spotColor: 0xf59e0b
+        },
+        // 3: Wide Overview (Compare All 3)
+        {
+          camPos: new THREE.Vector3(0.0, 3.4, 9.6),
+          lookAt: new THREE.Vector3(0.0, 0.5, 0.0),
+          spotPos: new THREE.Vector3(0.0, 9.0, 6.0),
+          spotTarget: new THREE.Vector3(0.0, 0.5, 0.0),
+          spotColor: 0x38bdf8
         }
       ];
 
-      let currentCamPos = new THREE.Vector3(0.0, 9.4, 6.8);
-      let currentLookAt = new THREE.Vector3(0.0, 0.2, 0.0);
+      let currentCamPos = compCamTargets[0].camPos.clone();
+      let currentLookAt = compCamTargets[0].lookAt.clone();
       let targetCamPos = compCamTargets[0].camPos.clone();
       let targetLookAt = compCamTargets[0].lookAt.clone();
       let currentActiveIdx = 0;
@@ -7103,167 +7541,110 @@ const htmlContent = `<!DOCTYPE html>
       compSelector = {
         select(idx) {
           currentActiveIdx = idx;
-          if (compCamTargets[idx]) {
-            targetCamPos.copy(compCamTargets[idx].camPos);
-            targetLookAt.copy(compCamTargets[idx].lookAt);
-          }
+          const target = compCamTargets[idx] || compCamTargets[0];
+          targetCamPos.copy(target.camPos);
+          targetLookAt.copy(target.lookAt);
+          spotTarget.position.copy(target.spotTarget);
+          mainSpot.color.setHex(target.spotColor);
 
           // Sync Buttons & Cards
-          [0, 1, 2].forEach(i => {
+          [0, 1, 2, 3].forEach(i => {
             const btn = document.getElementById('btn-comp-' + i);
             if (btn) {
               if (i === idx) btn.classList.add('active');
               else btn.classList.remove('active');
             }
+          });
+          [0, 1, 2].forEach(i => {
             const card = document.getElementById('card-comp-' + i);
             if (card) {
               if (i === idx) card.classList.add('active');
               else card.classList.remove('active');
             }
           });
-
-          // Update Target Heights and Materials for Canopy Morphing
-          if (idx === 0) {
-            // Hesabaty 100% Dome
-            targetHeights[0] = 2.7;
-            canopyMat.color.setHex(0x0284c7);
-            canopyMat.emissive.setHex(0x38bdf8);
-            canopyMat.opacity = 0.5;
-            ribbonMat.color.setHex(0x38bdf8);
-            mainSpot.color.setHex(0x38bdf8);
-
-            for (let i = 0; i < axesCount; i++) {
-              targetHeights[i + 1] = scoresHesabaty[i];
-              targetRadii[i + 1] = stationRadius;
-            }
-          } else if (idx === 1) {
-            // Legacy Desktop Collapse (Red / skewed)
-            targetHeights[0] = 1.1;
-            canopyMat.color.setHex(0x7f1d1d);
-            canopyMat.emissive.setHex(0xef4444);
-            canopyMat.opacity = 0.42;
-            ribbonMat.color.setHex(0xef4444);
-            mainSpot.color.setHex(0xf87171);
-
-            for (let i = 0; i < axesCount; i++) {
-              targetHeights[i + 1] = scoresLegacy[i];
-              targetRadii[i + 1] = stationRadius * 0.75;
-            }
-          } else if (idx === 2) {
-            // Cloud ERP (Amber / irregular)
-            targetHeights[0] = 1.4;
-            canopyMat.color.setHex(0x78350f);
-            canopyMat.emissive.setHex(0xf59e0b);
-            canopyMat.opacity = 0.42;
-            ribbonMat.color.setHex(0xf59e0b);
-            mainSpot.color.setHex(0xfbbf24);
-
-            for (let i = 0; i < axesCount; i++) {
-              targetHeights[i + 1] = scoresCloudERP[i];
-              targetRadii[i + 1] = stationRadius * 0.85;
-            }
-          }
         }
       };
 
-      // Direct Canvas Click Handling
+      // Raycasting click to focus on pedestals directly
       if (stageElem) {
         const raycaster = new THREE.Raycaster();
-        const clickVec = new THREE.Vector2();
+        const mouseVec = new THREE.Vector2();
         stageElem.addEventListener('click', (e) => {
           const rect = stageElem.getBoundingClientRect();
-          clickVec.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-          clickVec.y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-          raycaster.setFromCamera(clickVec, camera);
+          mouseVec.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          mouseVec.y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
 
-          // Cycle to next competitor on canvas click
-          const nextIdx = (currentActiveIdx + 1) % 3;
-          compSelector.select(nextIdx);
+          raycaster.setFromCamera(mouseVec, camera);
+          const intersects = raycaster.intersectObjects([st0Group, st1Group, st2Group], true);
+          if (intersects.length > 0) {
+            const hitPoint = intersects[0].point;
+            if (hitPoint.x < -1.8) {
+              compSelector.select(1);
+            } else if (hitPoint.x > 1.8) {
+              compSelector.select(2);
+            } else {
+              compSelector.select(0);
+            }
+          }
         });
       }
 
-      // Initial Selection
+      // Initial focus: Station 0 (Hesabaty)
       compSelector.select(0);
 
-      // Return Animation Loop
+      // Return Animator loop
       return {
         update(time) {
-          // 1. Ultra-Smooth Cinematic Camera Glide
-          currentCamPos.lerp(targetCamPos, 0.055);
-          currentLookAt.lerp(targetLookAt, 0.055);
+          // Camera Smooth Interpolation
+          currentCamPos.lerp(targetCamPos, 0.065);
+          currentLookAt.lerp(targetLookAt, 0.065);
 
-          // Cinematic Floating Breathing Motion + Mouse Parallax
-          const breath = Math.sin(time * 0.6) * 0.05;
-          const pX = mouseX * 0.25;
-          const pY = -mouseY * 0.15;
+          const breath = Math.sin(time * 0.8) * 0.04;
+          const pX = mouseX * 0.35;
+          const pY = -mouseY * 0.18;
           camera.position.set(currentCamPos.x + pX, currentCamPos.y + breath + pY, currentCamPos.z);
           camera.lookAt(currentLookAt.x, currentLookAt.y, currentLookAt.z);
 
-          // 2. Center Gyroscope Core Rotations
-          ring1.rotation.x = time * 0.65;
-          ring1.rotation.y = time * 0.45;
-          ring2.rotation.y = -time * 0.55;
-          ring2.rotation.z = time * 0.35;
-          crystalMesh.rotation.y = time * 0.8;
-          crystalMesh.position.y = Math.sin(time * 1.5) * 0.04;
+          // 1. Hesabaty Animations
+          // Phone levitation and gentle oscillation
+          phoneAssembly.position.y = 0.5 + Math.sin(time * 2.2) * 0.07;
+          phoneAssembly.rotation.y = Math.sin(time * 0.9) * 0.12;
 
-          // 3. Radar Sweep Fan Rotation
-          sweepMesh.rotation.y = -time * 0.75;
+          // Laser Scanner Beam translation across barcode
+          laserPlane.position.y = -0.15 + Math.sin(time * 4.5) * 0.16;
+          laserPlane.material.opacity = 0.75 + Math.sin(time * 8.0) * 0.2;
 
-          // 4. Smooth Morphing of 3D Canopy Vertices
-          // Apex vertex (index 0)
-          currentHeights[0] += (targetHeights[0] - currentHeights[0]) * 0.075;
-          positions[0] = 0;
-          positions[1] = currentHeights[0];
-          positions[2] = 0;
+          // E-Receipt gentle hover
+          receiptMesh.position.y = 0.2 + Math.sin(time * 1.8 + 1) * 0.05;
+          receiptMesh.rotation.y = -Math.PI * 0.18 + Math.sin(time * 1.2) * 0.08;
 
-          // Outer 6 vertices (indices 1 to 6)
-          const ribbonPos = ribbonLine.geometry.attributes.position.array;
-          for (let i = 0; i < axesCount; i++) {
-            currentHeights[i + 1] += (targetHeights[i + 1] - currentHeights[i + 1]) * 0.075;
-            currentRadii[i + 1] += (targetRadii[i + 1] - currentRadii[i + 1]) * 0.075;
+          // 2. Legacy POS Animations
+          // HDD LED pulsing
+          const hddBlink = Math.sin(time * 6.0) > 0.4 ? 1.0 : 0.1;
+          hddLedMat.color.setRGB(hddBlink, 0.05, 0.05);
 
-            const angle = stationAngles[i];
-            const px = Math.cos(angle) * currentRadii[i + 1];
-            const py = currentHeights[i + 1];
-            const pz = Math.sin(angle) * currentRadii[i + 1];
+          // 3. Enterprise ERP Animations
+          // Padlock floating & rotation
+          padlockGroup.rotation.y = time * 1.5;
+          padlockGroup.position.y = 2.05 + Math.sin(time * 2.0) * 0.06;
 
-            const vIdx = (i + 1) * 3;
-            positions[vIdx] = px;
-            positions[vIdx + 1] = py;
-            positions[vIdx + 2] = pz;
-
-            // Update boundary ribbon positions
-            const rIdx = i * 3;
-            ribbonPos[rIdx] = px;
-            ribbonPos[rIdx + 1] = py;
-            ribbonPos[rIdx + 2] = pz;
-
-            // Update joint spheres
-            jointSpheres[i].position.set(px, py + 0.16, pz);
-
-            // Billboarding: Station badges gently track camera angle directly
-            stations[i].badge.lookAt(camera.position.x, camera.position.y, camera.position.z);
-          }
-          // Loop ribbon back to start
-          ribbonPos[axesCount * 3] = ribbonPos[0];
-          ribbonPos[axesCount * 3 + 1] = ribbonPos[1];
-          ribbonPos[axesCount * 3 + 2] = ribbonPos[2];
-
-          canopyGeo.attributes.position.needsUpdate = true;
-          canopyGeo.computeVertexNormals();
-          ribbonLine.geometry.attributes.position.needsUpdate = true;
-
-          // 5. Crown and Pillar Pulsing
-          stations.forEach((st, idx) => {
-            st.crown.rotation.y = time * 0.5 + idx;
-            if (currentActiveIdx === 0) {
-              st.hMesh.material.emissiveIntensity = 0.7 + Math.sin(time * 3 + idx) * 0.2;
-            }
+          // Orbiting Bloat Cubes
+          bloatCubes.forEach(b => {
+            const angle = time * b.speed + b.angleOffset;
+            b.mesh.position.set(Math.cos(angle) * b.radius, 1.15 + Math.sin(angle * 2) * 0.3, Math.sin(angle) * b.radius * 0.6);
+            b.mesh.rotation.x = time * 1.2;
+            b.mesh.rotation.y = time * 1.5;
           });
 
-          // 6. Gentle Space Dust Drift
-          dustParticles.rotation.y = time * 0.018;
+          // 4. Billboarding for all 3 top badges
+          badge0.lookAt(camera.position.x, camera.position.y, camera.position.z);
+          badge1.lookAt(camera.position.x, camera.position.y, camera.position.z);
+          badge2.lookAt(camera.position.x, camera.position.y, camera.position.z);
+
+          // 5. Ambient ring glowing pulses
+          ring0Mat.color.setHSL(0.55, 0.9, 0.5 + Math.sin(time * 3.0) * 0.15);
+          ring1Mat.color.setHSL(0.0, 0.85, 0.45 + Math.sin(time * 2.5) * 0.15);
+          ring2Mat.color.setHSL(0.1, 0.9, 0.45 + Math.sin(time * 2.5) * 0.15);
         }
       };
     }
