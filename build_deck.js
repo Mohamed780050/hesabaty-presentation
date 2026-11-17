@@ -1463,7 +1463,7 @@ const htmlContent = `<!DOCTYPE html>
     <footer class="deck-footer">
       <div class="footer-note">Hesabaty © 2026 | Confidential Investor Presentation | Alex, Egypt</div>
 
-      <!-- Moving Watermark Marquee Ribbon Across All Slides -->
+      ${/* Moving Watermark Marquee Ribbon Across All Slides (commented out for now)
       <div class="deck-watermark-ribbon featured" id="deck-watermark-ribbon" title="الشركاء الاستراتيجيون وجهات الدعم">
         <div class="watermark-ribbon-tag">
           <span class="watermark-ribbon-tag-dot"></span>
@@ -1510,6 +1510,7 @@ const htmlContent = `<!DOCTYPE html>
           </div>
         </div>
       </div>
+      */ ''}
 
       <div class="nav-group">
         <button class="nav-btn" id="btn-prev" onclick="deck.prev()">السابق ➔</button>
